@@ -85,6 +85,16 @@ def get_summoner_by_name(summoner_name):
     return r.json()
 
 
+def get_account_by_puuid(puuid):
+    """
+    Récupère les informations de compte Riot (Riot ID + Tag Line) à partir d'un PUUID
+    via l'endpoint /riot/account/v1/accounts/by-puuid/{puuid}.
+    """
+    url = f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    r = requests.get(url, headers=HEADERS)
+    r.raise_for_status()
+    return r.json()
+
 
 # endpoint for summoner by name:
 #      /riot/account/v1/accounts/by-puuid/{puuid} 
