@@ -1,0 +1,474 @@
+2025-11-06 16:25:56,115 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 16:25:56,482 - ERROR - API error (attempt 1/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 16:25:57,634 - ERROR - API error (attempt 2/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 16:25:59,781 - ERROR - API error (attempt 3/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 16:30:46,372 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 16:30:46,580 - ERROR - API error (attempt 1/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 16:30:47,732 - ERROR - API error (attempt 2/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 16:30:49,918 - ERROR - API error (attempt 3/3): 401 Client Error: Unauthorized for url: https://euw1.api.riotgames.com/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I?page=1
+2025-11-06 17:02:28,844 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:02:29,331 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:02:29,610 - INFO - [1/50] Processing M A S K#KSAM
+2025-11-06 17:02:37,900 - INFO -   ✓ Added 4 new matches from M A S K#KSAM
+2025-11-06 17:02:38,168 - INFO - [2/50] Processing bLankkz#EUW
+2025-11-06 17:02:45,793 - INFO -   ✓ Added 20 new matches from bLankkz#EUW
+2025-11-06 17:02:46,018 - INFO - [3/50] Processing PlankMeDad#SM03
+2025-11-06 17:02:54,895 - INFO -   ✓ Added 3 new matches from PlankMeDad#SM03
+2025-11-06 17:02:55,133 - INFO - [4/50] Processing Lukaazs#EUW
+2025-11-06 17:03:02,800 - INFO -   ✓ Added 19 new matches from Lukaazs#EUW
+2025-11-06 17:03:03,015 - INFO - [5/50] Processing Vralr#2222
+2025-11-06 17:03:07,899 - WARNING - Rate limited (429), waiting 2s...
+2025-11-06 17:03:10,059 - WARNING - Rate limited (429), waiting 4s...
+2025-11-06 17:03:15,007 - WARNING - Rate limited (429), waiting 8s...
+2025-11-06 17:03:23,176 - WARNING - Rate limited (429), waiting 16s...
+2025-11-06 17:03:40,790 - WARNING - Rate limited (429), waiting 32s...
+2025-11-06 17:04:12,798 - INFO - Rate limit approaching, waiting 16.9s...
+2025-11-06 17:04:31,894 - INFO - Rate limit approaching, waiting 0.1s...
+2025-11-06 17:04:33,296 - INFO -   ✓ Added 5 new matches from Vralr#2222
+2025-11-06 17:04:33,524 - INFO - [6/50] Processing LCM#eu1
+2025-11-06 17:04:35,484 - INFO - Rate limit approaching, waiting 0.1s...
+2025-11-06 17:04:38,060 - INFO - Rate limit approaching, waiting 0.2s...
+2025-11-06 17:04:41,831 - INFO -   ✓ Added 17 new matches from LCM#eu1
+2025-11-06 17:04:42,241 - INFO - [7/50] Processing Aquazod#rain
+2025-11-06 17:04:51,118 - INFO -   ✓ Added 8 new matches from Aquazod#rain
+2025-11-06 17:04:51,359 - INFO - [8/50] Processing Nephis#sun
+2025-11-06 17:04:59,050 - INFO -   ✓ Added 16 new matches from Nephis#sun
+2025-11-06 17:04:59,299 - INFO - [9/50] Processing 히트미베이비1#EEE
+2025-11-06 17:05:06,785 - INFO -   ✓ Added 11 new matches from 히트미베이비1#EEE
+2025-11-06 17:05:07,019 - INFO - [10/50] Processing Frieden#MikaN
+2025-11-06 17:05:07,599 - INFO - Rate limit approaching, waiting 0.2s...
+2025-11-06 17:05:07,938 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:06:08,209 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:07:15,870 - INFO -   ✓ Added 7 new matches from Frieden#MikaN
+2025-11-06 17:07:16,088 - INFO - [11/50] Processing Zouca#Libur
+2025-11-06 17:07:23,771 - INFO -   ✓ Added 8 new matches from Zouca#Libur
+2025-11-06 17:07:24,173 - INFO - [12/50] Processing RAGNARClSSlST#Munin
+2025-11-06 17:07:32,149 - INFO -   ✓ Added 20 new matches from RAGNARClSSlST#Munin
+2025-11-06 17:07:32,389 - INFO - [13/50] Processing Noah#JAWED
+2025-11-06 17:07:39,314 - INFO -   ✓ Added 10 new matches from Noah#JAWED
+2025-11-06 17:07:39,552 - INFO - [14/50] Processing Ja3far#DIN
+2025-11-06 17:07:45,133 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:08:45,368 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:09:48,125 - INFO -   ✓ Added 3 new matches from Ja3far#DIN
+2025-11-06 17:09:48,332 - INFO - [15/50] Processing KIFFEUR#IEPS
+2025-11-06 17:09:56,118 - INFO -   ✓ Added 20 new matches from KIFFEUR#IEPS
+2025-11-06 17:09:56,340 - INFO - [16/50] Processing AZERT2004#EUW
+2025-11-06 17:10:03,343 - INFO -   ✓ Added 20 new matches from AZERT2004#EUW
+2025-11-06 17:10:03,786 - INFO - [17/50] Processing Diwine#NUNU
+2025-11-06 17:10:11,541 - INFO -   ✓ Added 13 new matches from Diwine#NUNU
+2025-11-06 17:10:11,768 - INFO - [18/50] Processing rxynii#616
+2025-11-06 17:10:18,904 - INFO -   ✓ Added 11 new matches from rxynii#616
+2025-11-06 17:10:19,137 - INFO - [19/50] Processing Wait for lvl 9#UwU
+2025-11-06 17:10:20,641 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:11:20,898 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:12:27,146 - INFO -   ✓ Added 20 new matches from Wait for lvl 9#UwU
+2025-11-06 17:12:27,371 - INFO - [20/50] Processing Svi#XXX
+2025-11-06 17:12:35,610 - INFO -   ✓ Added 3 new matches from Svi#XXX
+2025-11-06 17:12:35,840 - INFO - [21/50] Processing bleq#EÓW
+2025-11-06 17:12:43,577 - INFO -   ✓ Added 18 new matches from bleq#EÓW
+2025-11-06 17:12:44,190 - INFO - [22/50] Processing GG LGx#Graz
+2025-11-06 17:12:53,256 - INFO -   ✓ Added 6 new matches from GG LGx#Graz
+2025-11-06 17:12:53,479 - INFO - [23/50] Processing Devolve#8597
+2025-11-06 17:12:59,272 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:13:59,506 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:15:01,410 - INFO -   ✓ Added 19 new matches from Devolve#8597
+2025-11-06 17:15:01,634 - INFO - [24/50] Processing Venom lz#EUW
+2025-11-06 17:15:09,471 - INFO -   ✓ Added 20 new matches from Venom lz#EUW
+2025-11-06 17:15:09,683 - INFO - [25/50] Processing Khirlys#EUW
+2025-11-06 17:15:17,358 - INFO -   ✓ Added 4 new matches from Khirlys#EUW
+2025-11-06 17:15:17,622 - INFO - [26/50] Processing Boυnce#EUW
+2025-11-06 17:15:25,174 - INFO -   ✓ Added 2 new matches from Boυnce#EUW
+2025-11-06 17:15:25,530 - INFO - [27/50] Processing Tobez#GBK
+2025-11-06 17:15:33,789 - INFO -   ✓ Added 9 new matches from Tobez#GBK
+2025-11-06 17:15:34,003 - INFO - [28/50] Processing Ezrleen#5030
+2025-11-06 17:15:36,242 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:16:36,507 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:17:42,053 - INFO -   ✓ Added 12 new matches from Ezrleen#5030
+2025-11-06 17:17:42,279 - INFO - [29/50] Processing ælexy#TTV
+2025-11-06 17:17:50,503 - INFO -   ✓ Added 18 new matches from ælexy#TTV
+2025-11-06 17:17:50,705 - INFO - [30/50] Processing Dammit Rakan#EUW
+2025-11-06 17:17:57,999 - INFO -   ✓ Added 20 new matches from Dammit Rakan#EUW
+2025-11-06 17:17:58,213 - INFO - [31/50] Processing Darrow Of Lykos#621
+2025-11-06 17:18:05,556 - INFO -   ✓ Added 18 new matches from Darrow Of Lykos#621
+2025-11-06 17:18:05,985 - INFO - [32/50] Processing Pheudo#5589
+2025-11-06 17:18:12,800 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:19:13,026 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:20:14,225 - INFO -   ✓ Added 6 new matches from Pheudo#5589
+2025-11-06 17:20:14,546 - INFO - [33/50] Processing Prinz#001
+2025-11-06 17:20:21,478 - INFO -   ✓ Added 13 new matches from Prinz#001
+2025-11-06 17:20:21,712 - INFO - [34/50] Processing chao#till
+2025-11-06 17:20:28,880 - INFO -   ✓ Added 16 new matches from chao#till
+2025-11-06 17:20:29,079 - INFO - [35/50] Processing LorenzS4N#EUW
+2025-11-06 17:20:36,344 - INFO -   ✓ Added 14 new matches from LorenzS4N#EUW
+2025-11-06 17:20:36,568 - INFO - [36/50] Processing MrForces#EUW
+2025-11-06 17:20:43,617 - INFO -   ✓ Added 20 new matches from MrForces#EUW
+2025-11-06 17:20:43,992 - INFO - [37/50] Processing Weißer Reis#EUW
+2025-11-06 17:20:46,906 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:21:47,446 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:22:52,437 - INFO -   ✓ Added 2 new matches from Weißer Reis#EUW
+2025-11-06 17:22:52,707 - INFO - [38/50] Processing Tenshy#RAKAN
+2025-11-06 17:22:59,822 - INFO -   ✓ Added 2 new matches from Tenshy#RAKAN
+2025-11-06 17:23:00,061 - INFO - [39/50] Processing eliteidrees#EUW
+2025-11-06 17:23:07,504 - INFO -   ✓ Added 19 new matches from eliteidrees#EUW
+2025-11-06 17:23:07,718 - INFO - [40/50] Processing Shazonk#Kind
+2025-11-06 17:23:15,061 - INFO -   ✓ Added 14 new matches from Shazonk#Kind
+2025-11-06 17:23:15,319 - INFO - [41/50] Processing 34534635645#EUW
+2025-11-06 17:23:22,204 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:24:22,446 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:25:22,852 - INFO -   ✓ Added 20 new matches from 34534635645#EUW
+2025-11-06 17:25:23,225 - INFO - [42/50] Processing ФСБ#ЯЯЯЯ
+2025-11-06 17:25:30,533 - INFO -   ✓ Added 20 new matches from ФСБ#ЯЯЯЯ
+2025-11-06 17:25:30,770 - INFO - [43/50] Processing Im Just Sunny#EUW
+2025-11-06 17:25:37,967 - INFO -   ✓ Added 18 new matches from Im Just Sunny#EUW
+2025-11-06 17:25:38,187 - INFO - [44/50] Processing B1GD1KCMODEL#EUW
+2025-11-06 17:25:45,253 - INFO -   ✓ Added 13 new matches from B1GD1KCMODEL#EUW
+2025-11-06 17:25:45,472 - INFO - [45/50] Processing AceOfDefense#AOD
+2025-11-06 17:25:53,332 - INFO -   ✓ Added 4 new matches from AceOfDefense#AOD
+2025-11-06 17:25:53,541 - INFO - [46/50] Processing GayProfesional#EUW25
+2025-11-06 17:25:57,044 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:26:57,284 - WARNING - Rate limited (429), waiting 60s...
+2025-11-06 17:28:01,316 - INFO -   ✓ Added 2 new matches from GayProfesional#EUW25
+2025-11-06 17:28:01,669 - INFO - [47/50] Processing Vacthos#GOAT
+2025-11-06 17:28:09,196 - INFO -   ✓ Added 7 new matches from Vacthos#GOAT
+2025-11-06 17:28:09,429 - INFO - [48/50] Processing sxphir667#LDO
+2025-11-06 17:28:16,371 - INFO -   ✓ Added 18 new matches from sxphir667#LDO
+2025-11-06 17:28:16,597 - INFO - [49/50] Processing IRIS OUT#king
+2025-11-06 17:28:24,062 - INFO -   ✓ Added 20 new matches from IRIS OUT#king
+2025-11-06 17:28:24,286 - INFO - [50/50] Processing ToshiLTM#1503
+2025-11-06 17:28:31,685 - INFO -   ✓ Added 20 new matches from ToshiLTM#1503
+2025-11-06 17:28:31,829 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:28:31,829 - INFO - Total API requests: 1123
+2025-11-06 17:28:31,829 - INFO - Successful requests: 1100
+2025-11-06 17:28:31,829 - INFO - Rate limit errors: 23
+2025-11-06 17:28:31,829 - INFO - Other errors: 0
+2025-11-06 17:28:31,829 - INFO - Total unique matches: 632
+2025-11-06 17:28:31,829 - INFO - Players processed: 50
+2025-11-06 17:29:31,841 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:29:32,264 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:29:32,267 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:29:32,267 - INFO - Total API requests: 1124
+2025-11-06 17:29:32,267 - INFO - Successful requests: 1101
+2025-11-06 17:29:32,267 - INFO - Rate limit errors: 23
+2025-11-06 17:29:32,267 - INFO - Other errors: 0
+2025-11-06 17:29:32,267 - INFO - Total unique matches: 632
+2025-11-06 17:29:32,267 - INFO - Players processed: 50
+2025-11-06 17:30:32,279 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:30:32,649 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:30:32,654 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:30:32,654 - INFO - Total API requests: 1125
+2025-11-06 17:30:32,655 - INFO - Successful requests: 1102
+2025-11-06 17:30:32,655 - INFO - Rate limit errors: 23
+2025-11-06 17:30:32,655 - INFO - Other errors: 0
+2025-11-06 17:30:32,655 - INFO - Total unique matches: 632
+2025-11-06 17:30:32,655 - INFO - Players processed: 50
+2025-11-06 17:31:32,665 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:31:33,100 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:31:33,104 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:31:33,104 - INFO - Total API requests: 1126
+2025-11-06 17:31:33,105 - INFO - Successful requests: 1103
+2025-11-06 17:31:33,105 - INFO - Rate limit errors: 23
+2025-11-06 17:31:33,105 - INFO - Other errors: 0
+2025-11-06 17:31:33,105 - INFO - Total unique matches: 632
+2025-11-06 17:31:33,105 - INFO - Players processed: 50
+2025-11-06 17:32:33,106 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:32:33,455 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:32:33,461 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:32:33,461 - INFO - Total API requests: 1127
+2025-11-06 17:32:33,461 - INFO - Successful requests: 1104
+2025-11-06 17:32:33,461 - INFO - Rate limit errors: 23
+2025-11-06 17:32:33,461 - INFO - Other errors: 0
+2025-11-06 17:32:33,461 - INFO - Total unique matches: 632
+2025-11-06 17:32:33,461 - INFO - Players processed: 50
+2025-11-06 17:33:33,472 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:33:33,930 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:33:33,933 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:33:33,933 - INFO - Total API requests: 1128
+2025-11-06 17:33:33,933 - INFO - Successful requests: 1105
+2025-11-06 17:33:33,933 - INFO - Rate limit errors: 23
+2025-11-06 17:33:33,933 - INFO - Other errors: 0
+2025-11-06 17:33:33,933 - INFO - Total unique matches: 632
+2025-11-06 17:33:33,933 - INFO - Players processed: 50
+2025-11-06 17:34:33,940 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:34:34,297 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:34:34,301 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:34:34,302 - INFO - Total API requests: 1129
+2025-11-06 17:34:34,302 - INFO - Successful requests: 1106
+2025-11-06 17:34:34,302 - INFO - Rate limit errors: 23
+2025-11-06 17:34:34,302 - INFO - Other errors: 0
+2025-11-06 17:34:34,302 - INFO - Total unique matches: 632
+2025-11-06 17:34:34,302 - INFO - Players processed: 50
+2025-11-06 17:35:34,319 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:35:34,747 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:35:34,751 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:35:34,751 - INFO - Total API requests: 1130
+2025-11-06 17:35:34,752 - INFO - Successful requests: 1107
+2025-11-06 17:35:34,752 - INFO - Rate limit errors: 23
+2025-11-06 17:35:34,752 - INFO - Other errors: 0
+2025-11-06 17:35:34,752 - INFO - Total unique matches: 632
+2025-11-06 17:35:34,752 - INFO - Players processed: 50
+2025-11-06 17:36:34,760 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:36:35,097 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:36:35,097 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:36:35,097 - INFO - Total API requests: 1131
+2025-11-06 17:36:35,098 - INFO - Successful requests: 1108
+2025-11-06 17:36:35,098 - INFO - Rate limit errors: 23
+2025-11-06 17:36:35,098 - INFO - Other errors: 0
+2025-11-06 17:36:35,098 - INFO - Total unique matches: 632
+2025-11-06 17:36:35,098 - INFO - Players processed: 50
+2025-11-06 17:37:35,098 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:37:35,535 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:37:35,539 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:37:35,539 - INFO - Total API requests: 1132
+2025-11-06 17:37:35,539 - INFO - Successful requests: 1109
+2025-11-06 17:37:35,539 - INFO - Rate limit errors: 23
+2025-11-06 17:37:35,539 - INFO - Other errors: 0
+2025-11-06 17:37:35,540 - INFO - Total unique matches: 632
+2025-11-06 17:37:35,540 - INFO - Players processed: 50
+2025-11-06 17:38:35,550 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:38:35,899 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:38:35,904 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:38:35,904 - INFO - Total API requests: 1133
+2025-11-06 17:38:35,904 - INFO - Successful requests: 1110
+2025-11-06 17:38:35,904 - INFO - Rate limit errors: 23
+2025-11-06 17:38:35,904 - INFO - Other errors: 0
+2025-11-06 17:38:35,904 - INFO - Total unique matches: 632
+2025-11-06 17:38:35,904 - INFO - Players processed: 50
+2025-11-06 17:39:35,906 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:39:36,319 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:39:36,323 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:39:36,323 - INFO - Total API requests: 1134
+2025-11-06 17:39:36,323 - INFO - Successful requests: 1111
+2025-11-06 17:39:36,323 - INFO - Rate limit errors: 23
+2025-11-06 17:39:36,323 - INFO - Other errors: 0
+2025-11-06 17:39:36,323 - INFO - Total unique matches: 632
+2025-11-06 17:39:36,323 - INFO - Players processed: 50
+2025-11-06 17:40:36,334 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:40:36,753 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:40:36,756 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:40:36,757 - INFO - Total API requests: 1135
+2025-11-06 17:40:36,757 - INFO - Successful requests: 1112
+2025-11-06 17:40:36,757 - INFO - Rate limit errors: 23
+2025-11-06 17:40:36,757 - INFO - Other errors: 0
+2025-11-06 17:40:36,757 - INFO - Total unique matches: 632
+2025-11-06 17:40:36,757 - INFO - Players processed: 50
+2025-11-06 17:41:36,767 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:41:37,175 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:41:37,181 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:41:37,181 - INFO - Total API requests: 1136
+2025-11-06 17:41:37,181 - INFO - Successful requests: 1113
+2025-11-06 17:41:37,181 - INFO - Rate limit errors: 23
+2025-11-06 17:41:37,181 - INFO - Other errors: 0
+2025-11-06 17:41:37,181 - INFO - Total unique matches: 632
+2025-11-06 17:41:37,181 - INFO - Players processed: 50
+2025-11-06 17:42:37,190 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:42:37,536 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:42:37,539 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:42:37,539 - INFO - Total API requests: 1137
+2025-11-06 17:42:37,539 - INFO - Successful requests: 1114
+2025-11-06 17:42:37,539 - INFO - Rate limit errors: 23
+2025-11-06 17:42:37,539 - INFO - Other errors: 0
+2025-11-06 17:42:37,539 - INFO - Total unique matches: 632
+2025-11-06 17:42:37,539 - INFO - Players processed: 50
+2025-11-06 17:43:37,549 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:43:38,228 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:43:38,230 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:43:38,230 - INFO - Total API requests: 1138
+2025-11-06 17:43:38,230 - INFO - Successful requests: 1115
+2025-11-06 17:43:38,230 - INFO - Rate limit errors: 23
+2025-11-06 17:43:38,230 - INFO - Other errors: 0
+2025-11-06 17:43:38,230 - INFO - Total unique matches: 632
+2025-11-06 17:43:38,230 - INFO - Players processed: 50
+2025-11-06 17:44:38,237 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:44:38,597 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:44:38,598 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:44:38,598 - INFO - Total API requests: 1139
+2025-11-06 17:44:38,598 - INFO - Successful requests: 1116
+2025-11-06 17:44:38,598 - INFO - Rate limit errors: 23
+2025-11-06 17:44:38,598 - INFO - Other errors: 0
+2025-11-06 17:44:38,598 - INFO - Total unique matches: 632
+2025-11-06 17:44:38,598 - INFO - Players processed: 50
+2025-11-06 17:45:38,604 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:45:39,743 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:45:39,744 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:45:39,744 - INFO - Total API requests: 1140
+2025-11-06 17:45:39,744 - INFO - Successful requests: 1117
+2025-11-06 17:45:39,744 - INFO - Rate limit errors: 23
+2025-11-06 17:45:39,744 - INFO - Other errors: 0
+2025-11-06 17:45:39,744 - INFO - Total unique matches: 632
+2025-11-06 17:45:39,744 - INFO - Players processed: 50
+2025-11-06 17:46:39,750 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:46:41,383 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:46:41,384 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:46:41,384 - INFO - Total API requests: 1141
+2025-11-06 17:46:41,384 - INFO - Successful requests: 1118
+2025-11-06 17:46:41,384 - INFO - Rate limit errors: 23
+2025-11-06 17:46:41,384 - INFO - Other errors: 0
+2025-11-06 17:46:41,384 - INFO - Total unique matches: 632
+2025-11-06 17:46:41,384 - INFO - Players processed: 50
+2025-11-06 17:47:41,389 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:47:42,485 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:47:42,487 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:47:42,487 - INFO - Total API requests: 1142
+2025-11-06 17:47:42,487 - INFO - Successful requests: 1119
+2025-11-06 17:47:42,487 - INFO - Rate limit errors: 23
+2025-11-06 17:47:42,487 - INFO - Other errors: 0
+2025-11-06 17:47:42,487 - INFO - Total unique matches: 632
+2025-11-06 17:47:42,487 - INFO - Players processed: 50
+2025-11-06 17:48:42,492 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:48:42,841 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:48:42,845 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:48:42,846 - INFO - Total API requests: 1143
+2025-11-06 17:48:42,846 - INFO - Successful requests: 1120
+2025-11-06 17:48:42,846 - INFO - Rate limit errors: 23
+2025-11-06 17:48:42,846 - INFO - Other errors: 0
+2025-11-06 17:48:42,846 - INFO - Total unique matches: 632
+2025-11-06 17:48:42,846 - INFO - Players processed: 50
+2025-11-06 17:49:42,850 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:49:43,767 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:49:43,769 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:49:43,769 - INFO - Total API requests: 1144
+2025-11-06 17:49:43,769 - INFO - Successful requests: 1121
+2025-11-06 17:49:43,769 - INFO - Rate limit errors: 23
+2025-11-06 17:49:43,769 - INFO - Other errors: 0
+2025-11-06 17:49:43,769 - INFO - Total unique matches: 632
+2025-11-06 17:49:43,769 - INFO - Players processed: 50
+2025-11-06 17:50:43,773 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:50:44,134 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:50:44,137 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:50:44,137 - INFO - Total API requests: 1145
+2025-11-06 17:50:44,137 - INFO - Successful requests: 1122
+2025-11-06 17:50:44,137 - INFO - Rate limit errors: 23
+2025-11-06 17:50:44,137 - INFO - Other errors: 0
+2025-11-06 17:50:44,137 - INFO - Total unique matches: 632
+2025-11-06 17:50:44,137 - INFO - Players processed: 50
+2025-11-06 17:51:15,024 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:51:15,546 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:51:15,549 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:51:15,549 - INFO - Total API requests: 1146
+2025-11-06 17:51:15,549 - INFO - Successful requests: 1123
+2025-11-06 17:51:15,549 - INFO - Rate limit errors: 23
+2025-11-06 17:51:15,549 - INFO - Other errors: 0
+2025-11-06 17:51:15,549 - INFO - Total unique matches: 632
+2025-11-06 17:51:15,549 - INFO - Players processed: 50
+2025-11-06 17:51:15,549 - INFO - Extracting matches to CSV...
+2025-11-06 17:51:16,911 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:52:16,937 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:52:18,229 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:52:18,231 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:52:18,232 - INFO - Total API requests: 1147
+2025-11-06 17:52:18,232 - INFO - Successful requests: 1124
+2025-11-06 17:52:18,232 - INFO - Rate limit errors: 23
+2025-11-06 17:52:18,232 - INFO - Other errors: 0
+2025-11-06 17:52:18,232 - INFO - Total unique matches: 632
+2025-11-06 17:52:18,232 - INFO - Players processed: 50
+2025-11-06 17:52:18,232 - INFO - Extracting matches to CSV...
+2025-11-06 17:52:19,676 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:53:19,705 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:53:20,927 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:53:20,929 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:53:20,929 - INFO - Total API requests: 1148
+2025-11-06 17:53:20,929 - INFO - Successful requests: 1125
+2025-11-06 17:53:20,929 - INFO - Rate limit errors: 23
+2025-11-06 17:53:20,929 - INFO - Other errors: 0
+2025-11-06 17:53:20,929 - INFO - Total unique matches: 632
+2025-11-06 17:53:20,929 - INFO - Players processed: 50
+2025-11-06 17:53:20,929 - INFO - Extracting matches to CSV...
+2025-11-06 17:53:22,381 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:54:22,409 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:54:22,753 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:54:22,755 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:54:22,755 - INFO - Total API requests: 1149
+2025-11-06 17:54:22,755 - INFO - Successful requests: 1126
+2025-11-06 17:54:22,755 - INFO - Rate limit errors: 23
+2025-11-06 17:54:22,755 - INFO - Other errors: 0
+2025-11-06 17:54:22,755 - INFO - Total unique matches: 632
+2025-11-06 17:54:22,755 - INFO - Players processed: 50
+2025-11-06 17:54:22,755 - INFO - Extracting matches to CSV...
+2025-11-06 17:54:24,102 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:55:24,128 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:55:24,568 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:55:24,571 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:55:24,571 - INFO - Total API requests: 1150
+2025-11-06 17:55:24,571 - INFO - Successful requests: 1127
+2025-11-06 17:55:24,571 - INFO - Rate limit errors: 23
+2025-11-06 17:55:24,571 - INFO - Other errors: 0
+2025-11-06 17:55:24,571 - INFO - Total unique matches: 632
+2025-11-06 17:55:24,571 - INFO - Players processed: 50
+2025-11-06 17:55:24,572 - INFO - Extracting matches to CSV...
+2025-11-06 17:55:25,933 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:56:25,959 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:56:26,349 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:56:26,354 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:56:26,354 - INFO - Total API requests: 1151
+2025-11-06 17:56:26,354 - INFO - Successful requests: 1128
+2025-11-06 17:56:26,354 - INFO - Rate limit errors: 23
+2025-11-06 17:56:26,354 - INFO - Other errors: 0
+2025-11-06 17:56:26,354 - INFO - Total unique matches: 632
+2025-11-06 17:56:26,354 - INFO - Players processed: 50
+2025-11-06 17:56:26,354 - INFO - Extracting matches to CSV...
+2025-11-06 17:56:27,775 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:57:27,795 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:57:28,205 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:57:28,209 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:57:28,209 - INFO - Total API requests: 1152
+2025-11-06 17:57:28,209 - INFO - Successful requests: 1129
+2025-11-06 17:57:28,210 - INFO - Rate limit errors: 23
+2025-11-06 17:57:28,210 - INFO - Other errors: 0
+2025-11-06 17:57:28,210 - INFO - Total unique matches: 632
+2025-11-06 17:57:28,210 - INFO - Players processed: 50
+2025-11-06 17:57:28,210 - INFO - Extracting matches to CSV...
+2025-11-06 17:57:29,780 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:58:29,773 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:58:30,144 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:58:30,148 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:58:30,149 - INFO - Total API requests: 1153
+2025-11-06 17:58:30,149 - INFO - Successful requests: 1130
+2025-11-06 17:58:30,149 - INFO - Rate limit errors: 23
+2025-11-06 17:58:30,149 - INFO - Other errors: 0
+2025-11-06 17:58:30,149 - INFO - Total unique matches: 632
+2025-11-06 17:58:30,149 - INFO - Players processed: 50
+2025-11-06 17:58:30,150 - INFO - Extracting matches to CSV...
+2025-11-06 17:58:31,527 - INFO - Successfully extracted 696 matches to CSV files
+2025-11-06 17:59:31,554 - INFO - Starting collection: 50 players, 20 matches each
+2025-11-06 17:59:31,949 - INFO - Page 1 retrieved: 205 players
+2025-11-06 17:59:31,951 - INFO - 
+=== Collection Statistics ===
+2025-11-06 17:59:31,951 - INFO - Total API requests: 1154
+2025-11-06 17:59:31,951 - INFO - Successful requests: 1131
+2025-11-06 17:59:31,951 - INFO - Rate limit errors: 23
+2025-11-06 17:59:31,951 - INFO - Other errors: 0
+2025-11-06 17:59:31,951 - INFO - Total unique matches: 632
+2025-11-06 17:59:31,951 - INFO - Players processed: 50
+2025-11-06 17:59:31,951 - INFO - Extracting matches to CSV...
+2025-11-06 17:59:33,634 - INFO - Successfully extracted 696 matches to CSV files
