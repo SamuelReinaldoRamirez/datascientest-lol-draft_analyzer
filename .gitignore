@@ -3,3 +3,10 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+logs/
+data_collection.log
+match_details_extended.txt
+match_data_detailed.csv
+draft_data_with_bans.csv
+data_analysis_report.txt
+collection_progress.json

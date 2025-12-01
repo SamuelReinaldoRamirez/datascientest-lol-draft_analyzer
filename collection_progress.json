@@ -688,9 +688,9 @@
   "last_page": 1,
   "last_player_index": 50,
   "stats": {
-    "total_requests": 1154,
-    "successful_requests": 1131,
+    "total_requests": 1261,
+    "successful_requests": 1237,
     "rate_limit_errors": 23,
-    "other_errors": 0
+    "other_errors": 1
   }
 }
