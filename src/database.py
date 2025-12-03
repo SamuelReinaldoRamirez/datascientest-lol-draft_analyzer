@@ -28,6 +28,7 @@ class MatchDatabase:
     def __init__(self, db_path: str = 'lol_matches.db'):
         self.db_path = db_path
         self._init_db()
+        self._enable_wal()
 
     @contextmanager
     def get_connection(self):
@@ -180,6 +181,15 @@ class MatchDatabase:
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_champion ON player_stats(champion_id)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_match ON player_stats(match_id)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_team_stats_match ON team_stats(match_id)')
+
+    def _enable_wal(self):
+        """
+        Enable WAL (Write-Ahead Logging) mode for better concurrent access.
+        This allows multiple processes to read/write simultaneously.
+        """
+        with self.get_connection() as conn:
+            conn.execute('PRAGMA journal_mode=WAL')
+            conn.execute('PRAGMA busy_timeout=30000')  # 30 second timeout for locked DB
 
     def match_exists(self, match_id: str) -> bool:
         """Check if match already exists in database"""
@@ -399,6 +409,20 @@ class MatchDatabase:
             cursor = conn.cursor()
             cursor.execute('SELECT puuid FROM collection_progress')
             return [row[0] for row in cursor.fetchall()]
+
+    def clear_processed_players(self):
+        """Clear all processed players to allow re-fetching new matches"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('DELETE FROM collection_progress')
+            return cursor.rowcount
+
+    def clear_processed_players_by_prefix(self, prefix: str):
+        """Clear processed players with a specific prefix (e.g., 'sid_' for Master+ players)"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('DELETE FROM collection_progress WHERE puuid LIKE ?', (f'{prefix}%',))
+            return cursor.rowcount
 
     def update_stat(self, key: str, value: Any):
         """Update a collection statistic"""

@@ -6,9 +6,18 @@ Features:
 - SQLite storage for crash-resistant data persistence
 - Automatic resume from last position
 - Incremental saving to avoid data loss
+- Parallel collection support with dedicated API keys per elo tier
 
 Usage:
+    # Single process (rotation between all keys):
     python src/collect_data_safe.py --continuous --players 50 --matches 20
+
+    # Parallel collection (2 terminals):
+    # Terminal 1 - Diamond I only:
+    python src/collect_data_safe.py --continuous --elo diamond --api-key-index 0
+
+    # Terminal 2 - Master+ only:
+    python src/collect_data_safe.py --continuous --elo master --api-key-index 1
 """
 
 import time
@@ -22,7 +31,7 @@ import logging
 from riot_api import (
     get_entries, get_matches_by_puuid, get_match_details, get_account_by_puuid,
     get_challenger_league, get_grandmaster_league, get_master_league,
-    get_high_elo_players, get_summoner_by_summoner_id
+    get_high_elo_players, get_summoner_by_summoner_id, get_api_key_count
 )
 from database import MatchDatabase
 
@@ -111,11 +120,13 @@ class DataCollector:
     - Automatic deduplication
     - Crash recovery
     - Efficient querying
+    - Parallel collection with dedicated API keys per elo tier
     """
 
-    def __init__(self, db_path: str = 'data/lol_matches.db'):
+    def __init__(self, db_path: str = 'data/lol_matches.db', api_key_index: int = None):
         self.rate_limiter = RateLimiter()
         self.db = MatchDatabase(db_path)
+        self.api_key_index = api_key_index  # None = use rotation, 0/1/etc = use specific key
 
         # Setup logging
         logging.basicConfig(
@@ -156,6 +167,10 @@ class DataCollector:
     def make_api_request(self, func, endpoint='default', *args, **kwargs):
         """Make API request with rate limiting and error handling"""
         max_retries = 3
+
+        # Add api_key_index to kwargs if specified (for dedicated key usage)
+        if self.api_key_index is not None:
+            kwargs['api_key_index'] = self.api_key_index
 
         for attempt in range(max_retries):
             try:
@@ -203,20 +218,27 @@ class DataCollector:
         return None
 
     def collect_matches(self, num_players: int = 50, matches_per_player: int = 20,
-                        high_elo_only: bool = False):
+                        high_elo_only: bool = False, elo_filter: str = None):
         """
         Collect matches with proper rate limiting and progress tracking.
 
         Args:
             num_players: Number of players to process per batch
             matches_per_player: Maximum matches to collect per player
-            high_elo_only: If True, collect from Master/GM/Challenger only
+            high_elo_only: If True, collect from Master/GM/Challenger only (legacy)
+            elo_filter: 'diamond' for Diamond I only, 'master' for Master/GM/Challenger only
 
         Returns:
             int: Total number of matches in database
         """
         self.logger.info(f"Starting collection: {num_players} players, {matches_per_player} matches each")
-        if high_elo_only:
+
+        # elo_filter takes precedence over high_elo_only
+        if elo_filter == 'diamond':
+            self.logger.info("Mode: DIAMOND I ONLY (parallel mode)")
+        elif elo_filter == 'master':
+            self.logger.info("Mode: MASTER+ ONLY (Master/GM/Challenger - parallel mode)")
+        elif high_elo_only:
             self.logger.info("Mode: HIGH ELO ONLY (Master/GM/Challenger)")
         else:
             self.logger.info("Mode: ALL HIGH ELO (Challenger + GM + Master + Diamond I)")
@@ -227,8 +249,20 @@ class DataCollector:
 
         new_entries = []
 
-        # Collect from Master+ leagues first
-        if high_elo_only or True:  # Always try high elo first
+        # Determine what to collect based on elo_filter
+        collect_master_plus = (elo_filter == 'master') or (elo_filter is None and not high_elo_only) or high_elo_only
+        collect_diamond = (elo_filter == 'diamond') or (elo_filter is None and not high_elo_only)
+
+        # Skip diamond if elo_filter is 'master'
+        if elo_filter == 'master':
+            collect_diamond = False
+
+        # Skip master+ if elo_filter is 'diamond'
+        if elo_filter == 'diamond':
+            collect_master_plus = False
+
+        # Collect from Master+ leagues
+        if collect_master_plus:
             self.logger.info("Fetching high elo players (Challenger/GM/Master)...")
 
             try:
@@ -237,19 +271,27 @@ class DataCollector:
                 if high_elo:
                     # Filter out already processed players
                     for entry in high_elo:
+                        # New API returns puuid directly, old entries may have summonerId
+                        puuid = entry.get("puuid")
                         summoner_id = entry.get("summonerId")
-                        # Need to check by summonerId since these entries don't have puuid
-                        if summoner_id and not self.db.is_player_processed(f"sid_{summoner_id}"):
-                            entry['_needs_puuid'] = True  # Mark that we need to fetch PUUID
-                            new_entries.append(entry)
+
+                        if puuid:
+                            # New format - has puuid directly
+                            if not self.db.is_player_processed(puuid):
+                                new_entries.append(entry)
+                        elif summoner_id:
+                            # Old format - needs puuid lookup
+                            if not self.db.is_player_processed(f"sid_{summoner_id}"):
+                                entry['_needs_puuid'] = True
+                                new_entries.append(entry)
 
                     self.logger.info(f"Found {len(new_entries)} new high elo players")
             except Exception as e:
                 self.logger.error(f"Error fetching high elo players: {e}")
 
-        # If not enough high elo players or not high_elo_only, add Diamond I
-        if not high_elo_only and len(new_entries) < num_players:
-            self.logger.info("Adding Diamond I players...")
+        # Add Diamond I players if needed
+        if collect_diamond and len(new_entries) < num_players:
+            self.logger.info("Fetching Diamond I players...")
             start_page = self.db.get_stat('last_page', 1)
             current_page = start_page
             max_pages = 50
@@ -281,9 +323,45 @@ class DataCollector:
             new_entries = new_entries[:num_players]
 
         if not new_entries:
-            self.logger.warning("No new players found! All players on available pages have been processed.")
-            self.logger.info("Try resetting progress with --reset to re-check players for new matches.")
-            return self.db.get_match_count()
+            self.logger.warning("No new players found! All players have been processed.")
+            self.logger.info("Auto-resetting to re-check for new matches...")
+
+            # Auto-reset the appropriate elo tier
+            self.reset_progress(clear_players=True, elo_filter=elo_filter)
+
+            # Re-fetch players after reset
+            if collect_master_plus:
+                self.logger.info("Re-fetching high elo players after reset...")
+                try:
+                    high_elo = self.make_api_request(get_high_elo_players, 'league')
+                    if high_elo:
+                        for entry in high_elo:
+                            # New API returns puuid directly
+                            puuid = entry.get("puuid")
+                            summoner_id = entry.get("summonerId")
+                            if puuid or summoner_id:
+                                if summoner_id and not puuid:
+                                    entry['_needs_puuid'] = True
+                                new_entries.append(entry)
+                        self.logger.info(f"Found {len(new_entries)} players after reset")
+                except Exception as e:
+                    self.logger.error(f"Error re-fetching high elo players: {e}")
+
+            if collect_diamond and not new_entries:
+                self.logger.info("Re-fetching Diamond I players after reset...")
+                entries = self.make_api_request(get_entries, 'league', 1)
+                if entries:
+                    for entry in entries:
+                        puuid = entry.get("puuid")
+                        if puuid:
+                            entry['tier'] = 'DIAMOND'
+                            new_entries.append(entry)
+                    self.logger.info(f"Found {len(new_entries)} Diamond I players after reset")
+
+            # If still no entries after reset, return
+            if not new_entries:
+                self.logger.warning("Still no players found after reset!")
+                return self.db.get_match_count()
 
         self.logger.info(f"Found {len(new_entries)} new players to process")
 
@@ -416,10 +494,37 @@ class DataCollector:
         except Exception as e:
             self.logger.error(f"Error exporting to CSV: {e}")
 
-    def reset_progress(self):
-        """Reset collection progress (keeps existing matches)"""
-        self.db.update_stat('last_page', 1)
-        self.db.update_stat('last_player_index', 0)
+    def reset_progress(self, clear_players=True, elo_filter=None):
+        """Reset collection progress (keeps existing matches)
+
+        Args:
+            clear_players: If True, clear processed players
+            elo_filter: If 'diamond', only reset Diamond page tracking.
+                       If 'master', only reset Master+ player tracking (sid_ prefixed).
+        """
+        if elo_filter == 'diamond':
+            # Only reset Diamond I page tracking
+            self.db.update_stat('last_page', 1)
+            self.db.update_stat('last_player_index', 0)
+            self.logger.info("Reset Diamond I page tracking.")
+        elif elo_filter == 'master':
+            # Reset Master+ players - try sid_ prefix first, if none found do full clear
+            if clear_players:
+                cleared = self.db.clear_processed_players_by_prefix('sid_')
+                if cleared == 0:
+                    # No sid_ prefixed players found - this means we haven't collected
+                    # Master+ yet with the new system. Do a full clear to start fresh.
+                    self.logger.info("No sid_ prefixed players found. Doing full reset for Master+ collection.")
+                    cleared = self.db.clear_processed_players()
+                self.logger.info(f"Cleared {cleared} processed players for Master+ collection.")
+        else:
+            # Full reset
+            self.db.update_stat('last_page', 1)
+            self.db.update_stat('last_player_index', 0)
+            if clear_players:
+                cleared = self.db.clear_processed_players()
+                self.logger.info(f"Cleared {cleared} processed players. Will re-fetch their new matches.")
+
         self.logger.info("Progress reset. Existing matches are preserved.")
 
 
@@ -439,24 +544,53 @@ def main():
                        help='Export database to CSV files')
     parser.add_argument('--high-elo-only', action='store_true',
                        help='Collect only from Master/GM/Challenger (skip Diamond)')
+    parser.add_argument('--elo', type=str, choices=['diamond', 'master'],
+                       help='Elo filter for parallel collection: "diamond" for Diamond I only, "master" for Master/GM/Challenger only')
+    parser.add_argument('--api-key-index', type=int,
+                       help='Index of API key to use (0, 1, etc.) for parallel collection. If not specified, rotates between all keys.')
 
     args = parser.parse_args()
 
-    collector = DataCollector(db_path=args.db)
+    collector = DataCollector(db_path=args.db, api_key_index=args.api_key_index)
 
     if args.reset:
-        collector.reset_progress()
-        print("Progress reset.")
+        collector.reset_progress(elo_filter=args.elo)
+        print(f"Progress reset{f' for {args.elo}' if args.elo else ''}.")
 
     if args.export_csv:
         collector.export_to_csv()
         return
 
     if args.continuous:
+        num_keys = get_api_key_count()
         print("=" * 60)
         print("Running in continuous mode. Press Ctrl+C to stop.")
         print(f"Database: {args.db}")
-        print(f"Mode: {'Master/GM/Challenger ONLY' if args.high_elo_only else 'All high elo (Chall/GM/Master/Diamond I)'}")
+
+        # Determine mode display
+        if args.elo == 'diamond':
+            mode_str = "DIAMOND I ONLY (parallel mode)"
+        elif args.elo == 'master':
+            mode_str = "MASTER+ ONLY (Master/GM/Challenger - parallel mode)"
+        elif args.high_elo_only:
+            mode_str = "Master/GM/Challenger ONLY"
+        else:
+            mode_str = "All high elo (Chall/GM/Master/Diamond I)"
+        print(f"Mode: {mode_str}")
+
+        # API Key info
+        if args.api_key_index is not None:
+            print(f"API Key: Using key #{args.api_key_index} (dedicated for this process)")
+        else:
+            print(f"API Keys: {num_keys} configured {'(🚀 TURBO MODE!)' if num_keys > 1 else '(add more keys in config.py for faster collection)'}")
+            if num_keys > 1:
+                print(f"  -> Rate limit capacity: {num_keys}x faster!")
+
+        # Parallel mode instructions
+        if args.elo and args.api_key_index is not None:
+            print("\n📦 PARALLEL MODE ACTIVE")
+            print("  Run another terminal with the other elo/key combination!")
+
         print("=" * 60)
         batch_number = 1
 
@@ -466,7 +600,9 @@ def main():
 
                 # Collect data
                 num_matches = collector.collect_matches(
-                    args.players, args.matches, high_elo_only=args.high_elo_only
+                    args.players, args.matches,
+                    high_elo_only=args.high_elo_only,
+                    elo_filter=args.elo
                 )
 
                 print(f"Batch {batch_number} complete! Total matches in database: {num_matches}")
@@ -491,7 +627,9 @@ def main():
     else:
         # Single run mode
         num_matches = collector.collect_matches(
-            args.players, args.matches, high_elo_only=args.high_elo_only
+            args.players, args.matches,
+            high_elo_only=args.high_elo_only,
+            elo_filter=args.elo
         )
 
         if num_matches > 0:
