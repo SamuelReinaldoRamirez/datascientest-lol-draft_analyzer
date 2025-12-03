@@ -1,12 +1,24 @@
+# Data files
+data/raw/*.txt
+data/raw/*.json
+data/*.db
+data/processed/
+
+# Models
+models/*.pkl
+
+# Logs
+*.log
+
+# Python
 venv/
 __pycache__/
 *.pyc
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
-logs/
-data_collection.log
-match_details_extended.txt
-match_data_detailed.csv
-draft_data_with_bans.csv
-data_analysis_report.txt
-collection_progress.json
