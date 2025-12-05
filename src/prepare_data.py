@@ -193,6 +193,670 @@ class ChampionStatsCalculator:
         return 0.5  # Default to 50% if no data
 
 
+# =============================================================================
+# MATCHUP DETECTION - Known Counter Picks
+# =============================================================================
+# Format: (champion_countered_id, counter_pick_id, position): severity (0.0 to 1.0)
+# Higher severity = stronger counter
+
+KNOWN_COUNTERS = {
+    # ===== TOP LANE =====
+    # Garen (86) counters
+    (86, 17, 'top'): 0.9,      # Garen countered by Teemo (blind + kite)
+    (86, 85, 'top'): 0.85,     # Garen countered by Kennen (ranged + stun)
+    (86, 8, 'top'): 0.8,       # Garen countered by Vladimir (sustain + poke)
+    (86, 150, 'top'): 0.8,     # Garen countered by Gnar (ranged + kite)
+
+    # Darius (122) counters
+    (122, 85, 'top'): 0.85,    # Darius countered by Kennen
+    (122, 17, 'top'): 0.85,    # Darius countered by Teemo
+    (122, 150, 'top'): 0.8,    # Darius countered by Gnar
+    (122, 69, 'top'): 0.8,     # Darius countered by Cassiopeia
+
+    # Yasuo (157) counters
+    (157, 58, 'top'): 0.9,     # Yasuo countered by Renekton
+    (157, 80, 'top'): 0.85,    # Yasuo countered by Pantheon
+    (157, 90, 'top'): 0.85,    # Yasuo countered by Malzahar
+
+    # Yone (777) counters
+    (777, 58, 'top'): 0.9,     # Yone countered by Renekton
+    (777, 80, 'top'): 0.85,    # Yone countered by Pantheon
+
+    # Riven (92) counters
+    (92, 58, 'top'): 0.85,     # Riven countered by Renekton
+    (92, 80, 'top'): 0.8,      # Riven countered by Pantheon
+    (92, 78, 'top'): 0.8,      # Riven countered by Poppy
+
+    # Fiora (114) counters
+    (114, 78, 'top'): 0.85,    # Fiora countered by Poppy (W blocks vitals)
+    (114, 90, 'top'): 0.8,     # Fiora countered by Malzahar
+
+    # Irelia (39) counters
+    (39, 80, 'top'): 0.85,     # Irelia countered by Pantheon
+    (39, 58, 'top'): 0.8,      # Irelia countered by Renekton
+    (39, 24, 'top'): 0.8,      # Irelia countered by Jax
+
+    # ===== MID LANE =====
+    # Zed (238) counters
+    (238, 90, 'mid'): 0.9,     # Zed countered by Malzahar (passive + R)
+    (238, 127, 'mid'): 0.85,   # Zed countered by Lissandra
+    (238, 245, 'mid'): 0.8,    # Zed countered by Ekko
+
+    # Katarina (55) counters
+    (55, 90, 'mid'): 0.9,      # Katarina countered by Malzahar
+    (55, 127, 'mid'): 0.85,    # Katarina countered by Lissandra
+    (55, 1, 'mid'): 0.8,       # Katarina countered by Annie
+
+    # Yasuo (157) counters - mid
+    (157, 90, 'mid'): 0.9,     # Yasuo countered by Malzahar
+    (157, 80, 'mid'): 0.85,    # Yasuo countered by Pantheon
+    (157, 127, 'mid'): 0.85,   # Yasuo countered by Lissandra
+
+    # Yone (777) counters - mid
+    (777, 90, 'mid'): 0.9,     # Yone countered by Malzahar
+    (777, 127, 'mid'): 0.85,   # Yone countered by Lissandra
+
+    # LeBlanc (7) counters
+    (7, 55, 'mid'): 0.85,      # LeBlanc countered by Kassadin
+    (7, 90, 'mid'): 0.8,       # LeBlanc countered by Malzahar
+
+    # Akali (84) counters
+    (84, 90, 'mid'): 0.85,     # Akali countered by Malzahar
+    (84, 1, 'mid'): 0.8,       # Akali countered by Annie
+
+    # Sylas (517) counters
+    (517, 69, 'mid'): 0.85,    # Sylas countered by Cassiopeia
+    (517, 90, 'mid'): 0.8,     # Sylas countered by Malzahar
+
+    # ===== JUNGLE =====
+    # Lee Sin (64) counters
+    (64, 107, 'jungle'): 0.8,  # Lee Sin countered by Rengar (bush control)
+    (64, 121, 'jungle'): 0.8,  # Lee Sin countered by Kha'Zix
+
+    # Nidalee (76) counters
+    (76, 107, 'jungle'): 0.85, # Nidalee countered by Rengar
+    (76, 121, 'jungle'): 0.8,  # Nidalee countered by Kha'Zix
+
+    # ===== ADC =====
+    # Draven (119) counters
+    (119, 51, 'adc'): 0.85,    # Draven countered by Caitlyn (range)
+    (119, 222, 'adc'): 0.8,    # Draven countered by Jinx (outscales)
+
+    # Vayne (67) counters
+    (67, 119, 'adc'): 0.85,    # Vayne countered by Draven (early bully)
+    (67, 51, 'adc'): 0.8,      # Vayne countered by Caitlyn
+
+    # Kog'Maw (96) counters
+    (96, 119, 'adc'): 0.85,    # Kog'Maw countered by Draven
+    (96, 51, 'adc'): 0.8,      # Kog'Maw countered by Caitlyn
+
+    # ===== SUPPORT =====
+    # Yuumi (350) counters
+    (350, 111, 'support'): 0.9,  # Yuumi countered by Nautilus (hook + lock)
+    (350, 89, 'support'): 0.85,  # Yuumi countered by Leona
+    (350, 53, 'support'): 0.85,  # Yuumi countered by Blitzcrank
+
+    # Sona (37) counters
+    (37, 111, 'support'): 0.85,  # Sona countered by Nautilus
+    (37, 89, 'support'): 0.85,   # Sona countered by Leona
+    (37, 53, 'support'): 0.8,    # Sona countered by Blitzcrank
+
+    # Soraka (16) counters
+    (16, 111, 'support'): 0.85,  # Soraka countered by Nautilus
+    (16, 89, 'support'): 0.8,    # Soraka countered by Leona
+
+    # Lux (99) counters - support
+    (99, 53, 'support'): 0.85,   # Lux countered by Blitzcrank
+    (99, 111, 'support'): 0.8,   # Lux countered by Nautilus
+}
+
+
+# =============================================================================
+# LANE SYNERGIES - Bot Lane and Jungle Roaming
+# =============================================================================
+# Format: (champion_1_id, champion_2_id): synergy_score (0.0 to 1.0)
+
+BOT_LANE_SYNERGIES = {
+    # ===== KILL LANE (High early aggression, all-in potential) =====
+    'kill_lane': {
+        # Draven (119) combos - early game terror
+        (119, 89): 0.95,     # Draven + Leona - level 2 all-in
+        (119, 111): 0.9,     # Draven + Nautilus - hook + axes
+        (119, 412): 0.9,     # Draven + Thresh - lantern engage
+        (119, 53): 0.85,     # Draven + Blitzcrank - pull = death
+
+        # Samira (360) combos - dash + style
+        (360, 89): 0.95,     # Samira + Leona - all-in combo
+        (360, 111): 0.95,    # Samira + Nautilus - engage chain
+        (360, 412): 0.9,     # Samira + Thresh - flay + dash
+        (360, 497): 0.9,     # Samira + Rakan - knock-up combo
+
+        # Lucian (236) combos - burst trades
+        (236, 89): 0.9,      # Lucian + Leona - short trade
+        (236, 111): 0.85,    # Lucian + Nautilus
+        (236, 555): 0.9,     # Lucian + Pyke - execute combo
+
+        # Kalista (429) combos - R synergy
+        (429, 89): 0.9,      # Kalista + Leona - ult into engage
+        (429, 412): 0.9,     # Kalista + Thresh - double knock-up
+        (429, 111): 0.85,    # Kalista + Nautilus
+
+        # Tristana (18) combos - burst all-in
+        (18, 89): 0.9,       # Tristana + Leona
+        (18, 111): 0.85,     # Tristana + Nautilus
+
+        # Miss Fortune (21) combos
+        (21, 89): 0.85,      # MF + Leona - ult setup
+        (21, 111): 0.85,     # MF + Nautilus
+    },
+
+    # ===== POKE LANE (Range advantage, chip damage) =====
+    'poke_lane': {
+        # Caitlyn (51) combos - trap control
+        (51, 267): 0.9,      # Caitlyn + Nami - bubble + trap
+        (51, 99): 0.9,       # Caitlyn + Lux - binding + trap
+        (51, 25): 0.85,      # Caitlyn + Morgana - snare combo
+        (51, 143): 0.85,     # Caitlyn + Zyra - zone control
+        (51, 63): 0.85,      # Caitlyn + Brand - poke + burn
+
+        # Ezreal (81) combos - safe poke
+        (81, 37): 0.85,      # Ezreal + Sona - sustain poke
+        (81, 267): 0.85,     # Ezreal + Nami - heal + poke
+        (81, 117): 0.8,      # Ezreal + Lulu - speed + poke
+        (81, 43): 0.85,      # Ezreal + Karma - double Q poke
+
+        # Jhin (202) combos - root setup
+        (202, 25): 0.9,      # Jhin + Morgana - double snare
+        (202, 99): 0.9,      # Jhin + Lux - binding chain
+        (202, 143): 0.85,    # Jhin + Zyra - root + trap
+
+        # Varus (110) combos
+        (110, 25): 0.9,      # Varus + Morgana - chain CC
+        (110, 99): 0.85,     # Varus + Lux
+
+        # Ashe (22) combos
+        (22, 143): 0.85,     # Ashe + Zyra - slows + roots
+        (22, 99): 0.85,      # Ashe + Lux - arrow + bind
+    },
+
+    # ===== PROTECT THE CARRY (Hypercarry + Enchanter) =====
+    'protect_carry': {
+        # Kog'Maw (96) combos - THE hypercarry
+        (96, 117): 0.95,     # Kog'Maw + Lulu - THE protect comp
+        (96, 40): 0.9,       # Kog'Maw + Janna - peel queen
+        (96, 350): 0.9,      # Kog'Maw + Yuumi - infinite sustain
+        (96, 267): 0.85,     # Kog'Maw + Nami - heal + AS
+
+        # Jinx (222) combos - late game monster
+        (222, 117): 0.9,     # Jinx + Lulu - speed + shield
+        (222, 40): 0.85,     # Jinx + Janna - tornado peel
+        (222, 350): 0.85,    # Jinx + Yuumi - late scaling
+
+        # Twitch (29) combos - stealth + hypercarry
+        (29, 117): 0.95,     # Twitch + Lulu - ICONIC duo
+        (29, 350): 0.9,      # Twitch + Yuumi - invisible cat
+        (29, 40): 0.85,      # Twitch + Janna
+
+        # Vayne (67) combos - scaling
+        (67, 117): 0.9,      # Vayne + Lulu - condemn + polymorph
+        (67, 40): 0.9,       # Vayne + Janna - peel for days
+        (67, 267): 0.85,     # Vayne + Nami
+
+        # Aphelios (523) combos
+        (523, 117): 0.9,     # Aphelios + Lulu
+        (523, 350): 0.85,    # Aphelios + Yuumi
+        (523, 412): 0.85,    # Aphelios + Thresh - lantern saves
+
+        # Zeri (221) combos
+        (221, 117): 0.9,     # Zeri + Lulu - speed machine
+        (221, 350): 0.85,    # Zeri + Yuumi
+    },
+
+    # ===== ENGAGE/WOMBO LANE (AoE ult synergy) =====
+    'engage_lane': {
+        # Miss Fortune (21) - ult follow-up
+        (21, 497): 0.95,     # MF + Rakan - grand entrance + bullet time
+        (21, 412): 0.9,      # MF + Thresh - box + ult
+        (21, 89): 0.85,      # MF + Leona - ult zone
+
+        # Xayah (498) combos - Rakan soulmate
+        (498, 497): 0.95,    # Xayah + Rakan - THE couple
+        (498, 89): 0.85,     # Xayah + Leona
+
+        # Sivir (15) combos - engage support
+        (15, 497): 0.9,      # Sivir + Rakan - ult synergy
+        (15, 89): 0.85,      # Sivir + Leona - ult engage
+
+        # Kai'Sa (145) combos
+        (145, 111): 0.9,     # Kai'Sa + Nautilus - passive proc
+        (145, 89): 0.9,      # Kai'Sa + Leona - follow R
+        (145, 412): 0.85,    # Kai'Sa + Thresh
+    },
+}
+
+JUNGLE_ROAM_SYNERGIES = {
+    # ===== JUNGLE + MID (Gank synergy) =====
+    'jungle_mid': {
+        # Lee Sin (64) + mid assassins
+        (64, 238): 0.9,      # Lee Sin + Zed - double dive
+        (64, 91): 0.9,       # Lee Sin + Talon - roam kings
+        (64, 245): 0.85,     # Lee Sin + Ekko - timing plays
+
+        # Elise (60) + CC mid
+        (60, 134): 0.9,      # Elise + Syndra - stun chain
+        (60, 61): 0.85,      # Elise + Orianna - cocoon + ult
+        (60, 112): 0.85,     # Elise + Viktor - cage combo
+
+        # Jarvan IV (59) + wombo mid
+        (59, 61): 0.95,      # J4 + Orianna - ICONIC wombo
+        (59, 112): 0.9,      # J4 + Viktor - cage in cataclysm
+        (59, 134): 0.85,     # J4 + Syndra
+
+        # Rek'Sai (421) + burst mid
+        (421, 7): 0.85,      # Rek'Sai + LeBlanc - tunnel + burst
+        (421, 238): 0.85,    # Rek'Sai + Zed - knock-up combo
+
+        # Nocturne (56) + dive mid
+        (56, 238): 0.9,      # Nocturne + Zed - double darkness
+        (56, 91): 0.85,      # Nocturne + Talon - no vision needed
+
+        # Zac (154) + follow-up mid
+        (154, 61): 0.9,      # Zac + Orianna - E in with ball
+        (154, 134): 0.85,    # Zac + Syndra - CC chain
+
+        # Nidalee (76) + poke/dive mid
+        (76, 238): 0.85,     # Nidalee + Zed - poke + all-in
+        (76, 7): 0.85,       # Nidalee + LeBlanc
+
+        # Kha'Zix (121) + assassin mid
+        (121, 238): 0.9,     # Kha'Zix + Zed - isolation + shadows
+        (121, 91): 0.85,     # Kha'Zix + Talon
+
+        # Vi (254) + burst mid
+        (254, 134): 0.9,     # Vi + Syndra - ult + stun lock
+        (254, 7): 0.85,      # Vi + LeBlanc - Q + chain
+    },
+
+    # ===== JUNGLE + TOP (Dive/gank synergy) =====
+    'jungle_top': {
+        # Sejuani (113) + CC top
+        (113, 516): 0.95,    # Sejuani + Ornn - double knockup
+        (113, 57): 0.9,      # Sejuani + Maokai - CC chain
+        (113, 54): 0.85,     # Sejuani + Malphite
+
+        # Zac (154) + engage top
+        (154, 516): 0.9,     # Zac + Ornn - wombo
+        (154, 57): 0.85,     # Zac + Maokai - double engage
+
+        # Jarvan IV (59) + dive top
+        (59, 58): 0.9,       # J4 + Renekton - early dive
+        (59, 240): 0.85,     # J4 + Kled - double all-in
+        (59, 164): 0.85,     # J4 + Camille - cataclysm + R
+
+        # Rek'Sai (421) + bruiser top
+        (421, 58): 0.85,     # Rek'Sai + Renekton - stun chain
+        (421, 164): 0.85,    # Rek'Sai + Camille
+
+        # Warwick (19) + all-in top
+        (19, 58): 0.9,       # Warwick + Renekton - sustain dive
+        (19, 240): 0.85,     # Warwick + Kled - run down
+
+        # Elise (60) + dive top
+        (60, 58): 0.85,      # Elise + Renekton - cocoon dive
+        (60, 164): 0.85,     # Elise + Camille
+
+        # Vi (254) + lockdown top
+        (254, 164): 0.9,     # Vi + Camille - double lockdown
+        (254, 516): 0.85,    # Vi + Ornn - ult chain
+
+        # Hecarim (120) + dive top
+        (120, 58): 0.85,     # Hecarim + Renekton - run at them
+        (120, 164): 0.85,    # Hecarim + Camille
+
+        # Poppy (78) + wall stun top
+        (78, 164): 0.85,     # Poppy + Camille - double wall CC
+        (78, 240): 0.85,     # Poppy + Kled - charge + stun
+    },
+}
+
+# Encoding for synergy types
+SYNERGY_TYPE_ENCODING = {
+    'none': 0,
+    'kill_lane': 1,
+    'poke_lane': 2,
+    'protect_carry': 3,
+    'engage_lane': 4,
+}
+
+
+class MatchupAnalyzer:
+    """
+    Analyzes lane matchups and detects unfavorable/counter matchups.
+
+    Combines:
+    - Known counter picks (KNOWN_COUNTERS dictionary)
+    - Data-driven matchup win rates from collected matches
+    """
+
+    # Matchup severity thresholds
+    FAVORABLE_THRESHOLD = 0.52      # > 52% = favorable
+    NEUTRAL_HIGH = 0.52             # 48-52% = neutral
+    NEUTRAL_LOW = 0.48
+    UNFAVORABLE_THRESHOLD = 0.45    # 45-48% = unfavorable
+    COUNTER_THRESHOLD = 0.45        # < 45% = counter
+
+    def __init__(self, df: pd.DataFrame = None, min_games: int = 10):
+        """
+        Initialize matchup analyzer.
+
+        Args:
+            df: DataFrame with match data
+            min_games: Minimum games for reliable matchup data
+        """
+        self.df = df
+        self.min_games = min_games
+        self.matchups = {}  # {(champ_a, champ_b, position): stats}
+        self.champion_names = {}  # {champion_id: name}
+
+        if df is not None:
+            self._build_champion_names()
+            self.calculate_all_matchups()
+
+    def _build_champion_names(self):
+        """Build champion ID to name mapping from data."""
+        if self.df is None:
+            return
+
+        for team in ['team_100', 'team_200']:
+            for pos in ['top', 'jungle', 'mid', 'adc', 'support']:
+                id_col = f'{team}_{pos}_champion_id'
+                name_col = f'{team}_{pos}_champion_name'
+                if id_col in self.df.columns and name_col in self.df.columns:
+                    for _, row in self.df[[id_col, name_col]].drop_duplicates().dropna().iterrows():
+                        self.champion_names[int(row[id_col])] = row[name_col]
+
+    def get_champion_name(self, champion_id: int) -> str:
+        """Get champion name from ID."""
+        return self.champion_names.get(champion_id, str(champion_id))
+
+    def calculate_all_matchups(self) -> dict:
+        """
+        Calculate all lane matchups with detailed statistics.
+
+        Returns:
+            dict: {(champ_a, champ_b, position): {
+                'games': int,
+                'wins_for_a': int,
+                'winrate': float,
+                'gold_diff_avg': float (optional),
+                'cs_diff_avg': float (optional)
+            }}
+        """
+        if self.df is None:
+            return {}
+
+        print("  Calculating lane matchups...")
+        positions = ['top', 'jungle', 'mid', 'adc', 'support']
+        matchups = {}
+
+        for _, row in self.df.iterrows():
+            team_100_win = row.get('team_100_win', False)
+
+            for pos in positions:
+                col_100 = f'team_100_{pos}_champion_id'
+                col_200 = f'team_200_{pos}_champion_id'
+
+                if col_100 not in self.df.columns or col_200 not in self.df.columns:
+                    continue
+
+                champ_100 = row.get(col_100)
+                champ_200 = row.get(col_200)
+
+                if pd.isna(champ_100) or pd.isna(champ_200):
+                    continue
+
+                champ_100 = int(champ_100)
+                champ_200 = int(champ_200)
+                key = (champ_100, champ_200, pos)
+
+                if key not in matchups:
+                    matchups[key] = {'games': 0, 'wins_for_a': 0}
+
+                matchups[key]['games'] += 1
+                if team_100_win:
+                    matchups[key]['wins_for_a'] += 1
+
+        # Calculate winrates and filter by min_games
+        for key, stats in matchups.items():
+            if stats['games'] >= self.min_games:
+                stats['winrate'] = stats['wins_for_a'] / stats['games']
+            else:
+                stats['winrate'] = None  # Not enough data
+
+        self.matchups = matchups
+        print(f"    Found {len([k for k, v in matchups.items() if v['winrate'] is not None])} matchups with >= {self.min_games} games")
+        return matchups
+
+    def get_matchup_winrate(self, champ_a: int, champ_b: int, position: str) -> float:
+        """
+        Get win rate for champ_a vs champ_b in a specific position.
+
+        Args:
+            champ_a: Champion ID for team 100 side
+            champ_b: Champion ID for team 200 side
+            position: Lane position
+
+        Returns:
+            Win rate for champ_a (0.0 to 1.0), or 0.5 if no data
+        """
+        key = (champ_a, champ_b, position)
+        if key in self.matchups and self.matchups[key]['winrate'] is not None:
+            return self.matchups[key]['winrate']
+
+        # Try reverse matchup
+        reverse_key = (champ_b, champ_a, position)
+        if reverse_key in self.matchups and self.matchups[reverse_key]['winrate'] is not None:
+            return 1.0 - self.matchups[reverse_key]['winrate']
+
+        # Check known counters
+        if (champ_a, champ_b, position) in KNOWN_COUNTERS:
+            # champ_a is countered by champ_b
+            severity = KNOWN_COUNTERS[(champ_a, champ_b, position)]
+            return 0.5 - (severity * 0.2)  # Convert severity to winrate estimate
+
+        if (champ_b, champ_a, position) in KNOWN_COUNTERS:
+            # champ_b is countered by champ_a
+            severity = KNOWN_COUNTERS[(champ_b, champ_a, position)]
+            return 0.5 + (severity * 0.2)
+
+        return 0.5  # No data
+
+    def get_matchup_severity(self, champ_a: int, champ_b: int, position: str) -> str:
+        """
+        Classify matchup severity for champ_a.
+
+        Returns:
+            'favorable': > 52% winrate
+            'neutral': 48-52% winrate
+            'unfavorable': 45-48% winrate
+            'counter': < 45% winrate
+        """
+        winrate = self.get_matchup_winrate(champ_a, champ_b, position)
+
+        if winrate > self.FAVORABLE_THRESHOLD:
+            return 'favorable'
+        elif winrate >= self.NEUTRAL_LOW:
+            return 'neutral'
+        elif winrate >= self.COUNTER_THRESHOLD:
+            return 'unfavorable'
+        else:
+            return 'counter'
+
+    def get_unfavorable_matchups(self, threshold: float = 0.45) -> list:
+        """
+        Get all matchups with winrate below threshold.
+
+        Args:
+            threshold: Win rate threshold (default: 0.45 = 45%)
+
+        Returns:
+            List of tuples: [(champ_a_name, champ_b_name, position, winrate, games), ...]
+            Sorted by winrate ascending (worst first)
+        """
+        unfavorable = []
+
+        for key, stats in self.matchups.items():
+            if stats['winrate'] is not None and stats['winrate'] < threshold:
+                champ_a, champ_b, pos = key
+                unfavorable.append((
+                    self.get_champion_name(champ_a),
+                    self.get_champion_name(champ_b),
+                    pos,
+                    stats['winrate'],
+                    stats['games']
+                ))
+
+        # Sort by winrate (worst first)
+        unfavorable.sort(key=lambda x: x[3])
+        return unfavorable
+
+    def get_counter_matchups(self, threshold: float = 0.40) -> list:
+        """
+        Get severe counter matchups (very low winrate).
+
+        Args:
+            threshold: Win rate threshold (default: 0.40 = 40%)
+
+        Returns:
+            List of counter matchups
+        """
+        return self.get_unfavorable_matchups(threshold)
+
+    def analyze_draft_matchups(self, team_100_comp: dict, team_200_comp: dict) -> dict:
+        """
+        Analyze matchups for a specific draft.
+
+        Args:
+            team_100_comp: {'top': champ_id, 'jungle': champ_id, ...}
+            team_200_comp: {'top': champ_id, 'jungle': champ_id, ...}
+
+        Returns:
+            {
+                'team_100_warnings': [{'position', 'your_champ', 'enemy_champ', 'winrate', 'severity'}, ...],
+                'team_200_warnings': [...],
+                'team_100_matchup_score': float,  # Average matchup winrate
+                'team_200_matchup_score': float,
+                'worst_matchup': {...}
+            }
+        """
+        positions = ['top', 'jungle', 'mid', 'adc', 'support']
+        team_100_warnings = []
+        team_200_warnings = []
+        team_100_winrates = []
+        team_200_winrates = []
+
+        for pos in positions:
+            champ_100 = team_100_comp.get(pos)
+            champ_200 = team_200_comp.get(pos)
+
+            if champ_100 is None or champ_200 is None:
+                continue
+
+            # Get matchup from team 100's perspective
+            winrate_100 = self.get_matchup_winrate(champ_100, champ_200, pos)
+            severity_100 = self.get_matchup_severity(champ_100, champ_200, pos)
+            team_100_winrates.append(winrate_100)
+            team_200_winrates.append(1.0 - winrate_100)
+
+            # Check for warnings
+            if severity_100 in ['unfavorable', 'counter']:
+                team_100_warnings.append({
+                    'position': pos,
+                    'your_champ': self.get_champion_name(champ_100),
+                    'enemy_champ': self.get_champion_name(champ_200),
+                    'winrate': winrate_100,
+                    'severity': severity_100
+                })
+
+            if (1.0 - winrate_100) < self.UNFAVORABLE_THRESHOLD:
+                team_200_warnings.append({
+                    'position': pos,
+                    'your_champ': self.get_champion_name(champ_200),
+                    'enemy_champ': self.get_champion_name(champ_100),
+                    'winrate': 1.0 - winrate_100,
+                    'severity': self.get_matchup_severity(champ_200, champ_100, pos)
+                })
+
+        # Calculate average scores
+        team_100_score = np.mean(team_100_winrates) if team_100_winrates else 0.5
+        team_200_score = np.mean(team_200_winrates) if team_200_winrates else 0.5
+
+        # Find worst matchup
+        worst_matchup = None
+        if team_100_warnings:
+            worst = min(team_100_warnings, key=lambda x: x['winrate'])
+            worst_matchup = {'team': 'team_100', **worst}
+        if team_200_warnings:
+            worst_200 = min(team_200_warnings, key=lambda x: x['winrate'])
+            if worst_matchup is None or worst_200['winrate'] < worst_matchup['winrate']:
+                worst_matchup = {'team': 'team_200', **worst_200}
+
+        return {
+            'team_100_warnings': team_100_warnings,
+            'team_200_warnings': team_200_warnings,
+            'team_100_matchup_score': team_100_score,
+            'team_200_matchup_score': team_200_score,
+            'worst_matchup': worst_matchup,
+            'num_counters_team_100': len([w for w in team_100_warnings if w['severity'] == 'counter']),
+            'num_counters_team_200': len([w for w in team_200_warnings if w['severity'] == 'counter'])
+        }
+
+    def get_matchup_features(self, row: pd.Series) -> dict:
+        """
+        Extract matchup features for a single match row.
+
+        Features:
+        - worst_matchup_winrate: Minimum matchup winrate across all lanes
+        - num_unfavorable_matchups: Count of matchups < 45%
+        - num_counter_matchups: Count of matchups < 40%
+        - avg_matchup_advantage: Average matchup winrate - 0.5
+        - matchup_variance: Variance in matchup winrates
+
+        Returns:
+            dict with matchup features
+        """
+        positions = ['top', 'jungle', 'mid', 'adc', 'support']
+        matchup_winrates = []
+
+        for pos in positions:
+            col_100 = f'team_100_{pos}_champion_id'
+            col_200 = f'team_200_{pos}_champion_id'
+
+            champ_100 = row.get(col_100)
+            champ_200 = row.get(col_200)
+
+            if pd.notna(champ_100) and pd.notna(champ_200):
+                wr = self.get_matchup_winrate(int(champ_100), int(champ_200), pos)
+                matchup_winrates.append(wr)
+            else:
+                matchup_winrates.append(0.5)
+
+        # Calculate features
+        worst_wr = min(matchup_winrates) if matchup_winrates else 0.5
+        num_unfavorable = sum(1 for wr in matchup_winrates if wr < 0.45)
+        num_counter = sum(1 for wr in matchup_winrates if wr < 0.40)
+        avg_advantage = np.mean(matchup_winrates) - 0.5 if matchup_winrates else 0.0
+        variance = np.var(matchup_winrates) if len(matchup_winrates) > 1 else 0.0
+
+        return {
+            'worst_matchup_winrate': worst_wr,
+            'num_unfavorable_matchups': num_unfavorable,
+            'num_counter_matchups': num_counter,
+            'avg_matchup_advantage': avg_advantage,
+            'matchup_variance': variance
+        }
+
+
 class ChampionSynergyCalculator:
     """
     Calculates champion synergy scores based on known powerful combinations.
@@ -602,6 +1266,210 @@ class TeamCompositionFeatures:
         return features
 
 
+class LaneSynergyCalculator:
+    """
+    Calculates lane-specific synergies for bot lane and jungle roaming.
+
+    Types of synergies:
+    - Bot Lane (ADC + Support): kill_lane, poke_lane, protect_carry, engage_lane
+    - Jungle Roaming: jungle_mid, jungle_top
+    """
+
+    def __init__(self):
+        """Initialize with synergy dictionaries."""
+        self.bot_synergies = BOT_LANE_SYNERGIES
+        self.jungle_synergies = JUNGLE_ROAM_SYNERGIES
+        self.type_encoding = SYNERGY_TYPE_ENCODING
+
+    def get_bot_lane_synergy(self, adc_id: int, support_id: int) -> dict:
+        """
+        Get bot lane synergy between ADC and Support.
+
+        Args:
+            adc_id: Champion ID of ADC
+            support_id: Champion ID of Support
+
+        Returns:
+            dict: {
+                'score': float (0.0 to 1.0),
+                'type': str (synergy type name),
+                'type_encoded': int,
+                'strength': str ('none', 'weak', 'moderate', 'strong')
+            }
+        """
+        if pd.isna(adc_id) or pd.isna(support_id):
+            return {
+                'score': 0.0,
+                'type': 'none',
+                'type_encoded': 0,
+                'strength': 'none'
+            }
+
+        adc_id = int(adc_id)
+        support_id = int(support_id)
+        pair = (adc_id, support_id)
+
+        # Search in all synergy types
+        for synergy_type, pairs in self.bot_synergies.items():
+            if pair in pairs:
+                score = pairs[pair]
+                return {
+                    'score': score,
+                    'type': synergy_type,
+                    'type_encoded': self.type_encoding.get(synergy_type, 0),
+                    'strength': self._score_to_strength(score)
+                }
+
+        # No known synergy found
+        return {
+            'score': 0.0,
+            'type': 'none',
+            'type_encoded': 0,
+            'strength': 'none'
+        }
+
+    def get_jungle_lane_synergy(self, jungle_id: int, lane_champ_id: int,
+                                 lane_type: str = 'mid') -> dict:
+        """
+        Get jungle-lane roaming synergy.
+
+        Args:
+            jungle_id: Champion ID of jungler
+            lane_champ_id: Champion ID of laner
+            lane_type: 'mid' or 'top'
+
+        Returns:
+            dict: {
+                'score': float,
+                'strength': str
+            }
+        """
+        if pd.isna(jungle_id) or pd.isna(lane_champ_id):
+            return {'score': 0.0, 'strength': 'none'}
+
+        jungle_id = int(jungle_id)
+        lane_champ_id = int(lane_champ_id)
+        pair = (jungle_id, lane_champ_id)
+
+        synergy_key = f'jungle_{lane_type}'
+        if synergy_key in self.jungle_synergies:
+            pairs = self.jungle_synergies[synergy_key]
+            if pair in pairs:
+                score = pairs[pair]
+                return {
+                    'score': score,
+                    'strength': self._score_to_strength(score)
+                }
+
+        return {'score': 0.0, 'strength': 'none'}
+
+    def _score_to_strength(self, score: float) -> str:
+        """Convert numeric score to strength category."""
+        if score >= 0.9:
+            return 'strong'
+        elif score >= 0.8:
+            return 'moderate'
+        elif score > 0:
+            return 'weak'
+        return 'none'
+
+    def calculate_lane_synergy_features(self, row: pd.Series) -> dict:
+        """
+        Calculate all lane synergy features for a match row.
+
+        Args:
+            row: DataFrame row with champion IDs
+
+        Returns:
+            dict: All lane synergy features for both teams
+        """
+        features = {}
+
+        # ===== TEAM 100 =====
+        # Bot lane synergy
+        t100_bot = self.get_bot_lane_synergy(
+            row.get('team_100_adc_champion_id'),
+            row.get('team_100_support_champion_id')
+        )
+        features['team_100_bot_synergy_score'] = t100_bot['score']
+        features['team_100_bot_synergy_type'] = t100_bot['type_encoded']
+
+        # Jungle-Mid synergy
+        t100_jg_mid = self.get_jungle_lane_synergy(
+            row.get('team_100_jungle_champion_id'),
+            row.get('team_100_mid_champion_id'),
+            'mid'
+        )
+        features['team_100_jungle_mid_synergy'] = t100_jg_mid['score']
+
+        # Jungle-Top synergy
+        t100_jg_top = self.get_jungle_lane_synergy(
+            row.get('team_100_jungle_champion_id'),
+            row.get('team_100_top_champion_id'),
+            'top'
+        )
+        features['team_100_jungle_top_synergy'] = t100_jg_top['score']
+
+        # Total lane synergy for team 100
+        features['team_100_total_lane_synergy'] = (
+            t100_bot['score'] +
+            t100_jg_mid['score'] +
+            t100_jg_top['score']
+        )
+
+        # ===== TEAM 200 =====
+        # Bot lane synergy
+        t200_bot = self.get_bot_lane_synergy(
+            row.get('team_200_adc_champion_id'),
+            row.get('team_200_support_champion_id')
+        )
+        features['team_200_bot_synergy_score'] = t200_bot['score']
+        features['team_200_bot_synergy_type'] = t200_bot['type_encoded']
+
+        # Jungle-Mid synergy
+        t200_jg_mid = self.get_jungle_lane_synergy(
+            row.get('team_200_jungle_champion_id'),
+            row.get('team_200_mid_champion_id'),
+            'mid'
+        )
+        features['team_200_jungle_mid_synergy'] = t200_jg_mid['score']
+
+        # Jungle-Top synergy
+        t200_jg_top = self.get_jungle_lane_synergy(
+            row.get('team_200_jungle_champion_id'),
+            row.get('team_200_top_champion_id'),
+            'top'
+        )
+        features['team_200_jungle_top_synergy'] = t200_jg_top['score']
+
+        # Total lane synergy for team 200
+        features['team_200_total_lane_synergy'] = (
+            t200_bot['score'] +
+            t200_jg_mid['score'] +
+            t200_jg_top['score']
+        )
+
+        # ===== DIFFERENTIAL FEATURES =====
+        # Bot lane advantage
+        features['bot_synergy_diff'] = (
+            t100_bot['score'] - t200_bot['score']
+        )
+
+        # Jungle roaming advantage
+        features['jungle_roam_diff'] = (
+            (t100_jg_mid['score'] + t100_jg_top['score']) -
+            (t200_jg_mid['score'] + t200_jg_top['score'])
+        )
+
+        # Total lane synergy advantage
+        features['lane_synergy_advantage'] = (
+            features['team_100_total_lane_synergy'] -
+            features['team_200_total_lane_synergy']
+        )
+
+        return features
+
+
 class DataPreparer:
     """
     Prepares match data for machine learning.
@@ -725,12 +1593,14 @@ class DataPreparer:
             print(f"  Found {len(columns_with_missing)} columns with missing values")
 
             # Fill numeric columns with 0
-            numeric_cols = df.select_dtypes(include=[np.number]).columns
-            df[numeric_cols] = df[numeric_cols].fillna(0)
+            numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+            for col in numeric_cols:
+                df[col] = df[col].fillna(0)
 
             # Fill boolean columns with False
-            bool_cols = df.select_dtypes(include=['bool']).columns
-            df[bool_cols] = df[bool_cols].fillna(False)
+            bool_cols = df.select_dtypes(include=['bool']).columns.tolist()
+            for col in bool_cols:
+                df[col] = df[col].fillna(False)
 
         print(f"  Missing values handled")
         return df
@@ -888,9 +1758,9 @@ class DataPreparer:
                 else:
                     features[f'matchup_{pos}_winrate'] = 0.5
 
-            # Average matchup advantage
+            # Average matchup winrate (relative to 0.5)
             matchup_wrs = [features[f'matchup_{pos}_winrate'] for pos in positions]
-            features['avg_matchup_advantage'] = np.mean(matchup_wrs) - 0.5
+            features['avg_lane_matchup_winrate'] = np.mean(matchup_wrs) - 0.5
 
             new_features.append(features)
 
@@ -1012,6 +1882,77 @@ class DataPreparer:
         print(f"  Added {len(features_df.columns)} synergy features")
         return df
 
+    def add_matchup_detection_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Add matchup detection features to identify unfavorable lane matchups.
+
+        Features added:
+        - worst_matchup_winrate: Lowest matchup winrate across all 5 lanes
+        - num_unfavorable_matchups: Count of lanes with < 45% winrate
+        - num_counter_matchups: Count of lanes with < 40% winrate (severe)
+        - matchup_advantage_score: Average matchup advantage (mean - 0.5)
+        - matchup_variance: How spread out the matchup winrates are
+        """
+        print("Adding matchup detection features...")
+
+        # Initialize matchup analyzer
+        matchup_analyzer = MatchupAnalyzer(df, min_games=10)
+
+        new_features = []
+
+        for idx, row in df.iterrows():
+            features = matchup_analyzer.get_matchup_features(row)
+            new_features.append(features)
+
+        # Add features to dataframe
+        features_df = pd.DataFrame(new_features, index=df.index)
+        df = pd.concat([df, features_df], axis=1)
+
+        print(f"  Added {len(features_df.columns)} matchup detection features")
+        return df
+
+    def add_lane_synergy_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Add lane-specific synergy features for bot lane and jungle roaming.
+
+        Features added:
+        - team_100/200_bot_synergy_score: Bot lane synergy strength (0-1)
+        - team_100/200_bot_synergy_type: Type (kill/poke/protect/engage)
+        - team_100/200_jungle_mid_synergy: Jungle-mid roaming synergy
+        - team_100/200_jungle_top_synergy: Jungle-top roaming synergy
+        - team_100/200_total_lane_synergy: Sum of all lane synergies
+        - bot_synergy_diff: Bot lane synergy advantage
+        - jungle_roam_diff: Jungle roaming advantage
+        - lane_synergy_advantage: Total lane synergy advantage
+        """
+        print("Adding lane synergy features...")
+
+        # Initialize lane synergy calculator
+        lane_synergy_calc = LaneSynergyCalculator()
+
+        new_features = []
+
+        for idx, row in df.iterrows():
+            features = lane_synergy_calc.calculate_lane_synergy_features(row)
+            new_features.append(features)
+
+        # Add features to dataframe
+        features_df = pd.DataFrame(new_features, index=df.index)
+        df = pd.concat([df, features_df], axis=1)
+
+        # Count how many matches have known synergies
+        bot_synergies_count = (features_df['team_100_bot_synergy_score'] > 0).sum() + \
+                             (features_df['team_200_bot_synergy_score'] > 0).sum()
+        jg_synergies_count = (features_df['team_100_jungle_mid_synergy'] > 0).sum() + \
+                            (features_df['team_100_jungle_top_synergy'] > 0).sum() + \
+                            (features_df['team_200_jungle_mid_synergy'] > 0).sum() + \
+                            (features_df['team_200_jungle_top_synergy'] > 0).sum()
+
+        print(f"  Added {len(features_df.columns)} lane synergy features")
+        print(f"  Found {bot_synergies_count} bot lane synergies")
+        print(f"  Found {jg_synergies_count} jungle roaming synergies")
+        return df
+
     def prepare_features(self, df: pd.DataFrame) -> tuple:
         """
         Prepare features (X) and target (y).
@@ -1031,9 +1972,10 @@ class DataPreparer:
 
         # Convert all columns to numeric
         for col in X.columns:
-            if X[col].dtype == 'bool':
+            col_dtype = X[col].dtype
+            if col_dtype == 'bool':
                 X[col] = X[col].astype(int)
-            elif X[col].dtype == 'object':
+            elif col_dtype == 'object':
                 # Try to convert to numeric, fill with 0 if fails
                 X[col] = pd.to_numeric(X[col], errors='coerce').fillna(0)
 
@@ -1175,6 +2117,8 @@ class DataPreparer:
             df = self.add_champion_winrate_features(df)
             df = self.add_team_composition_features(df)
             df = self.add_synergy_features(df)
+            df = self.add_matchup_detection_features(df)
+            df = self.add_lane_synergy_features(df)
 
         # Step 4: Remove post-game columns (if draft-only mode)
         if draft_only:

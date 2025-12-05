@@ -17,11 +17,11 @@ Créer une baseline fonctionnelle avec les données brutes.
 
 ### Ce qui a été fait
 - **Collecte de données** via l'API Riot Games
-  - Joueurs Diamond I surle serveur EUW
+  - Joueurs Diamond I sur le serveur EUW
   - ~8000+ matchs collectés
 - **Features de base**
   - 10 champions encodés (5 par équipe)
-  - One-hot encoding les champions
+  - One-hot encoding des champions
 
 ### Résultat
 - **53% d'accuracy** - À peine mieux que le hasard
@@ -32,7 +32,7 @@ Les champions seuls ne suffisent pas. Il faut capturer les **relations** entre e
 
 ---
 
-## Phase 2 : Correction du Data Leakage (Accuracy: 53% → 53%)
+## Phase 2 : Correction du Data Leakage (Accuracy: 98% → 53%)
 
 ### Le problème découvert
 Le modèle initial avait 98% d'accuracy... trop beau pour être vrai !
