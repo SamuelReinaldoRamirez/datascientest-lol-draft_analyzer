@@ -34,36 +34,139 @@
 
 
 import requests
+import time
 from config import API_KEY, API_KEYS, REGION, QUEUE, TIER, DIVISION
 
-# API Key rotation for faster collection
-class APIKeyRotator:
+# Smart API Key rotation with automatic failover on rate limits
+class SmartKeyRotator:
     """
-    Rotates between multiple API keys to double (or more) the rate limit capacity.
-    Each key has its own rate limits, so using 2 keys = 2x speed.
+    Smart API key rotator with automatic failover on rate limits.
+
+    Features:
+    - Tracks state of each API key (available / in cooldown)
+    - Automatically skips rate-limited keys
+    - Exponential backoff per key
+    - Statistics tracking per key
     """
     def __init__(self, api_keys):
         self.api_keys = [k for k in api_keys if k and not k.startswith('#')]
-        self.current_index = 0
         self.key_count = len(self.api_keys)
+        self.current_index = 0
 
+        # Track state per key
+        self.key_states = {}
+        for i in range(self.key_count):
+            self.key_states[i] = {
+                'cooldown_until': 0,
+                'last_429_time': None,
+                'error_count': 0,
+                'total_requests': 0,
+                'successful_requests': 0
+            }
+
+    def get_next_available_key(self):
+        """
+        Get next key that's not in cooldown.
+
+        Returns:
+            tuple: (key_index, key) if available
+                   (key_index, key, wait_time) if all keys in cooldown
+        """
+        current_time = time.time()
+
+        # Try keys starting from current index
+        for offset in range(self.key_count):
+            idx = (self.current_index + offset) % self.key_count
+            state = self.key_states[idx]
+
+            # Skip if in cooldown
+            if current_time < state['cooldown_until']:
+                continue
+
+            # Found available key
+            self.current_index = (idx + 1) % self.key_count
+            state['total_requests'] += 1
+            return idx, self.api_keys[idx]
+
+        # All keys in cooldown - return the one with shortest wait
+        best_idx = min(self.key_states.keys(),
+                      key=lambda k: self.key_states[k]['cooldown_until'])
+        wait_time = self.key_states[best_idx]['cooldown_until'] - current_time
+
+        return best_idx, self.api_keys[best_idx], wait_time
+
+    def mark_key_rate_limited(self, key_index, retry_after=None):
+        """
+        Mark a specific key as rate-limited.
+
+        Args:
+            key_index: Index of the key that was rate-limited
+            retry_after: Optional retry-after value from response header
+
+        Returns:
+            float: Cooldown duration in seconds
+        """
+        state = self.key_states[key_index]
+        state['error_count'] += 1
+        state['last_429_time'] = time.time()
+
+        # Calculate cooldown
+        if retry_after:
+            cooldown = float(retry_after)
+        else:
+            # Exponential backoff: 2, 4, 8, 16, 32, max 60s
+            cooldown = min(2 ** state['error_count'], 60)
+
+        state['cooldown_until'] = time.time() + cooldown
+        return cooldown
+
+    def mark_key_success(self, key_index):
+        """Mark successful request - gradually reset error count"""
+        state = self.key_states[key_index]
+        state['successful_requests'] += 1
+
+        # Reset error count after 5 successful requests
+        if state['successful_requests'] % 5 == 0:
+            state['error_count'] = max(0, state['error_count'] - 1)
+
+    def get_key_stats(self):
+        """Get statistics for all keys"""
+        return {
+            i: {
+                'total': s['total_requests'],
+                'success': s['successful_requests'],
+                'errors': s['error_count'],
+                'cooldown': max(0, s['cooldown_until'] - time.time())
+            }
+            for i, s in self.key_states.items()
+        }
+
+    # Legacy methods for backward compatibility
     def get_next_key(self):
-        """Get the next API key in rotation"""
-        if self.key_count == 0:
-            raise ValueError("No API keys configured!")
-        key = self.api_keys[self.current_index]
-        self.current_index = (self.current_index + 1) % self.key_count
-        return key
+        """Get the next API key (legacy compatibility)"""
+        result = self.get_next_available_key()
+        if len(result) == 2:
+            return result[1]  # Return just the key
+        else:
+            return result[1]  # Return key even if all in cooldown
 
     def get_headers(self):
-        """Get headers with the next API key"""
+        """Get headers with the next API key (legacy compatibility)"""
         return {"X-Riot-Token": self.get_next_key()}
 
 # Initialize rotator with all keys
-_key_rotator = APIKeyRotator(API_KEYS)
+_key_rotator = SmartKeyRotator(API_KEYS)
 
 # For backward compatibility (single key usage)
 HEADERS = {"X-Riot-Token": API_KEY}
+
+def get_key_rotator():
+    """Get the global key rotator instance"""
+    return _key_rotator
+
+def get_api_key_count():
+    """Get number of configured API keys"""
+    return _key_rotator.key_count
 
 def get_rotating_headers():
     """Get headers with rotating API key for faster collection"""

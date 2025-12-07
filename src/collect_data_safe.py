@@ -31,7 +31,8 @@ import logging
 from riot_api import (
     get_entries, get_matches_by_puuid, get_match_details, get_account_by_puuid,
     get_challenger_league, get_grandmaster_league, get_master_league,
-    get_high_elo_players, get_summoner_by_summoner_id, get_api_key_count
+    get_high_elo_players, get_summoner_by_summoner_id, get_api_key_count,
+    get_key_rotator
 )
 from database import MatchDatabase
 
@@ -165,24 +166,49 @@ class DataCollector:
             time.sleep(wait_time)
 
     def make_api_request(self, func, endpoint='default', *args, **kwargs):
-        """Make API request with rate limiting and error handling"""
-        max_retries = 3
+        """
+        Make API request with smart key rotation and failover.
 
-        # Add api_key_index to kwargs if specified (for dedicated key usage)
+        Features:
+        - Automatic failover to next available key on 429
+        - Per-key cooldown tracking
+        - No global sleep on rate limit - just switch keys
+        """
+        max_retries = 5  # Increased for key rotation
+        rotator = get_key_rotator()
+
+        # If using dedicated key mode, use traditional approach
         if self.api_key_index is not None:
             kwargs['api_key_index'] = self.api_key_index
+            return self._make_request_with_dedicated_key(func, endpoint, *args, **kwargs)
 
+        # Smart rotation mode
         for attempt in range(max_retries):
             try:
-                # Wait for rate limit if necessary
+                # Wait for global rate limit if necessary
                 self.wait_for_rate_limit(endpoint)
 
-                # Make request
+                # Get next available key (skips rate-limited ones)
+                result = rotator.get_next_available_key()
+
+                if len(result) == 3:
+                    # All keys in cooldown - must wait
+                    key_index, key, wait_time = result
+                    self.logger.warning(f"All {rotator.key_count} keys rate-limited, waiting {wait_time:.1f}s...")
+                    time.sleep(wait_time)
+                    # Retry with the key that has shortest cooldown
+                else:
+                    key_index, key = result
+
+                # Make request with this specific key
+                kwargs['api_key_index'] = key_index
                 self.rate_limiter.record_request(endpoint)
                 self.stats['total_requests'] += 1
 
                 result = func(*args, **kwargs)
 
+                # Success! Mark key as successful
+                rotator.mark_key_success(key_index)
                 self.stats['successful_requests'] += 1
                 self.rate_limiter.reset_error_count()
 
@@ -196,9 +222,60 @@ class DataCollector:
 
                 if '429' in error_msg:
                     self.stats['rate_limit_errors'] += 1
+
+                    # Extract retry-after header if available
+                    retry_after = None
+                    if hasattr(e, 'response') and e.response:
+                        retry_after = e.response.headers.get('Retry-After')
+
+                    # Mark THIS specific key as rate-limited
+                    cooldown = rotator.mark_key_rate_limited(key_index, retry_after)
+                    self.logger.warning(f"Key #{key_index} rate-limited (cooldown: {cooldown:.1f}s), trying next key...")
+
+                    # Don't sleep - just try next available key immediately
+                    continue
+
+                elif '400' in error_msg:
+                    # 400 Bad Request = Invalid PUUID, don't retry - skip immediately
+                    self.stats['other_errors'] += 1
+                    return None
+
+                else:
+                    self.stats['other_errors'] += 1
+                    self.logger.error(f"API error (attempt {attempt + 1}/{max_retries}): {error_msg}")
+
+                    if attempt < max_retries - 1:
+                        time.sleep(2 ** attempt)  # Exponential backoff for non-429 errors
+                    else:
+                        raise
+
+        return None
+
+    def _make_request_with_dedicated_key(self, func, endpoint, *args, **kwargs):
+        """Legacy method for dedicated key mode (parallel processes)"""
+        max_retries = 3
+
+        for attempt in range(max_retries):
+            try:
+                self.wait_for_rate_limit(endpoint)
+                self.rate_limiter.record_request(endpoint)
+                self.stats['total_requests'] += 1
+
+                result = func(*args, **kwargs)
+
+                self.stats['successful_requests'] += 1
+                self.rate_limiter.reset_error_count()
+                time.sleep(0.05)
+
+                return result
+
+            except Exception as e:
+                error_msg = str(e)
+
+                if '429' in error_msg:
+                    self.stats['rate_limit_errors'] += 1
                     retry_after = None
 
-                    # Try to extract retry-after from error
                     if hasattr(e, 'response') and e.response:
                         retry_after = e.response.headers.get('Retry-After')
 
@@ -206,12 +283,17 @@ class DataCollector:
                     self.logger.warning(f"Rate limited (429), waiting {wait_time}s...")
                     time.sleep(wait_time)
 
+                elif '400' in error_msg:
+                    # 400 Bad Request = Invalid PUUID, don't retry - skip immediately
+                    self.stats['other_errors'] += 1
+                    return None
+
                 else:
                     self.stats['other_errors'] += 1
                     self.logger.error(f"API error (attempt {attempt + 1}/{max_retries}): {error_msg}")
 
                     if attempt < max_retries - 1:
-                        time.sleep(2 ** attempt)  # Exponential backoff
+                        time.sleep(2 ** attempt)
                     else:
                         raise
 
@@ -606,6 +688,16 @@ def main():
                 )
 
                 print(f"Batch {batch_number} complete! Total matches in database: {num_matches}")
+
+                # Display API key stats every 10 batches (if using rotation mode)
+                if batch_number % 10 == 0 and args.api_key_index is None:
+                    rotator = get_key_rotator()
+                    stats = rotator.get_key_stats()
+                    print("\n📊 API Key Statistics:")
+                    for idx, s in stats.items():
+                        status = f"⏸️  cooldown {s['cooldown']:.0f}s" if s['cooldown'] > 0 else "✅ available"
+                        print(f"  Key #{idx}: {s['success']}/{s['total']} success, {s['errors']} errors ({status})")
+                    print()
 
                 # Wait before next batch to be respectful to API
                 print("Waiting 60 seconds before next batch...")
