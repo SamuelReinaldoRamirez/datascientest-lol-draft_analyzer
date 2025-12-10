@@ -336,7 +336,137 @@ def get_api_key_count():
     return _key_rotator.key_count
 
 
-# endpoint for summoner by name:
-#      /riot/account/v1/accounts/by-puuid/{puuid} 
+# ============================================================
+# 9️⃣ Champion Mastery API (v4)
+# ============================================================
+
+def get_champion_mastery_by_puuid(puuid, use_rotation=True, api_key_index=None):
+    """
+    Get all champion mastery entries for a summoner, sorted by champion points descending.
+
+    Returns list of:
+    {
+        "puuid": str,
+        "championId": int,
+        "championLevel": int (1-7),
+        "championPoints": int,
+        "lastPlayTime": int (timestamp),
+        "tokensEarned": int
+    }
+    """
+    url = f"https://{REGION}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+def get_champion_mastery_top(puuid, count=5, use_rotation=True, api_key_index=None):
+    """
+    Get top N champion mastery entries for a summoner.
+    Default: top 5 champions
+    """
+    url = f"https://{REGION}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}/top?count={count}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+def get_champion_mastery_score(puuid, use_rotation=True, api_key_index=None):
+    """
+    Get total champion mastery score (sum of all champion mastery levels).
+    """
+    url = f"https://{REGION}.api.riotgames.com/lol/champion-mastery/v4/scores/by-puuid/{puuid}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+def get_mastery_for_champion(puuid, champion_id, use_rotation=True, api_key_index=None):
+    """
+    Get mastery data for a specific champion for a summoner.
+    """
+    url = f"https://{REGION}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}/by-champion/{champion_id}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+# ============================================================
+# 🔟 Match Timeline API (v5) - Gold per minute
+# ============================================================
+
+def get_match_timeline(match_id, use_rotation=True, api_key_index=None):
+    """
+    Get match timeline with frame-by-frame data.
+
+    Each frame contains participant snapshots with:
+    - totalGold: gold at this minute
+    - currentGold: gold not yet spent
+    - level: champion level
+    - xp: total experience
+    - minionsKilled: CS
+    - jungleMinionsKilled: jungle CS
+    - position: {x, y} coordinates
+
+    Frames are recorded every minute.
+    """
+    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{match_id}/timeline"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+# ============================================================
+# 1️⃣1️⃣ League API - Get summoner rank
+# ============================================================
+
+def get_summoner_rank(summoner_id, use_rotation=True, api_key_index=None):
+    """
+    Get current rank info for a summoner.
+
+    Returns list of queue entries (RANKED_SOLO_5x5, RANKED_FLEX_SR):
+    {
+        "queueType": "RANKED_SOLO_5x5",
+        "tier": "DIAMOND",
+        "rank": "I",
+        "leaguePoints": 75,
+        "wins": 150,
+        "losses": 120
+    }
+    """
+    url = f"https://{REGION}.api.riotgames.com/lol/league/v4/entries/by-summoner/{summoner_id}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
+
+
+# ============================================================
+# 1️⃣2️⃣ Account API - Get account by Riot ID
+# ============================================================
+
+def get_account_by_riot_id(game_name, tag_line, use_rotation=True, api_key_index=None):
+    """
+    Get account info from Riot ID (GameName#TagLine).
+
+    Example: get_account_by_riot_id("Faker", "KR1")
+
+    Returns:
+    {
+        "puuid": str,
+        "gameName": str,
+        "tagLine": str
+    }
+    """
+    url = f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}"
+    headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
+    return r.json()
 
 

@@ -28,6 +28,7 @@ class MatchDatabase:
     def __init__(self, db_path: str = 'lol_matches.db'):
         self.db_path = db_path
         self._init_db()
+        self._migrate_schema()
         self._enable_wal()
 
     @contextmanager
@@ -104,6 +105,10 @@ class MatchDatabase:
                     match_id TEXT NOT NULL,
                     team_id INTEGER NOT NULL,
                     position TEXT NOT NULL,
+                    -- Player identity (NEW)
+                    puuid TEXT,
+                    riot_id_name TEXT,
+                    riot_id_tagline TEXT,
                     -- Champion info
                     champion_id INTEGER NOT NULL,
                     champion_name TEXT,
@@ -176,11 +181,159 @@ class MatchDatabase:
                 )
             ''')
 
-            # Create indices for common queries
+            # Table 6: Summoners (player profiles)
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS summoners (
+                    puuid TEXT PRIMARY KEY,
+                    riot_id_name TEXT,
+                    riot_id_tagline TEXT,
+                    -- Current rank info
+                    current_tier TEXT,
+                    current_rank TEXT,
+                    current_lp INTEGER,
+                    -- Stats
+                    total_games_tracked INTEGER DEFAULT 0,
+                    first_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    last_seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    last_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            ''')
+
+            # Table 7: Summoner elo history (elo par patch)
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS summoner_elo_history (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    puuid TEXT NOT NULL,
+                    patch TEXT NOT NULL,
+                    tier TEXT,
+                    rank TEXT,
+                    lp INTEGER,
+                    recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (puuid) REFERENCES summoners(puuid),
+                    UNIQUE(puuid, patch)
+                )
+            ''')
+
+            # Table 8: Champion mastery per summoner
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS champion_mastery (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    puuid TEXT NOT NULL,
+                    champion_id INTEGER NOT NULL,
+                    champion_level INTEGER,
+                    champion_points INTEGER,
+                    last_play_time INTEGER,
+                    tokens_earned INTEGER DEFAULT 0,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (puuid) REFERENCES summoners(puuid),
+                    UNIQUE(puuid, champion_id)
+                )
+            ''')
+
+            # Table 9: Patches history
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS patches (
+                    patch TEXT PRIMARY KEY,
+                    release_date DATE,
+                    data_dragon_version TEXT,
+                    notes_url TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            ''')
+
+            # Table 10: Champion stats per patch (winrate, pickrate, banrate)
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS champion_patch_stats (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    champion_id INTEGER NOT NULL,
+                    patch TEXT NOT NULL,
+                    -- Calculated from our data
+                    games_played INTEGER DEFAULT 0,
+                    wins INTEGER DEFAULT 0,
+                    bans INTEGER DEFAULT 0,
+                    -- Calculated rates
+                    winrate REAL,
+                    pickrate REAL,
+                    banrate REAL,
+                    -- Per role stats
+                    top_games INTEGER DEFAULT 0,
+                    jungle_games INTEGER DEFAULT 0,
+                    mid_games INTEGER DEFAULT 0,
+                    adc_games INTEGER DEFAULT 0,
+                    support_games INTEGER DEFAULT 0,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    UNIQUE(champion_id, patch)
+                )
+            ''')
+
+            # Table 11: Match timeline snapshots (gold per minute)
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS match_timeline (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    match_id TEXT NOT NULL,
+                    minute INTEGER NOT NULL,
+                    -- Team gold totals
+                    team_100_gold INTEGER,
+                    team_200_gold INTEGER,
+                    gold_diff INTEGER,
+                    -- Per position gold (team 100)
+                    team_100_top_gold INTEGER,
+                    team_100_jungle_gold INTEGER,
+                    team_100_mid_gold INTEGER,
+                    team_100_adc_gold INTEGER,
+                    team_100_support_gold INTEGER,
+                    -- Per position gold (team 200)
+                    team_200_top_gold INTEGER,
+                    team_200_jungle_gold INTEGER,
+                    team_200_mid_gold INTEGER,
+                    team_200_adc_gold INTEGER,
+                    team_200_support_gold INTEGER,
+                    FOREIGN KEY (match_id) REFERENCES matches(match_id),
+                    UNIQUE(match_id, minute)
+                )
+            ''')
+
+            # Create indices for common queries (only for new tables, player_stats index created in migration)
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_matches_game_creation ON matches(game_creation)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_champion ON player_stats(champion_id)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_match ON player_stats(match_id)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_team_stats_match ON team_stats(match_id)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_champion_mastery_puuid ON champion_mastery(puuid)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_summoner_elo_puuid ON summoner_elo_history(puuid)')
+            cursor.execute('CREATE INDEX IF NOT EXISTS idx_timeline_match ON match_timeline(match_id)')
+
+    def _migrate_schema(self):
+        """
+        Migrate existing database to new schema.
+        Adds new columns to existing tables without losing data.
+        """
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Check existing columns in player_stats
+            cursor.execute('PRAGMA table_info(player_stats)')
+            existing_cols = {row[1] for row in cursor.fetchall()}
+
+            # Add new columns to player_stats if they don't exist
+            new_player_cols = [
+                ('puuid', 'TEXT'),
+                ('riot_id_name', 'TEXT'),
+                ('riot_id_tagline', 'TEXT')
+            ]
+
+            for col_name, col_type in new_player_cols:
+                if col_name not in existing_cols:
+                    try:
+                        cursor.execute(f'ALTER TABLE player_stats ADD COLUMN {col_name} {col_type}')
+                        print(f"  Added column {col_name} to player_stats")
+                    except Exception as e:
+                        pass  # Column might already exist
+
+            # Create indices for new columns (ignore if exists)
+            try:
+                cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_puuid ON player_stats(puuid)')
+            except:
+                pass
 
     def _enable_wal(self):
         """
@@ -320,6 +473,7 @@ class MatchDatabase:
                 cursor.execute('''
                     INSERT INTO player_stats (
                         match_id, team_id, position,
+                        puuid, riot_id_name, riot_id_tagline,
                         champion_id, champion_name, champ_level,
                         summoner_1_id, summoner_2_id,
                         kills, deaths, assists,
@@ -335,9 +489,12 @@ class MatchDatabase:
                         damage_per_minute, damage_taken_percentage, gold_per_minute,
                         team_damage_percentage, kill_participation, kda,
                         lane_minions_first_10_min, turret_plates_taken, solo_kills
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     match_id, team_id, position,
+                    participant.get("puuid"),
+                    participant.get("riotIdGameName"),
+                    participant.get("riotIdTagline"),
                     participant.get("championId"),
                     participant.get("championName"),
                     participant.get("champLevel"),
@@ -385,22 +542,42 @@ class MatchDatabase:
             return True
 
     def save_player_progress(self, puuid: str):
-        """Mark player as processed"""
+        """Mark player as processed (updates timestamp if already exists)"""
         with self.get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute('''
-                INSERT OR IGNORE INTO collection_progress (puuid)
-                VALUES (?)
+                INSERT INTO collection_progress (puuid, processed_at)
+                VALUES (?, CURRENT_TIMESTAMP)
+                ON CONFLICT(puuid) DO UPDATE SET processed_at = CURRENT_TIMESTAMP
             ''', (puuid,))
 
-    def is_player_processed(self, puuid: str) -> bool:
-        """Check if player already processed"""
+    def is_player_processed(self, puuid: str, refresh_hours: int = 24) -> bool:
+        """
+        Check if player was recently processed.
+
+        Args:
+            puuid: Player's PUUID
+            refresh_hours: Hours after which a player can be re-processed (default: 24h)
+                          Set to 0 to never re-process (old behavior)
+
+        Returns:
+            True if player was processed within refresh_hours, False otherwise
+        """
         with self.get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute(
-                'SELECT 1 FROM collection_progress WHERE puuid = ?',
-                (puuid,)
-            )
+            if refresh_hours > 0:
+                # Check if processed within the last refresh_hours
+                cursor.execute('''
+                    SELECT 1 FROM collection_progress
+                    WHERE puuid = ?
+                    AND processed_at > datetime('now', ?)
+                ''', (puuid, f'-{refresh_hours} hours'))
+            else:
+                # Old behavior: check if ever processed
+                cursor.execute(
+                    'SELECT 1 FROM collection_progress WHERE puuid = ?',
+                    (puuid,)
+                )
             return cursor.fetchone() is not None
 
     def get_processed_players(self) -> List[str]:
@@ -477,6 +654,258 @@ class MatchDatabase:
         """Increment a numeric statistic"""
         current = self.get_stat(key, 0)
         self.update_stat(key, current + amount)
+
+    # ================================================================
+    # Summoner Methods (NEW)
+    # ================================================================
+
+    def upsert_summoner(self, puuid: str, riot_id_name: str = None, riot_id_tagline: str = None,
+                        tier: str = None, rank: str = None, lp: int = None):
+        """Insert or update summoner info"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO summoners (puuid, riot_id_name, riot_id_tagline, current_tier, current_rank, current_lp, last_seen_at)
+                VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                ON CONFLICT(puuid) DO UPDATE SET
+                    riot_id_name = COALESCE(excluded.riot_id_name, riot_id_name),
+                    riot_id_tagline = COALESCE(excluded.riot_id_tagline, riot_id_tagline),
+                    current_tier = COALESCE(excluded.current_tier, current_tier),
+                    current_rank = COALESCE(excluded.current_rank, current_rank),
+                    current_lp = COALESCE(excluded.current_lp, current_lp),
+                    total_games_tracked = total_games_tracked + 1,
+                    last_seen_at = CURRENT_TIMESTAMP,
+                    last_updated_at = CURRENT_TIMESTAMP
+            ''', (puuid, riot_id_name, riot_id_tagline, tier, rank, lp))
+
+    def get_summoner(self, puuid: str) -> Optional[Dict]:
+        """Get summoner info by PUUID"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM summoners WHERE puuid = ?', (puuid,))
+            row = cursor.fetchone()
+            if row:
+                return dict(row)
+            return None
+
+    def record_elo_history(self, puuid: str, patch: str, tier: str, rank: str, lp: int):
+        """Record summoner's elo for a specific patch"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO summoner_elo_history (puuid, patch, tier, rank, lp)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(puuid, patch) DO UPDATE SET
+                    tier = excluded.tier,
+                    rank = excluded.rank,
+                    lp = excluded.lp,
+                    recorded_at = CURRENT_TIMESTAMP
+            ''', (puuid, patch, tier, rank, lp))
+
+    # ================================================================
+    # Champion Mastery Methods (NEW)
+    # ================================================================
+
+    def upsert_champion_mastery(self, puuid: str, champion_id: int, champion_level: int,
+                                 champion_points: int, last_play_time: int = None, tokens_earned: int = 0):
+        """Insert or update champion mastery"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO champion_mastery (puuid, champion_id, champion_level, champion_points, last_play_time, tokens_earned)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT(puuid, champion_id) DO UPDATE SET
+                    champion_level = excluded.champion_level,
+                    champion_points = excluded.champion_points,
+                    last_play_time = excluded.last_play_time,
+                    tokens_earned = excluded.tokens_earned,
+                    updated_at = CURRENT_TIMESTAMP
+            ''', (puuid, champion_id, champion_level, champion_points, last_play_time, tokens_earned))
+
+    def get_summoner_mastery(self, puuid: str, limit: int = None) -> List[Dict]:
+        """Get champion mastery for a summoner, sorted by points"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            query = 'SELECT * FROM champion_mastery WHERE puuid = ? ORDER BY champion_points DESC'
+            if limit:
+                query += f' LIMIT {limit}'
+            cursor.execute(query, (puuid,))
+            return [dict(row) for row in cursor.fetchall()]
+
+    def get_mastery_for_champion(self, puuid: str, champion_id: int) -> Optional[Dict]:
+        """Get mastery for a specific champion"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                'SELECT * FROM champion_mastery WHERE puuid = ? AND champion_id = ?',
+                (puuid, champion_id)
+            )
+            row = cursor.fetchone()
+            if row:
+                return dict(row)
+            return None
+
+    # ================================================================
+    # Patch Methods (NEW)
+    # ================================================================
+
+    def upsert_patch(self, patch: str, release_date: str = None, data_dragon_version: str = None):
+        """Insert or update patch info"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO patches (patch, release_date, data_dragon_version)
+                VALUES (?, ?, ?)
+                ON CONFLICT(patch) DO UPDATE SET
+                    release_date = COALESCE(excluded.release_date, release_date),
+                    data_dragon_version = COALESCE(excluded.data_dragon_version, data_dragon_version)
+            ''', (patch, release_date, data_dragon_version))
+
+    def get_patches(self) -> List[Dict]:
+        """Get all patches"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM patches ORDER BY patch DESC')
+            return [dict(row) for row in cursor.fetchall()]
+
+    # ================================================================
+    # Champion Patch Stats Methods (NEW)
+    # ================================================================
+
+    def update_champion_patch_stats(self, champion_id: int, patch: str, win: bool, position: str):
+        """Update champion stats for a patch (called after each match insert)"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Get position column name
+            position_col = f'{position}_games' if position in ['top', 'jungle', 'mid', 'adc', 'support'] else None
+
+            # Upsert champion stats
+            cursor.execute('''
+                INSERT INTO champion_patch_stats (champion_id, patch, games_played, wins)
+                VALUES (?, ?, 1, ?)
+                ON CONFLICT(champion_id, patch) DO UPDATE SET
+                    games_played = games_played + 1,
+                    wins = wins + ?,
+                    updated_at = CURRENT_TIMESTAMP
+            ''', (champion_id, patch, 1 if win else 0, 1 if win else 0))
+
+            # Update position-specific count if valid position
+            if position_col:
+                cursor.execute(f'''
+                    UPDATE champion_patch_stats
+                    SET {position_col} = {position_col} + 1
+                    WHERE champion_id = ? AND patch = ?
+                ''', (champion_id, patch))
+
+    def recalculate_champion_rates(self, patch: str):
+        """Recalculate winrate/pickrate/banrate for a patch"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Get total games for this patch
+            cursor.execute('''
+                SELECT COUNT(*) FROM matches WHERE game_version LIKE ?
+            ''', (f'{patch}%',))
+            total_games = cursor.fetchone()[0]
+
+            if total_games == 0:
+                return
+
+            # Update rates
+            cursor.execute('''
+                UPDATE champion_patch_stats
+                SET winrate = CAST(wins AS REAL) / NULLIF(games_played, 0),
+                    pickrate = CAST(games_played AS REAL) / ? / 10,
+                    banrate = CAST(bans AS REAL) / ? / 10
+                WHERE patch = ?
+            ''', (total_games, total_games, patch))
+
+    def get_champion_stats_for_patch(self, patch: str) -> List[Dict]:
+        """Get all champion stats for a patch"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT * FROM champion_patch_stats
+                WHERE patch = ?
+                ORDER BY games_played DESC
+            ''', (patch,))
+            return [dict(row) for row in cursor.fetchall()]
+
+    # ================================================================
+    # Match Timeline Methods (NEW)
+    # ================================================================
+
+    def insert_timeline_frame(self, match_id: str, minute: int, team_gold: Dict, position_gold: Dict):
+        """Insert a timeline frame (gold at minute M)"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT OR REPLACE INTO match_timeline (
+                    match_id, minute,
+                    team_100_gold, team_200_gold, gold_diff,
+                    team_100_top_gold, team_100_jungle_gold, team_100_mid_gold, team_100_adc_gold, team_100_support_gold,
+                    team_200_top_gold, team_200_jungle_gold, team_200_mid_gold, team_200_adc_gold, team_200_support_gold
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                match_id, minute,
+                team_gold.get('team_100', 0), team_gold.get('team_200', 0),
+                team_gold.get('team_100', 0) - team_gold.get('team_200', 0),
+                position_gold.get('team_100_top', 0), position_gold.get('team_100_jungle', 0),
+                position_gold.get('team_100_mid', 0), position_gold.get('team_100_adc', 0),
+                position_gold.get('team_100_support', 0),
+                position_gold.get('team_200_top', 0), position_gold.get('team_200_jungle', 0),
+                position_gold.get('team_200_mid', 0), position_gold.get('team_200_adc', 0),
+                position_gold.get('team_200_support', 0)
+            ))
+
+    def get_match_timeline(self, match_id: str) -> List[Dict]:
+        """Get timeline for a match"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT * FROM match_timeline
+                WHERE match_id = ?
+                ORDER BY minute
+            ''', (match_id,))
+            return [dict(row) for row in cursor.fetchall()]
+
+    def get_gold_at_minute(self, match_id: str, minute: int) -> Optional[Dict]:
+        """Get gold snapshot at a specific minute"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT * FROM match_timeline
+                WHERE match_id = ? AND minute = ?
+            ''', (match_id, minute))
+            row = cursor.fetchone()
+            if row:
+                return dict(row)
+            return None
+
+    # ================================================================
+    # Teammates Analysis (NEW)
+    # ================================================================
+
+    def get_common_teammates(self, puuid: str, limit: int = 10) -> List[Dict]:
+        """Get most frequent teammates for a summoner"""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT
+                    p2.puuid as teammate_puuid,
+                    p2.riot_id_name as teammate_name,
+                    COUNT(*) as games_together,
+                    SUM(CASE WHEN m.team_100_win = (p1.team_id = 100) THEN 1 ELSE 0 END) as wins_together
+                FROM player_stats p1
+                JOIN player_stats p2 ON p1.match_id = p2.match_id AND p1.team_id = p2.team_id AND p1.puuid != p2.puuid
+                JOIN matches m ON p1.match_id = m.match_id
+                WHERE p1.puuid = ?
+                GROUP BY p2.puuid, p2.riot_id_name
+                ORDER BY games_together DESC
+                LIMIT ?
+            ''', (puuid, limit))
+            return [dict(row) for row in cursor.fetchall()]
 
     def export_to_dataframe(self) -> pd.DataFrame:
         """

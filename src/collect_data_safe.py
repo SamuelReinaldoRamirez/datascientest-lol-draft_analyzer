@@ -124,10 +124,11 @@ class DataCollector:
     - Parallel collection with dedicated API keys per elo tier
     """
 
-    def __init__(self, db_path: str = 'data/lol_matches.db', api_key_index: int = None):
+    def __init__(self, db_path: str = 'data/lol_matches.db', api_key_index: int = None, refresh_hours: int = 24):
         self.rate_limiter = RateLimiter()
         self.db = MatchDatabase(db_path)
         self.api_key_index = api_key_index  # None = use rotation, 0/1/etc = use specific key
+        self.refresh_hours = refresh_hours  # Re-fetch players after this many hours
 
         # Setup logging
         logging.basicConfig(
@@ -359,11 +360,11 @@ class DataCollector:
 
                         if puuid:
                             # New format - has puuid directly
-                            if not self.db.is_player_processed(puuid):
+                            if not self.db.is_player_processed(puuid, self.refresh_hours):
                                 new_entries.append(entry)
                         elif summoner_id:
                             # Old format - needs puuid lookup
-                            if not self.db.is_player_processed(f"sid_{summoner_id}"):
+                            if not self.db.is_player_processed(f"sid_{summoner_id}", self.refresh_hours):
                                 entry['_needs_puuid'] = True
                                 new_entries.append(entry)
 
@@ -388,7 +389,7 @@ class DataCollector:
                 # Filter out already processed players
                 for entry in entries:
                     puuid = entry.get("puuid")
-                    if puuid and not self.db.is_player_processed(puuid):
+                    if puuid and not self.db.is_player_processed(puuid, self.refresh_hours):
                         entry['tier'] = 'DIAMOND'
                         new_entries.append(entry)
 
@@ -470,14 +471,17 @@ class DataCollector:
                 self.logger.warning(f"No PUUID for entry, skipping")
                 continue
 
-            # Get account info for display
+            # Get account info for display (non-critical, just for logging)
             try:
                 account_info = self.make_api_request(
                     get_account_by_puuid, 'account', puuid
                 )
-                summoner_name = f"{account_info.get('gameName', 'Unknown')}#{account_info.get('tagLine', 'EUW')}"
-            except:
-                summoner_name = "Unknown"
+                if account_info:
+                    summoner_name = f"{account_info.get('gameName', 'Unknown')}#{account_info.get('tagLine', 'EUW')}"
+                else:
+                    summoner_name = puuid[:16] + "..."  # Show partial PUUID if no name
+            except Exception as e:
+                summoner_name = puuid[:16] + "..."  # Show partial PUUID on error
 
             self.logger.info(f"[{i+1}/{len(new_entries)}] [{tier}] Processing {summoner_name}")
 
@@ -630,10 +634,12 @@ def main():
                        help='Elo filter for parallel collection: "diamond" for Diamond I only, "master" for Master/GM/Challenger only')
     parser.add_argument('--api-key-index', type=int,
                        help='Index of API key to use (0, 1, etc.) for parallel collection. If not specified, rotates between all keys.')
+    parser.add_argument('--refresh-hours', type=int, default=24,
+                       help='Re-fetch players after this many hours to get new matches (default: 24). Set to 0 to never re-fetch.')
 
     args = parser.parse_args()
 
-    collector = DataCollector(db_path=args.db, api_key_index=args.api_key_index)
+    collector = DataCollector(db_path=args.db, api_key_index=args.api_key_index, refresh_hours=args.refresh_hours)
 
     if args.reset:
         collector.reset_progress(elo_filter=args.elo)
@@ -668,6 +674,12 @@ def main():
             if num_keys > 1:
                 print(f"  -> Rate limit capacity: {num_keys}x faster!")
 
+        # Player refresh info
+        if args.refresh_hours > 0:
+            print(f"Player refresh: Every {args.refresh_hours}h (re-fetch for new matches)")
+        else:
+            print("Player refresh: Disabled (each player fetched only once)")
+
         # Parallel mode instructions
         if args.elo and args.api_key_index is not None:
             print("\n📦 PARALLEL MODE ACTIVE")
@@ -699,9 +711,9 @@ def main():
                         print(f"  Key #{idx}: {s['success']}/{s['total']} success, {s['errors']} errors ({status})")
                     print()
 
-                # Wait before next batch to be respectful to API
-                print("Waiting 60 seconds before next batch...")
-                time.sleep(60)
+                # Small delay between batches (rate limiting is handled per-request)
+                print("Starting next batch in 5 seconds...")
+                time.sleep(5)
 
                 batch_number += 1
 
