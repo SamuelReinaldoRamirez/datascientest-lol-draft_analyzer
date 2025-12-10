@@ -13,6 +13,8 @@ from contextlib import contextmanager
 from datetime import datetime
 from typing import Optional, Set, Dict, Any, List
 
+from config import REGION
+
 
 class MatchDatabase:
     """
@@ -54,6 +56,8 @@ class MatchDatabase:
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS matches (
                     match_id TEXT PRIMARY KEY,
+                    region TEXT,
+                    source_elo TEXT,
                     game_creation INTEGER,
                     game_duration INTEGER,
                     game_version TEXT,
@@ -93,6 +97,12 @@ class MatchDatabase:
                     ban_3_champion_id INTEGER,
                     ban_4_champion_id INTEGER,
                     ban_5_champion_id INTEGER,
+                    -- Bans (champion names)
+                    ban_1_name TEXT,
+                    ban_2_name TEXT,
+                    ban_3_name TEXT,
+                    ban_4_name TEXT,
+                    ban_5_name TEXT,
                     FOREIGN KEY (match_id) REFERENCES matches(match_id),
                     UNIQUE(match_id, team_id)
                 )
@@ -116,6 +126,8 @@ class MatchDatabase:
                     -- Summoner spells
                     summoner_1_id INTEGER,
                     summoner_2_id INTEGER,
+                    summoner_1_name TEXT,
+                    summoner_2_name TEXT,
                     -- KDA
                     kills INTEGER,
                     deaths INTEGER,
@@ -312,26 +324,69 @@ class MatchDatabase:
 
             # Check existing columns in player_stats
             cursor.execute('PRAGMA table_info(player_stats)')
-            existing_cols = {row[1] for row in cursor.fetchall()}
+            existing_player_cols = {row[1] for row in cursor.fetchall()}
 
             # Add new columns to player_stats if they don't exist
             new_player_cols = [
                 ('puuid', 'TEXT'),
                 ('riot_id_name', 'TEXT'),
-                ('riot_id_tagline', 'TEXT')
+                ('riot_id_tagline', 'TEXT'),
+                ('summoner_1_name', 'TEXT'),
+                ('summoner_2_name', 'TEXT'),
             ]
 
             for col_name, col_type in new_player_cols:
-                if col_name not in existing_cols:
+                if col_name not in existing_player_cols:
                     try:
                         cursor.execute(f'ALTER TABLE player_stats ADD COLUMN {col_name} {col_type}')
                         print(f"  Added column {col_name} to player_stats")
                     except Exception as e:
                         pass  # Column might already exist
 
+            # Check existing columns in team_stats table
+            cursor.execute('PRAGMA table_info(team_stats)')
+            existing_team_cols = {row[1] for row in cursor.fetchall()}
+
+            # Add ban name columns to team_stats if they don't exist
+            new_team_cols = [
+                ('ban_1_name', 'TEXT'),
+                ('ban_2_name', 'TEXT'),
+                ('ban_3_name', 'TEXT'),
+                ('ban_4_name', 'TEXT'),
+                ('ban_5_name', 'TEXT'),
+            ]
+
+            for col_name, col_type in new_team_cols:
+                if col_name not in existing_team_cols:
+                    try:
+                        cursor.execute(f'ALTER TABLE team_stats ADD COLUMN {col_name} {col_type}')
+                        print(f"  Added column {col_name} to team_stats")
+                    except Exception as e:
+                        pass  # Column might already exist
+
+            # Check existing columns in matches table
+            cursor.execute('PRAGMA table_info(matches)')
+            existing_match_cols = {row[1] for row in cursor.fetchall()}
+
+            # Add new columns to matches if they don't exist
+            new_match_cols = [
+                ('region', 'TEXT'),
+                ('source_elo', 'TEXT')
+            ]
+
+            for col_name, col_type in new_match_cols:
+                if col_name not in existing_match_cols:
+                    try:
+                        cursor.execute(f'ALTER TABLE matches ADD COLUMN {col_name} {col_type}')
+                        print(f"  Added column {col_name} to matches")
+                    except Exception as e:
+                        pass  # Column might already exist
+
             # Create indices for new columns (ignore if exists)
             try:
                 cursor.execute('CREATE INDEX IF NOT EXISTS idx_player_stats_puuid ON player_stats(puuid)')
+                cursor.execute('CREATE INDEX IF NOT EXISTS idx_matches_region ON matches(region)')
+                cursor.execute('CREATE INDEX IF NOT EXISTS idx_matches_source_elo ON matches(source_elo)')
             except:
                 pass
 
@@ -358,13 +413,14 @@ class MatchDatabase:
             cursor.execute('SELECT match_id FROM matches')
             return {row[0] for row in cursor.fetchall()}
 
-    def insert_match(self, match_data: Dict[str, Any]) -> bool:
+    def insert_match(self, match_data: Dict[str, Any], source_elo: str = None) -> bool:
         """
         Insert complete match with all related data.
         Uses transaction for atomic insert.
 
         Args:
             match_data: Raw match data from Riot API
+            source_elo: The elo tier of the player used to find this match (CHALLENGER, GRANDMASTER, MASTER, DIAMOND)
 
         Returns:
             True if inserted, False if already exists
@@ -398,12 +454,14 @@ class MatchDatabase:
 
             cursor.execute('''
                 INSERT INTO matches (
-                    match_id, game_creation, game_duration, game_version,
+                    match_id, region, source_elo, game_creation, game_duration, game_version,
                     queue_id, map_id, game_mode, game_type,
                     team_100_win, team_100_early_surrendered, team_200_early_surrendered
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
                 match_id,
+                REGION,
+                source_elo,
                 info.get("gameCreation"),
                 info.get("gameDuration"),
                 info.get("gameVersion"),
@@ -417,15 +475,26 @@ class MatchDatabase:
             ))
 
             # Insert team stats
+            # Get champion data for ban names
+            try:
+                from champion_data import get_champion_data
+                champion_data = get_champion_data()
+            except Exception:
+                champion_data = None
+
             for team in teams:
                 team_id = team.get("teamId")
                 objectives = team.get("objectives", {})
                 bans = team.get("bans", [])
 
-                # Prepare ban champion IDs
+                # Prepare ban champion IDs and names
                 ban_ids = [None] * 5
+                ban_names = [None] * 5
                 for i, ban in enumerate(bans[:5]):
-                    ban_ids[i] = ban.get("championId")
+                    ban_id = ban.get("championId")
+                    ban_ids[i] = ban_id
+                    if champion_data and ban_id and ban_id > 0:
+                        ban_names[i] = champion_data.get_champion_name(ban_id)
 
                 cursor.execute('''
                     INSERT INTO team_stats (
@@ -435,8 +504,9 @@ class MatchDatabase:
                         dragon_kills, baron_kills, tower_kills,
                         inhibitor_kills, rift_herald_kills,
                         ban_1_champion_id, ban_2_champion_id, ban_3_champion_id,
-                        ban_4_champion_id, ban_5_champion_id
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        ban_4_champion_id, ban_5_champion_id,
+                        ban_1_name, ban_2_name, ban_3_name, ban_4_name, ban_5_name
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     match_id, team_id,
                     objectives.get("champion", {}).get("first", False),
@@ -450,10 +520,17 @@ class MatchDatabase:
                     objectives.get("tower", {}).get("kills", 0),
                     objectives.get("inhibitor", {}).get("kills", 0),
                     objectives.get("riftHerald", {}).get("kills", 0),
-                    ban_ids[0], ban_ids[1], ban_ids[2], ban_ids[3], ban_ids[4]
+                    ban_ids[0], ban_ids[1], ban_ids[2], ban_ids[3], ban_ids[4],
+                    ban_names[0], ban_names[1], ban_names[2], ban_names[3], ban_names[4]
                 ))
 
             # Insert player stats
+            # Import summoner spell name function
+            try:
+                from champion_data import get_summoner_spell_name
+            except Exception:
+                get_summoner_spell_name = lambda x: f"Spell_{x}"
+
             position_map = {
                 "TOP": "top",
                 "JUNGLE": "jungle",
@@ -470,12 +547,18 @@ class MatchDatabase:
                 )
                 challenges = participant.get("challenges", {})
 
+                # Get summoner spell names
+                summoner_1_id = participant.get("summoner1Id")
+                summoner_2_id = participant.get("summoner2Id")
+                summoner_1_name = get_summoner_spell_name(summoner_1_id) if summoner_1_id else None
+                summoner_2_name = get_summoner_spell_name(summoner_2_id) if summoner_2_id else None
+
                 cursor.execute('''
                     INSERT INTO player_stats (
                         match_id, team_id, position,
                         puuid, riot_id_name, riot_id_tagline,
                         champion_id, champion_name, champ_level,
-                        summoner_1_id, summoner_2_id,
+                        summoner_1_id, summoner_2_id, summoner_1_name, summoner_2_name,
                         kills, deaths, assists,
                         total_damage_dealt, total_damage_to_champions, total_damage_taken,
                         true_damage_dealt, physical_damage_dealt, magic_damage_dealt,
@@ -489,7 +572,7 @@ class MatchDatabase:
                         damage_per_minute, damage_taken_percentage, gold_per_minute,
                         team_damage_percentage, kill_participation, kda,
                         lane_minions_first_10_min, turret_plates_taken, solo_kills
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     match_id, team_id, position,
                     participant.get("puuid"),
@@ -498,8 +581,10 @@ class MatchDatabase:
                     participant.get("championId"),
                     participant.get("championName"),
                     participant.get("champLevel"),
-                    participant.get("summoner1Id"),
-                    participant.get("summoner2Id"),
+                    summoner_1_id,
+                    summoner_2_id,
+                    summoner_1_name,
+                    summoner_2_name,
                     participant.get("kills"),
                     participant.get("deaths"),
                     participant.get("assists"),
@@ -540,6 +625,226 @@ class MatchDatabase:
                 ))
 
             return True
+
+    def insert_matches_batch(self, matches: list, source_elo: str = None) -> int:
+        """
+        Insert multiple matches in a single transaction for better performance.
+
+        Args:
+            matches: List of (match_id, match_data) tuples from Riot API
+            source_elo: The elo tier of the player used to find these matches (CHALLENGER, GRANDMASTER, MASTER, DIAMOND)
+
+        Returns:
+            Number of successfully inserted matches
+        """
+        if not matches:
+            return 0
+
+        inserted_count = 0
+
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            for match_id, match_data in matches:
+                # Check if already exists
+                cursor.execute('SELECT 1 FROM matches WHERE match_id = ?', (match_id,))
+                if cursor.fetchone():
+                    continue
+
+                info = match_data.get("info", {})
+                metadata = match_data.get("metadata", {})
+
+                if not match_id:
+                    continue
+
+                # Extract team info
+                teams = info.get("teams", [])
+                team_100_win = None
+                team_100_early_surrendered = False
+                team_200_early_surrendered = False
+
+                for team in teams:
+                    if team.get("teamId") == 100:
+                        team_100_win = team.get("win")
+                        team_100_early_surrendered = team.get("teamEarlySurrendered", False)
+                    elif team.get("teamId") == 200:
+                        team_200_early_surrendered = team.get("teamEarlySurrendered", False)
+
+                # Insert match
+                cursor.execute('''
+                    INSERT INTO matches (
+                        match_id, region, source_elo, game_creation, game_duration, game_version,
+                        queue_id, map_id, game_mode, game_type,
+                        team_100_win, team_100_early_surrendered, team_200_early_surrendered
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    match_id,
+                    REGION,
+                    source_elo,
+                    info.get("gameCreation"),
+                    info.get("gameDuration"),
+                    info.get("gameVersion"),
+                    info.get("queueId"),
+                    info.get("mapId"),
+                    info.get("gameMode"),
+                    info.get("gameType"),
+                    team_100_win,
+                    team_100_early_surrendered,
+                    team_200_early_surrendered
+                ))
+
+                # Insert team stats
+                # Get champion data for ban names (once per batch for efficiency)
+                try:
+                    from champion_data import get_champion_data
+                    champion_data = get_champion_data()
+                except Exception:
+                    champion_data = None
+
+                for team in teams:
+                    team_id = team.get("teamId")
+                    objectives = team.get("objectives", {})
+                    bans = team.get("bans", [])
+
+                    ban_ids = [None] * 5
+                    ban_names = [None] * 5
+                    for i, ban in enumerate(bans[:5]):
+                        ban_id = ban.get("championId")
+                        ban_ids[i] = ban_id
+                        if champion_data and ban_id and ban_id > 0:
+                            ban_names[i] = champion_data.get_champion_name(ban_id)
+
+                    cursor.execute('''
+                        INSERT INTO team_stats (
+                            match_id, team_id,
+                            first_blood, first_tower, first_inhibitor,
+                            first_dragon, first_rift_herald, first_baron,
+                            dragon_kills, baron_kills, tower_kills,
+                            inhibitor_kills, rift_herald_kills,
+                            ban_1_champion_id, ban_2_champion_id, ban_3_champion_id,
+                            ban_4_champion_id, ban_5_champion_id,
+                            ban_1_name, ban_2_name, ban_3_name, ban_4_name, ban_5_name
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        match_id, team_id,
+                        objectives.get("champion", {}).get("first", False),
+                        objectives.get("tower", {}).get("first", False),
+                        objectives.get("inhibitor", {}).get("first", False),
+                        objectives.get("dragon", {}).get("first", False),
+                        objectives.get("riftHerald", {}).get("first", False),
+                        objectives.get("baron", {}).get("first", False),
+                        objectives.get("dragon", {}).get("kills", 0),
+                        objectives.get("baron", {}).get("kills", 0),
+                        objectives.get("tower", {}).get("kills", 0),
+                        objectives.get("inhibitor", {}).get("kills", 0),
+                        objectives.get("riftHerald", {}).get("kills", 0),
+                        ban_ids[0], ban_ids[1], ban_ids[2], ban_ids[3], ban_ids[4],
+                        ban_names[0], ban_names[1], ban_names[2], ban_names[3], ban_names[4]
+                    ))
+
+                # Insert player stats
+                # Import summoner spell name function
+                try:
+                    from champion_data import get_summoner_spell_name
+                except Exception:
+                    get_summoner_spell_name = lambda x: f"Spell_{x}"
+
+                position_map = {
+                    "TOP": "top",
+                    "JUNGLE": "jungle",
+                    "MIDDLE": "mid",
+                    "BOTTOM": "adc",
+                    "UTILITY": "support"
+                }
+
+                for participant in info.get("participants", []):
+                    team_id = participant.get("teamId")
+                    position = position_map.get(
+                        participant.get("teamPosition"),
+                        participant.get("teamPosition", "unknown")
+                    )
+                    challenges = participant.get("challenges", {})
+
+                    # Get summoner spell names
+                    summoner_1_id = participant.get("summoner1Id")
+                    summoner_2_id = participant.get("summoner2Id")
+                    summoner_1_name = get_summoner_spell_name(summoner_1_id) if summoner_1_id else None
+                    summoner_2_name = get_summoner_spell_name(summoner_2_id) if summoner_2_id else None
+
+                    cursor.execute('''
+                        INSERT INTO player_stats (
+                            match_id, team_id, position,
+                            puuid, riot_id_name, riot_id_tagline,
+                            champion_id, champion_name, champ_level,
+                            summoner_1_id, summoner_2_id, summoner_1_name, summoner_2_name,
+                            kills, deaths, assists,
+                            total_damage_dealt, total_damage_to_champions, total_damage_taken,
+                            true_damage_dealt, physical_damage_dealt, magic_damage_dealt,
+                            gold_earned, total_minions_killed, neutral_minions_killed,
+                            vision_score, wards_placed, wards_killed, vision_wards_bought,
+                            enemy_champion_immobilizations,
+                            first_blood_kill, first_tower_kill,
+                            turret_kills, inhibitor_kills,
+                            largest_killing_spree, largest_multi_kill, killing_sprees,
+                            double_kills, triple_kills, quadra_kills, penta_kills,
+                            damage_per_minute, damage_taken_percentage, gold_per_minute,
+                            team_damage_percentage, kill_participation, kda,
+                            lane_minions_first_10_min, turret_plates_taken, solo_kills
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        match_id, team_id, position,
+                        participant.get("puuid"),
+                        participant.get("riotIdGameName"),
+                        participant.get("riotIdTagline"),
+                        participant.get("championId"),
+                        participant.get("championName"),
+                        participant.get("champLevel"),
+                        summoner_1_id,
+                        summoner_2_id,
+                        summoner_1_name,
+                        summoner_2_name,
+                        participant.get("kills"),
+                        participant.get("deaths"),
+                        participant.get("assists"),
+                        participant.get("totalDamageDealt"),
+                        participant.get("totalDamageDealtToChampions"),
+                        participant.get("totalDamageTaken"),
+                        participant.get("trueDamageDealt"),
+                        participant.get("physicalDamageDealt"),
+                        participant.get("magicDamageDealt"),
+                        participant.get("goldEarned"),
+                        participant.get("totalMinionsKilled"),
+                        participant.get("neutralMinionsKilled"),
+                        participant.get("visionScore"),
+                        participant.get("wardsPlaced"),
+                        participant.get("wardsKilled"),
+                        participant.get("visionWardsBoughtInGame"),
+                        participant.get("enemyChampionImmobilizations", 0),
+                        participant.get("firstBloodKill"),
+                        participant.get("firstTowerKill"),
+                        participant.get("turretKills"),
+                        participant.get("inhibitorKills"),
+                        participant.get("largestKillingSpree"),
+                        participant.get("largestMultiKill"),
+                        participant.get("killingSprees"),
+                        participant.get("doubleKills"),
+                        participant.get("tripleKills"),
+                        participant.get("quadraKills"),
+                        participant.get("pentaKills"),
+                        challenges.get("damagePerMinute"),
+                        challenges.get("damageTakenOnTeamPercentage"),
+                        challenges.get("goldPerMinute"),
+                        challenges.get("teamDamagePercentage"),
+                        challenges.get("killParticipation"),
+                        challenges.get("kda"),
+                        challenges.get("laneMinionsFirst10Minutes"),
+                        challenges.get("turretPlatesTaken"),
+                        challenges.get("soloKills")
+                    ))
+
+                inserted_count += 1
+
+        return inserted_count
 
     def save_player_progress(self, puuid: str):
         """Mark player as processed (updates timestamp if already exists)"""
@@ -821,6 +1126,120 @@ class MatchDatabase:
                 WHERE patch = ?
             ''', (total_games, total_games, patch))
 
+    def get_champion_role_distribution(self, champion_id: int = None, patch: str = None) -> pd.DataFrame:
+        """
+        Get role distribution for champions (% of games played in each role).
+
+        SRZ request: "% des games où il est joué supp" etc.
+
+        Args:
+            champion_id: Optional - filter for specific champion
+            patch: Optional - filter for specific patch
+
+        Returns:
+            DataFrame with champion_id, champion_name, patch, and percentage columns:
+            top_pct, jungle_pct, mid_pct, adc_pct, support_pct
+        """
+        with self.get_connection() as conn:
+            query = '''
+                SELECT
+                    champion_id,
+                    patch,
+                    games_played,
+                    top_games,
+                    jungle_games,
+                    mid_games,
+                    adc_games,
+                    support_games,
+                    ROUND(CAST(top_games AS REAL) / NULLIF(games_played, 0) * 100, 2) as top_pct,
+                    ROUND(CAST(jungle_games AS REAL) / NULLIF(games_played, 0) * 100, 2) as jungle_pct,
+                    ROUND(CAST(mid_games AS REAL) / NULLIF(games_played, 0) * 100, 2) as mid_pct,
+                    ROUND(CAST(adc_games AS REAL) / NULLIF(games_played, 0) * 100, 2) as adc_pct,
+                    ROUND(CAST(support_games AS REAL) / NULLIF(games_played, 0) * 100, 2) as support_pct
+                FROM champion_patch_stats
+                WHERE 1=1
+            '''
+            params = []
+
+            if champion_id:
+                query += ' AND champion_id = ?'
+                params.append(champion_id)
+
+            if patch:
+                query += ' AND patch = ?'
+                params.append(patch)
+
+            query += ' ORDER BY patch DESC, games_played DESC'
+
+            df = pd.read_sql_query(query, conn, params=params if params else None)
+
+        if len(df) > 0:
+            try:
+                from champion_data import get_champion_data
+                cd = get_champion_data()
+                df['champion_name'] = df['champion_id'].apply(cd.get_champion_name)
+            except Exception:
+                df['champion_name'] = df['champion_id'].apply(lambda x: f'Champion_{x}')
+
+        return df
+
+    def populate_champion_stats_from_matches(self, patch: str = None):
+        """
+        Populate champion_patch_stats from existing player_stats data.
+
+        This should be run after collecting matches to calculate per-champion stats.
+
+        Args:
+            patch: Optional patch filter. If None, processes all matches.
+        """
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Build query to aggregate stats
+            patch_filter = ""
+            params = []
+            if patch:
+                patch_filter = "WHERE m.game_version LIKE ?"
+                params.append(f'{patch}%')
+
+            # Aggregate champion stats per patch
+            cursor.execute(f'''
+                INSERT OR REPLACE INTO champion_patch_stats
+                    (champion_id, patch, games_played, wins, top_games, jungle_games, mid_games, adc_games, support_games)
+                SELECT
+                    ps.champion_id,
+                    SUBSTR(m.game_version, 1, INSTR(m.game_version || '.', '.') + INSTR(SUBSTR(m.game_version, INSTR(m.game_version, '.') + 1) || '.', '.') - 1) as patch,
+                    COUNT(*) as games_played,
+                    SUM(CASE WHEN (ps.team_id = 100 AND m.team_100_win = 1) OR (ps.team_id = 200 AND m.team_100_win = 0) THEN 1 ELSE 0 END) as wins,
+                    SUM(CASE WHEN ps.position = 'top' THEN 1 ELSE 0 END) as top_games,
+                    SUM(CASE WHEN ps.position = 'jungle' THEN 1 ELSE 0 END) as jungle_games,
+                    SUM(CASE WHEN ps.position = 'mid' THEN 1 ELSE 0 END) as mid_games,
+                    SUM(CASE WHEN ps.position = 'adc' THEN 1 ELSE 0 END) as adc_games,
+                    SUM(CASE WHEN ps.position = 'support' THEN 1 ELSE 0 END) as support_games
+                FROM player_stats ps
+                JOIN matches m ON ps.match_id = m.match_id
+                {patch_filter}
+                GROUP BY ps.champion_id, SUBSTR(m.game_version, 1, INSTR(m.game_version || '.', '.') + INSTR(SUBSTR(m.game_version, INSTR(m.game_version, '.') + 1) || '.', '.') - 1)
+            ''', params)
+
+            # Now update bans count
+            cursor.execute(f'''
+                UPDATE champion_patch_stats
+                SET bans = (
+                    SELECT COUNT(*)
+                    FROM team_stats ts
+                    JOIN matches m ON ts.match_id = m.match_id
+                    WHERE (
+                        ts.ban_1_champion_id = champion_patch_stats.champion_id OR
+                        ts.ban_2_champion_id = champion_patch_stats.champion_id OR
+                        ts.ban_3_champion_id = champion_patch_stats.champion_id OR
+                        ts.ban_4_champion_id = champion_patch_stats.champion_id OR
+                        ts.ban_5_champion_id = champion_patch_stats.champion_id
+                    )
+                    AND SUBSTR(m.game_version, 1, INSTR(m.game_version || '.', '.') + INSTR(SUBSTR(m.game_version, INSTR(m.game_version, '.') + 1) || '.', '.') - 1) = champion_patch_stats.patch
+                )
+            ''')
+
     def get_champion_stats_for_patch(self, patch: str) -> List[Dict]:
         """Get all champion stats for a patch"""
         with self.get_connection() as conn:
@@ -831,6 +1250,114 @@ class MatchDatabase:
                 ORDER BY games_played DESC
             ''', (patch,))
             return [dict(row) for row in cursor.fetchall()]
+
+    # ================================================================
+    # Backfill Methods - Fill missing data in existing records
+    # ================================================================
+
+    def backfill_ban_names(self) -> int:
+        """
+        Backfill ban champion names from IDs for existing team_stats records.
+
+        Returns:
+            Number of records updated
+        """
+        from champion_data import get_champion_data
+        cd = get_champion_data()
+
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Get all team_stats with missing ban names
+            cursor.execute('''
+                SELECT id, ban_1_champion_id, ban_2_champion_id, ban_3_champion_id,
+                       ban_4_champion_id, ban_5_champion_id
+                FROM team_stats
+                WHERE (ban_1_name IS NULL AND ban_1_champion_id IS NOT NULL)
+                   OR (ban_2_name IS NULL AND ban_2_champion_id IS NOT NULL)
+                   OR (ban_3_name IS NULL AND ban_3_champion_id IS NOT NULL)
+                   OR (ban_4_name IS NULL AND ban_4_champion_id IS NOT NULL)
+                   OR (ban_5_name IS NULL AND ban_5_champion_id IS NOT NULL)
+            ''')
+
+            rows = cursor.fetchall()
+            updated = 0
+
+            for row in rows:
+                row_id = row[0]
+                ban_names = []
+                for i in range(1, 6):
+                    ban_id = row[i]
+                    if ban_id and ban_id > 0:
+                        ban_names.append(cd.get_champion_name(ban_id))
+                    else:
+                        ban_names.append(None)
+
+                cursor.execute('''
+                    UPDATE team_stats
+                    SET ban_1_name = ?, ban_2_name = ?, ban_3_name = ?,
+                        ban_4_name = ?, ban_5_name = ?
+                    WHERE id = ?
+                ''', (*ban_names, row_id))
+                updated += 1
+
+            return updated
+
+    def backfill_summoner_spell_names(self) -> int:
+        """
+        Backfill summoner spell names from IDs for existing player_stats records.
+
+        Returns:
+            Number of records updated
+        """
+        from champion_data import get_summoner_spell_name
+
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Get all player_stats with missing spell names
+            cursor.execute('''
+                SELECT id, summoner_1_id, summoner_2_id
+                FROM player_stats
+                WHERE (summoner_1_name IS NULL AND summoner_1_id IS NOT NULL)
+                   OR (summoner_2_name IS NULL AND summoner_2_id IS NOT NULL)
+            ''')
+
+            rows = cursor.fetchall()
+            updated = 0
+
+            for row in rows:
+                row_id, spell_1_id, spell_2_id = row
+                spell_1_name = get_summoner_spell_name(spell_1_id) if spell_1_id else None
+                spell_2_name = get_summoner_spell_name(spell_2_id) if spell_2_id else None
+
+                cursor.execute('''
+                    UPDATE player_stats
+                    SET summoner_1_name = ?, summoner_2_name = ?
+                    WHERE id = ?
+                ''', (spell_1_name, spell_2_name, row_id))
+                updated += 1
+
+            return updated
+
+    def backfill_source_elo(self, default_elo: str = "UNKNOWN") -> int:
+        """
+        Backfill source_elo for matches that don't have it.
+
+        Args:
+            default_elo: Default value to use (default: "UNKNOWN")
+
+        Returns:
+            Number of records updated
+        """
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                UPDATE matches
+                SET source_elo = ?
+                WHERE source_elo IS NULL
+            ''', (default_elo,))
+            return cursor.rowcount
 
     # ================================================================
     # Match Timeline Methods (NEW)
@@ -906,6 +1433,141 @@ class MatchDatabase:
                 LIMIT ?
             ''', (puuid, limit))
             return [dict(row) for row in cursor.fetchall()]
+
+    # ================================================================
+    # Champion & Invocateur Data Endpoints (SRZ requests)
+    # ================================================================
+
+    def get_champions_data(self, patch_list: List[str] = None) -> pd.DataFrame:
+        """
+        Get champion statistics for multiple patches.
+
+        Args:
+            patch_list: List of patches to include (e.g., ["14.23", "14.24"])
+                       If None, returns all patches
+
+        Returns:
+            DataFrame with columns: champion_id, champion_name, patch,
+            games_played, wins, winrate, pickrate, banrate,
+            top_games, jungle_games, mid_games, adc_games, support_games
+        """
+        with self.get_connection() as conn:
+            if patch_list:
+                placeholders = ','.join(['?' for _ in patch_list])
+                query = f'''
+                    SELECT * FROM champion_patch_stats
+                    WHERE patch IN ({placeholders})
+                    ORDER BY patch DESC, games_played DESC
+                '''
+                df = pd.read_sql_query(query, conn, params=patch_list)
+            else:
+                df = pd.read_sql_query(
+                    'SELECT * FROM champion_patch_stats ORDER BY patch DESC, games_played DESC',
+                    conn
+                )
+
+        if len(df) > 0:
+            # Add champion names from ChampionData
+            try:
+                from champion_data import get_champion_data
+                cd = get_champion_data()
+                df['champion_name'] = df['champion_id'].apply(cd.get_champion_name)
+            except Exception:
+                df['champion_name'] = df['champion_id'].apply(lambda x: f'Champion_{x}')
+
+        return df
+
+    def get_invocateurs_data(self, patch_list: List[str] = None) -> pd.DataFrame:
+        """
+        Get summoner elo history data for patches.
+
+        Args:
+            patch_list: List of patches to include
+                       If None, returns all patches
+
+        Returns:
+            DataFrame with: puuid, riot_id_name, riot_id_tagline, patch, tier, rank, lp
+        """
+        with self.get_connection() as conn:
+            if patch_list:
+                placeholders = ','.join(['?' for _ in patch_list])
+                query = f'''
+                    SELECT
+                        seh.puuid,
+                        s.riot_id_name,
+                        s.riot_id_tagline,
+                        seh.patch,
+                        seh.tier,
+                        seh.rank,
+                        seh.lp,
+                        seh.recorded_at
+                    FROM summoner_elo_history seh
+                    LEFT JOIN summoners s ON seh.puuid = s.puuid
+                    WHERE seh.patch IN ({placeholders})
+                    ORDER BY seh.patch DESC, seh.lp DESC
+                '''
+                df = pd.read_sql_query(query, conn, params=patch_list)
+            else:
+                df = pd.read_sql_query('''
+                    SELECT
+                        seh.puuid,
+                        s.riot_id_name,
+                        s.riot_id_tagline,
+                        seh.patch,
+                        seh.tier,
+                        seh.rank,
+                        seh.lp,
+                        seh.recorded_at
+                    FROM summoner_elo_history seh
+                    LEFT JOIN summoners s ON seh.puuid = s.puuid
+                    ORDER BY seh.patch DESC, seh.lp DESC
+                ''', conn)
+
+        return df
+
+    def get_summoner_with_mastery(self, puuid: str) -> Dict:
+        """
+        Get summoner info with top 5 champion masteries.
+
+        Args:
+            puuid: Player's PUUID
+
+        Returns:
+            Dict with summoner info + top_champions list
+        """
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+
+            # Get summoner info
+            cursor.execute('SELECT * FROM summoners WHERE puuid = ?', (puuid,))
+            row = cursor.fetchone()
+            summoner = dict(row) if row else {'puuid': puuid}
+
+            # Get top 5 masteries
+            cursor.execute('''
+                SELECT champion_id, champion_level, champion_points
+                FROM champion_mastery
+                WHERE puuid = ?
+                ORDER BY champion_points DESC
+                LIMIT 5
+            ''', (puuid,))
+
+            try:
+                from champion_data import get_champion_data
+                cd = get_champion_data()
+                summoner['top_champions'] = [
+                    {
+                        'champion_id': row[0],
+                        'champion_name': cd.get_champion_name(row[0]),
+                        'mastery_level': row[1],
+                        'mastery_points': row[2]
+                    }
+                    for row in cursor.fetchall()
+                ]
+            except Exception:
+                summoner['top_champions'] = []
+
+        return summoner
 
     def export_to_dataframe(self) -> pd.DataFrame:
         """

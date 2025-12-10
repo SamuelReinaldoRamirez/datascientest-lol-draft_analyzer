@@ -10,7 +10,7 @@ API_KEYS = [
 # Single key for backward compatibility
 API_KEY = API_KEYS[0]
 
-REGION = "euw1"            # Région du shard LoL (euw1, na1, kr, etc.)
+REGION = "kr"              # Région du shard LoL (euw1, na1, kr, etc.)
 QUEUE = "RANKED_SOLO_5x5"
 TIER = "DIAMOND"
 DIVISION = "I"

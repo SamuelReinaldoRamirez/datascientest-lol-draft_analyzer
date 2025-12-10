@@ -274,9 +274,70 @@ def get_league(league_id, use_rotation=True, api_key_index=None):
     r.raise_for_status()
     return r.json()
 
+# Region to routing mapping for Match API v5
+# Match API uses regional routing: americas, asia, europe, sea
+REGION_TO_ROUTING = {
+    # Europe
+    'euw1': 'europe',
+    'eun1': 'europe',
+    'tr1': 'europe',
+    'ru': 'europe',
+    # Americas
+    'na1': 'americas',
+    'br1': 'americas',
+    'la1': 'americas',
+    'la2': 'americas',
+    # Asia
+    'kr': 'asia',
+    'jp1': 'asia',
+    # SEA
+    'oc1': 'sea',
+    'ph2': 'sea',
+    'sg2': 'sea',
+    'th2': 'sea',
+    'tw2': 'sea',
+    'vn2': 'sea',
+}
+
+def get_routing_region():
+    """Get the routing region for Match API based on current REGION"""
+    return REGION_TO_ROUTING.get(REGION, 'europe')
+
+
+# Match ID prefix to routing mapping
+MATCH_PREFIX_TO_ROUTING = {
+    'EUW1': 'europe',
+    'EUN1': 'europe',
+    'TR1': 'europe',
+    'RU': 'europe',
+    'NA1': 'americas',
+    'BR1': 'americas',
+    'LA1': 'americas',
+    'LA2': 'americas',
+    'KR': 'asia',
+    'JP1': 'asia',
+    'OC1': 'sea',
+    'PH2': 'sea',
+    'SG2': 'sea',
+    'TH2': 'sea',
+    'TW2': 'sea',
+    'VN2': 'sea',
+}
+
+
+def get_routing_from_match_id(match_id: str) -> str:
+    """
+    Get routing region from match_id prefix.
+
+    Match IDs format: REGION_GAMEID (e.g., KR_12345, EUW1_67890)
+    """
+    prefix = match_id.split('_')[0].upper()
+    return MATCH_PREFIX_TO_ROUTING.get(prefix, get_routing_region())
+
 # 7️⃣ Match IDs par PUUID (Match API v5)
 def get_matches_by_puuid(puuid, count=5, use_rotation=True, api_key_index=None):
-    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?count={count}"
+    routing = get_routing_region()
+    url = f"https://{routing}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?count={count}"
     headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
     r = requests.get(url, headers=headers)
     r.raise_for_status()
@@ -284,7 +345,9 @@ def get_matches_by_puuid(puuid, count=5, use_rotation=True, api_key_index=None):
 
 # 8️⃣ Détails d'un match
 def get_match_details(match_id, use_rotation=True, api_key_index=None):
-    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{match_id}"
+    # Use match_id prefix to determine routing (supports multi-region)
+    routing = get_routing_from_match_id(match_id)
+    url = f"https://{routing}.api.riotgames.com/lol/match/v5/matches/{match_id}"
     headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
     r = requests.get(url, headers=headers)
     r.raise_for_status()
@@ -324,7 +387,8 @@ def get_account_by_puuid(puuid, use_rotation=True, api_key_index=None):
     Récupère les informations de compte Riot (Riot ID + Tag Line) à partir d'un PUUID
     via l'endpoint /riot/account/v1/accounts/by-puuid/{puuid}.
     """
-    url = f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    routing = get_routing_region()
+    url = f"https://{routing}.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
     headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
     r = requests.get(url, headers=headers)
     r.raise_for_status()
@@ -414,7 +478,9 @@ def get_match_timeline(match_id, use_rotation=True, api_key_index=None):
 
     Frames are recorded every minute.
     """
-    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{match_id}/timeline"
+    # Use match_id prefix to determine routing (supports multi-region)
+    routing = get_routing_from_match_id(match_id)
+    url = f"https://{routing}.api.riotgames.com/lol/match/v5/matches/{match_id}/timeline"
     headers = get_headers_for_key(api_key_index) if api_key_index is not None else (get_rotating_headers() if use_rotation else HEADERS)
     r = requests.get(url, headers=headers)
     r.raise_for_status()

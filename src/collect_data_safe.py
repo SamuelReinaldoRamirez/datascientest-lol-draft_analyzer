@@ -27,25 +27,33 @@ import os
 from collections import deque
 from datetime import datetime
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import pandas as pd
 
 from riot_api import (
     get_entries, get_matches_by_puuid, get_match_details, get_account_by_puuid,
     get_challenger_league, get_grandmaster_league, get_master_league,
     get_high_elo_players, get_summoner_by_summoner_id, get_api_key_count,
-    get_key_rotator
+    get_key_rotator, get_match_timeline
 )
 from database import MatchDatabase
 
 
 class RateLimiter:
     """
-    Advanced rate limiter for Riot API with sliding window tracking
+    Advanced rate limiter for Riot API with sliding window tracking.
+
+    NOTE: With SmartKeyRotator handling per-key rate limits, this limiter
+    now scales limits by the number of API keys available.
     """
-    def __init__(self):
-        # Personal API key limits
+    def __init__(self, num_keys: int = 1):
+        # Scale limits by number of API keys
+        # Each key has: 20 req/1s, 100 req/2min
+        # With N keys: N*20 req/1s, N*100 req/2min
+        self.num_keys = max(1, num_keys)
         self.limits = {
-            'short': {'requests': 20, 'window': 1},      # 20 requests per 1 second
-            'long': {'requests': 100, 'window': 120}     # 100 requests per 2 minutes
+            'short': {'requests': 20 * self.num_keys, 'window': 1},
+            'long': {'requests': 100 * self.num_keys, 'window': 120}
         }
 
         # Track requests per endpoint
@@ -75,12 +83,12 @@ class RateLimiter:
         current_time = time.time()
         history = self.request_history[endpoint]
 
-        # Check short window (1 second)
+        # Check short window (1 second) - scaled by num_keys
         recent_1s = sum(1 for req_time in history if current_time - req_time <= 1)
         if recent_1s >= self.limits['short']['requests']:
-            return False, 1.1 - (current_time - history[-self.limits['short']['requests']])
+            return False, 0.1  # Short wait for short window
 
-        # Check long window (2 minutes)
+        # Check long window (2 minutes) - scaled by num_keys
         if len(history) >= self.limits['long']['requests']:
             oldest_in_window = history[len(history) - self.limits['long']['requests']]
             wait_time = 120 - (current_time - oldest_in_window) + 0.1
@@ -124,11 +132,15 @@ class DataCollector:
     - Parallel collection with dedicated API keys per elo tier
     """
 
-    def __init__(self, db_path: str = 'data/lol_matches.db', api_key_index: int = None, refresh_hours: int = 24):
-        self.rate_limiter = RateLimiter()
+    def __init__(self, db_path: str = 'data/lol_matches.db', api_key_index: int = None,
+                 refresh_hours: int = 24, collect_timelines: bool = False):
+        # Scale rate limiter by number of API keys available
+        num_keys = get_api_key_count()
+        self.rate_limiter = RateLimiter(num_keys=num_keys)
         self.db = MatchDatabase(db_path)
         self.api_key_index = api_key_index  # None = use rotation, 0/1/etc = use specific key
         self.refresh_hours = refresh_hours  # Re-fetch players after this many hours
+        self.collect_timelines = collect_timelines  # Whether to fetch timeline data (gold per minute)
 
         # Setup logging
         logging.basicConfig(
@@ -213,9 +225,7 @@ class DataCollector:
                 self.stats['successful_requests'] += 1
                 self.rate_limiter.reset_error_count()
 
-                # Small delay between requests
-                time.sleep(0.05)
-
+                # No artificial delay - SmartKeyRotator handles rate limits
                 return result
 
             except Exception as e:
@@ -266,7 +276,6 @@ class DataCollector:
 
                 self.stats['successful_requests'] += 1
                 self.rate_limiter.reset_error_count()
-                time.sleep(0.05)
 
                 return result
 
@@ -299,6 +308,128 @@ class DataCollector:
                         raise
 
         return None
+
+    def fetch_and_store_timeline(self, match_id: str, match_detail: dict) -> bool:
+        """
+        Fetch timeline for a match and store gold data per minute.
+
+        Args:
+            match_id: The match ID
+            match_detail: The match details (to map participantId to position)
+
+        Returns:
+            True if timeline was stored successfully
+        """
+        try:
+            timeline_data = self.make_api_request(get_match_timeline, 'match', match_id)
+
+            if not timeline_data:
+                return False
+
+            # Build participant position map from match details
+            info = match_detail.get("info", {})
+            participants = info.get("participants", [])
+
+            position_map = {
+                "TOP": "top",
+                "JUNGLE": "jungle",
+                "MIDDLE": "mid",
+                "BOTTOM": "adc",
+                "UTILITY": "support"
+            }
+
+            # Map participantId -> (teamId, position)
+            participant_positions = {}
+            for p in participants:
+                pid = p.get("participantId")
+                team_id = p.get("teamId")
+                pos = position_map.get(p.get("teamPosition"), "unknown")
+                participant_positions[pid] = (team_id, pos)
+
+            # Process each frame (1 frame = 1 minute)
+            frames = timeline_data.get("info", {}).get("frames", [])
+
+            for frame in frames:
+                minute = frame.get("timestamp", 0) // 60000  # Convert ms to minutes
+
+                # Skip minute 0 (game start)
+                if minute == 0:
+                    continue
+
+                participant_frames = frame.get("participantFrames", {})
+
+                # Calculate team totals and per-position gold
+                team_gold = {"team_100": 0, "team_200": 0}
+                position_gold = {}
+
+                for pid_str, pf in participant_frames.items():
+                    pid = int(pid_str)
+                    gold = pf.get("totalGold", 0)
+
+                    if pid in participant_positions:
+                        team_id, pos = participant_positions[pid]
+                        team_key = f"team_{team_id}"
+                        team_gold[team_key] = team_gold.get(team_key, 0) + gold
+                        position_gold[f"{team_key}_{pos}"] = gold
+
+                # Store in database
+                self.db.insert_timeline_frame(match_id, minute, team_gold, position_gold)
+
+            return True
+
+        except Exception as e:
+            self.logger.debug(f"Failed to fetch timeline for {match_id}: {e}")
+            return False
+
+    def fetch_match_details_parallel(self, match_ids: list, existing_matches: set, max_workers: int = None) -> list:
+        """
+        Fetch match details in parallel using ThreadPoolExecutor.
+
+        This method uses all available API keys to fetch multiple matches simultaneously,
+        significantly speeding up data collection.
+
+        Args:
+            match_ids: List of match IDs to fetch
+            existing_matches: Set of already collected match IDs (to skip)
+            max_workers: Number of parallel workers (default: number of API keys)
+
+        Returns:
+            List of (match_id, match_detail) tuples for successfully fetched matches
+        """
+        # Filter out already collected matches
+        ids_to_fetch = [mid for mid in match_ids if mid not in existing_matches]
+
+        if not ids_to_fetch:
+            return []
+
+        # Use number of API keys as default workers count
+        if max_workers is None:
+            max_workers = get_api_key_count()
+
+        results = []
+
+        # Use ThreadPoolExecutor for parallel fetching
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # Submit all fetch tasks
+            future_to_match_id = {
+                executor.submit(self.make_api_request, get_match_details, 'match', mid): mid
+                for mid in ids_to_fetch
+            }
+
+            # Collect results as they complete
+            for future in as_completed(future_to_match_id):
+                match_id = future_to_match_id[future]
+                try:
+                    match_detail = future.result()
+
+                    # Only keep ranked solo/duo games (queueId 420)
+                    if match_detail and match_detail.get("info", {}).get("queueId") == 420:
+                        results.append((match_id, match_detail))
+
+                except Exception as e:
+                    self.logger.error(f"Failed to fetch match {match_id}: {e}")
+
+        return results
 
     def collect_matches(self, num_players: int = 50, matches_per_player: int = 20,
                         high_elo_only: bool = False, elo_filter: str = None):
@@ -471,17 +602,8 @@ class DataCollector:
                 self.logger.warning(f"No PUUID for entry, skipping")
                 continue
 
-            # Get account info for display (non-critical, just for logging)
-            try:
-                account_info = self.make_api_request(
-                    get_account_by_puuid, 'account', puuid
-                )
-                if account_info:
-                    summoner_name = f"{account_info.get('gameName', 'Unknown')}#{account_info.get('tagLine', 'EUW')}"
-                else:
-                    summoner_name = puuid[:16] + "..."  # Show partial PUUID if no name
-            except Exception as e:
-                summoner_name = puuid[:16] + "..."  # Show partial PUUID on error
+            # Use truncated PUUID for logging (no API call needed)
+            summoner_name = puuid[:16] + "..."
 
             self.logger.info(f"[{i+1}/{len(new_entries)}] [{tier}] Processing {summoner_name}")
 
@@ -494,31 +616,27 @@ class DataCollector:
                 if not match_ids:
                     continue
 
-                # Process each match
-                new_matches_count = 0
+                # PARALLEL fetch of match details using all API keys
+                fetched_matches = self.fetch_match_details_parallel(match_ids, existing_matches)
 
-                for match_id in match_ids:
-                    # Skip if already in database
-                    if match_id in existing_matches:
-                        continue
+                # BATCH insert all fetched matches in a single transaction (with source elo)
+                new_matches_count = self.db.insert_matches_batch(fetched_matches, source_elo=tier)
 
-                    try:
-                        match_detail = self.make_api_request(
-                            get_match_details, 'match', match_id
-                        )
-
-                        # Only save ranked solo/duo games (queueId 420)
-                        if match_detail and match_detail.get("info", {}).get("queueId") == 420:
-                            # Save directly to SQLite
-                            if self.db.insert_match(match_detail):
-                                existing_matches.add(match_id)
-                                new_matches_count += 1
-                                new_matches_total += 1
-
-                    except Exception as e:
-                        self.logger.error(f"Failed to get match {match_id}: {e}")
+                # Update tracking sets
+                for match_id, _ in fetched_matches:
+                    existing_matches.add(match_id)
+                new_matches_total += new_matches_count
 
                 self.logger.info(f"  + Added {new_matches_count} new matches from {summoner_name}")
+
+                # Collect timelines if enabled (for gold per minute data)
+                if self.collect_timelines and new_matches_count > 0:
+                    timelines_collected = 0
+                    for match_id, match_detail in fetched_matches:
+                        if self.fetch_and_store_timeline(match_id, match_detail):
+                            timelines_collected += 1
+                    if timelines_collected > 0:
+                        self.logger.info(f"    + Collected {timelines_collected} timelines")
 
                 # Mark player as processed (use both puuid and summoner_id tracking)
                 self.db.save_player_progress(puuid)
@@ -613,6 +731,124 @@ class DataCollector:
 
         self.logger.info("Progress reset. Existing matches are preserved.")
 
+    def _fetch_timeline_for_match(self, match_id: str) -> tuple:
+        """
+        Fetch timeline for a single match (used in parallel processing).
+
+        Returns:
+            (match_id, success: bool, error_msg: str or None)
+        """
+        try:
+            # Fetch match detail (needed for participant positions)
+            match_detail = self.make_api_request(get_match_details, 'match', match_id)
+
+            if not match_detail:
+                return (match_id, False, "Failed to fetch match details")
+
+            # Fetch and store timeline
+            if self.fetch_and_store_timeline(match_id, match_detail):
+                return (match_id, True, None)
+            else:
+                return (match_id, False, "Failed to fetch/store timeline")
+
+        except Exception as e:
+            return (match_id, False, str(e))
+
+    def backfill_timelines(self, limit: int = None):
+        """
+        Fetch timelines for existing matches that don't have timeline data.
+
+        SRZ request: "gold à la minute m" - Backfill timeline data for all existing matches.
+
+        Uses parallel API calls with ThreadPoolExecutor to maximize throughput
+        across all available API keys.
+
+        Args:
+            limit: Optional limit on number of matches to process (for testing)
+        """
+        self.logger.info("Starting timeline backfill (PARALLEL MODE)...")
+
+        # Get match IDs without timeline data
+        with self.db.get_connection() as conn:
+            cursor = conn.cursor()
+            query = '''
+                SELECT DISTINCT m.match_id
+                FROM matches m
+                LEFT JOIN match_timeline mt ON m.match_id = mt.match_id
+                WHERE mt.match_id IS NULL
+            '''
+            if limit:
+                query += f' LIMIT {limit}'
+            cursor.execute(query)
+            match_ids = [row[0] for row in cursor.fetchall()]
+
+        total = len(match_ids)
+        num_keys = get_api_key_count()
+        self.logger.info(f"Found {total} matches without timeline data")
+        self.logger.info(f"Using {num_keys} API keys in parallel (batch size: {num_keys * 2})")
+
+        if total == 0:
+            self.logger.info("All matches already have timeline data!")
+            return
+
+        success = 0
+        failed = 0
+        processed = 0
+
+        # Process in batches to avoid overwhelming the API
+        # Each match needs 2 API calls (match_details + timeline)
+        # With N keys, we can do N concurrent requests
+        batch_size = num_keys * 2  # Conservative: 2 matches per key at a time
+
+        start_time = time.time()
+
+        for batch_start in range(0, total, batch_size):
+            batch_end = min(batch_start + batch_size, total)
+            batch = match_ids[batch_start:batch_end]
+
+            # Process batch in parallel
+            with ThreadPoolExecutor(max_workers=num_keys) as executor:
+                futures = {
+                    executor.submit(self._fetch_timeline_for_match, mid): mid
+                    for mid in batch
+                }
+
+                for future in as_completed(futures):
+                    match_id = futures[future]
+                    try:
+                        _, is_success, error_msg = future.result()
+                        if is_success:
+                            success += 1
+                        else:
+                            failed += 1
+                            if error_msg and "404" not in error_msg:
+                                self.logger.debug(f"Failed {match_id}: {error_msg}")
+                    except Exception as e:
+                        failed += 1
+                        self.logger.debug(f"Exception for {match_id}: {e}")
+
+                    processed += 1
+
+            # Progress logging after each batch
+            elapsed = time.time() - start_time
+            rate = processed / elapsed if elapsed > 0 else 0
+            eta_seconds = (total - processed) / rate if rate > 0 else 0
+            eta_minutes = eta_seconds / 60
+
+            self.logger.info(
+                f"Progress: {processed}/{total} ({success} success, {failed} failed) "
+                f"- {rate:.1f} matches/sec - ETA: {eta_minutes:.1f} min"
+            )
+
+            # Save stats periodically
+            if processed % 500 == 0:
+                self._save_stats()
+
+        self._save_stats()
+        total_time = time.time() - start_time
+        self.logger.info(f"Timeline backfill complete! {success}/{total} successful ({failed} failed)")
+        self.logger.info(f"Total time: {total_time/60:.1f} minutes ({total_time/success:.2f}s per match)" if success > 0 else "")
+
 
 def main():
     parser = argparse.ArgumentParser(description='Collect LoL match data with rate limiting (SQLite version)')
@@ -636,10 +872,27 @@ def main():
                        help='Index of API key to use (0, 1, etc.) for parallel collection. If not specified, rotates between all keys.')
     parser.add_argument('--refresh-hours', type=int, default=24,
                        help='Re-fetch players after this many hours to get new matches (default: 24). Set to 0 to never re-fetch.')
+    parser.add_argument('--collect-timelines', action='store_true',
+                       help='Collect match timelines for gold per minute data (SRZ: "gold à la minute m")')
+    parser.add_argument('--recalculate-stats', action='store_true',
+                       help='Recalculate champion winrate/pickrate/banrate after collection')
+    parser.add_argument('--populate-stats', action='store_true',
+                       help='Populate champion_patch_stats from existing match data (run once after collecting data)')
+    parser.add_argument('--backfill-timelines', action='store_true',
+                       help='Fetch timelines for existing matches (gold per minute data)')
+    parser.add_argument('--backfill-names', action='store_true',
+                       help='Backfill missing ban names and summoner spell names from IDs')
+    parser.add_argument('--limit', type=int,
+                       help='Limit number of matches to process (for --backfill-timelines)')
 
     args = parser.parse_args()
 
-    collector = DataCollector(db_path=args.db, api_key_index=args.api_key_index, refresh_hours=args.refresh_hours)
+    collector = DataCollector(
+        db_path=args.db,
+        api_key_index=args.api_key_index,
+        refresh_hours=args.refresh_hours,
+        collect_timelines=args.collect_timelines
+    )
 
     if args.reset:
         collector.reset_progress(elo_filter=args.elo)
@@ -647,6 +900,65 @@ def main():
 
     if args.export_csv:
         collector.export_to_csv()
+        return
+
+    if args.populate_stats:
+        print("Populating champion stats from existing match data...")
+        collector.db.populate_champion_stats_from_matches()
+        print("Done! Now run --recalculate-stats to compute winrate/pickrate/banrate.")
+        return
+
+    if args.recalculate_stats:
+        print("Recalculating champion stats...")
+        # Get unique patches from database
+        patches = collector.db.get_patches()
+        if patches:
+            for patch_info in patches:
+                patch = patch_info.get('patch')
+                if patch:
+                    collector.db.recalculate_champion_rates(patch)
+                    print(f"  Recalculated stats for patch {patch}")
+        else:
+            # Fallback: extract patches from game_version
+            df = collector.db.export_to_dataframe()
+            if not df.empty and 'game_version' in df.columns:
+                unique_patches = df['game_version'].str.extract(r'^(\d+\.\d+)')[0].unique()
+                for patch in unique_patches:
+                    if patch and not pd.isna(patch):
+                        collector.db.recalculate_champion_rates(patch)
+                        print(f"  Recalculated stats for patch {patch}")
+        print("Done!")
+        return
+
+    if args.backfill_timelines:
+        print("=" * 60)
+        print("Backfilling timelines for existing matches...")
+        print(f"Database: {args.db}")
+        if args.limit:
+            print(f"Limit: {args.limit} matches")
+        print("=" * 60)
+        collector.backfill_timelines(limit=args.limit)
+        return
+
+    if args.backfill_names:
+        print("=" * 60)
+        print("Backfilling missing names from IDs...")
+        print(f"Database: {args.db}")
+        print("=" * 60)
+
+        print("\n1. Backfilling ban names...")
+        ban_count = collector.db.backfill_ban_names()
+        print(f"   Updated {ban_count} team_stats records")
+
+        print("\n2. Backfilling summoner spell names...")
+        spell_count = collector.db.backfill_summoner_spell_names()
+        print(f"   Updated {spell_count} player_stats records")
+
+        print("\n3. Backfilling source_elo...")
+        elo_count = collector.db.backfill_source_elo()
+        print(f"   Updated {elo_count} matches records")
+
+        print("\n✅ Backfill complete!")
         return
 
     if args.continuous:
@@ -679,6 +991,10 @@ def main():
             print(f"Player refresh: Every {args.refresh_hours}h (re-fetch for new matches)")
         else:
             print("Player refresh: Disabled (each player fetched only once)")
+
+        # Timeline collection info
+        if args.collect_timelines:
+            print("Timeline collection: ENABLED (gold per minute data)")
 
         # Parallel mode instructions
         if args.elo and args.api_key_index is not None:
