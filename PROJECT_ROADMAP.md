@@ -32,7 +32,7 @@ Les champions seuls ne suffisent pas. Il faut capturer les **relations** entre e
 
 ---
 
-## Phase 2 : Correction du Data Leakage (Accuracy: 53% → 53%)
+## Phase 2 : Correction du Data Leakage (Accuracy: 98% → 53%)
 
 ### Le problème découvert
 Le modèle initial avait 98% d'accuracy... trop beau pour être vrai !
