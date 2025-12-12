@@ -1,0 +1,6499 @@
+{
+  "version": "15.24.1",
+  "champions": {
+    "266": {
+      "id": 266,
+      "name": "Aatrox",
+      "key": "Aatrox",
+      "title": "the Darkin Blade",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 114,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 38,
+        "armorperlevel": 4.8,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 3,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.651
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "103": {
+      "id": 103,
+      "name": "Ahri",
+      "key": "Ahri",
+      "title": "the Nine-Tailed Fox",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 104,
+        "mp": 418,
+        "mpperlevel": 25,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 2.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.2,
+        "attackspeed": 0.668
+      },
+      "info": {
+        "attack": 3,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "84": {
+      "id": 84,
+      "name": "Akali",
+      "key": "Akali",
+      "title": "the Rogue Assassin",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 119,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 23,
+        "armorperlevel": 4.7,
+        "spellblock": 37,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 3.2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 5,
+        "defense": 3,
+        "magic": 8,
+        "difficulty": 7
+      }
+    },
+    "166": {
+      "id": 166,
+      "name": "Akshan",
+      "key": "Akshan",
+      "title": "the Rogue Sentinel",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 107,
+        "mp": 350,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 26,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 4,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 0,
+        "defense": 0,
+        "magic": 0,
+        "difficulty": 0
+      }
+    },
+    "12": {
+      "id": 12,
+      "name": "Alistar",
+      "key": "Alistar",
+      "title": "the Minotaur",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 685,
+        "hpperlevel": 120,
+        "mp": 350,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 40,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 8.5,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.75,
+        "attackspeedperlevel": 2.125,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 9,
+        "magic": 5,
+        "difficulty": 7
+      }
+    },
+    "799": {
+      "id": 799,
+      "name": "Ambessa",
+      "key": "Ambessa",
+      "title": "Matriarch of War",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 110,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 35,
+        "armorperlevel": 4.9,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 0,
+        "difficulty": 10
+      }
+    },
+    "32": {
+      "id": 32,
+      "name": "Amumu",
+      "key": "Amumu",
+      "title": "the Sad Mummy",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 685,
+        "hpperlevel": 94,
+        "mp": 285,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 33,
+        "armorperlevel": 4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.85,
+        "mpregen": 7.4,
+        "mpregenperlevel": 0.55,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 3.8,
+        "attackspeedperlevel": 2.18,
+        "attackspeed": 0.736
+      },
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 3
+      }
+    },
+    "34": {
+      "id": 34,
+      "name": "Anivia",
+      "key": "Anivia",
+      "title": "the Cryophoenix",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 550,
+        "hpperlevel": 92,
+        "mp": 495,
+        "mpperlevel": 45,
+        "movespeed": 325,
+        "armor": 21,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 600,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 51,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 1.68,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 1,
+        "defense": 4,
+        "magic": 10,
+        "difficulty": 10
+      }
+    },
+    "1": {
+      "id": 1,
+      "name": "Annie",
+      "key": "Annie",
+      "title": "the Dark Child",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 560,
+        "hpperlevel": 96,
+        "mp": 418,
+        "mpperlevel": 25,
+        "movespeed": 335,
+        "armor": 23,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 625,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 2.65,
+        "attackspeedperlevel": 1.36,
+        "attackspeed": 0.61
+      },
+      "info": {
+        "attack": 2,
+        "defense": 3,
+        "magic": 10,
+        "difficulty": 6
+      }
+    },
+    "523": {
+      "id": 523,
+      "name": "Aphelios",
+      "key": "Aphelios",
+      "title": "the Weapon of the Faithful",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 102,
+        "mp": 348,
+        "mpperlevel": 42,
+        "movespeed": 325,
+        "armor": 26,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.25,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.3,
+        "attackspeedperlevel": 2.1,
+        "attackspeed": 0.665
+      },
+      "info": {
+        "attack": 6,
+        "defense": 2,
+        "magic": 1,
+        "difficulty": 10
+      }
+    },
+    "22": {
+      "id": 22,
+      "name": "Ashe",
+      "key": "Ashe",
+      "title": "the Frost Archer",
+      "tags": [
+        "Marksman",
+        "Support"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 101,
+        "mp": 280,
+        "mpperlevel": 35,
+        "movespeed": 325,
+        "armor": 26,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 600,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7,
+        "mpregenperlevel": 0.65,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.45,
+        "attackspeedperlevel": 3.33,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 7,
+        "defense": 3,
+        "magic": 2,
+        "difficulty": 4
+      }
+    },
+    "136": {
+      "id": 136,
+      "name": "Aurelion Sol",
+      "key": "AurelionSol",
+      "title": "The Star Forger",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 90,
+        "mp": 530,
+        "mpperlevel": 40,
+        "movespeed": 340,
+        "armor": 22,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 3,
+        "magic": 8,
+        "difficulty": 7
+      }
+    },
+    "893": {
+      "id": 893,
+      "name": "Aurora",
+      "key": "Aurora",
+      "title": "the Witch Between Worlds",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 607,
+        "hpperlevel": 110,
+        "mp": 475,
+        "mpperlevel": 30,
+        "movespeed": 335,
+        "armor": 23,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.668
+      },
+      "info": {
+        "attack": 3,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "268": {
+      "id": 268,
+      "name": "Azir",
+      "key": "Azir",
+      "title": "the Emperor of the Sands",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 575,
+        "hpperlevel": 119,
+        "mp": 320,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 7,
+        "hpregenperlevel": 0.75,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 3,
+        "magic": 8,
+        "difficulty": 9
+      }
+    },
+    "432": {
+      "id": 432,
+      "name": "Bard",
+      "key": "Bard",
+      "title": "the Wandering Caretaker",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 103,
+        "mp": 350,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 34,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 4,
+        "defense": 4,
+        "magic": 5,
+        "difficulty": 9
+      }
+    },
+    "200": {
+      "id": 200,
+      "name": "Bel'Veth",
+      "key": "Belveth",
+      "title": "the Empress of the Void",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 99,
+        "mp": 60,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 32,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 1.5,
+        "attackspeedperlevel": 0,
+        "attackspeed": 0.85
+      },
+      "info": {
+        "attack": 4,
+        "defense": 2,
+        "magic": 7,
+        "difficulty": 10
+      }
+    },
+    "53": {
+      "id": 53,
+      "name": "Blitzcrank",
+      "key": "Blitzcrank",
+      "title": "the Great Steam Golem",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 109,
+        "mp": 267,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 37,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 8.5,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 1.13,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 8,
+        "magic": 5,
+        "difficulty": 4
+      }
+    },
+    "63": {
+      "id": 63,
+      "name": "Brand",
+      "key": "Brand",
+      "title": "the Burning Vengeance",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 570,
+        "hpperlevel": 105,
+        "mp": 469,
+        "mpperlevel": 21,
+        "movespeed": 340,
+        "armor": 27,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 9,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.681
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 9,
+        "difficulty": 4
+      }
+    },
+    "201": {
+      "id": 201,
+      "name": "Braum",
+      "key": "Braum",
+      "title": "the Heart of the Freljord",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 112,
+        "mp": 311,
+        "mpperlevel": 45,
+        "movespeed": 335,
+        "armor": 35,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 1,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 3,
+        "defense": 9,
+        "magic": 4,
+        "difficulty": 3
+      }
+    },
+    "233": {
+      "id": 233,
+      "name": "Briar",
+      "key": "Briar",
+      "title": "the Restrained Hunger",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 625,
+        "hpperlevel": 95,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 30,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 0,
+        "hpregenperlevel": 0,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 3
+      }
+    },
+    "51": {
+      "id": 51,
+      "name": "Caitlyn",
+      "key": "Caitlyn",
+      "title": "the Sheriff of Piltover",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 107,
+        "mp": 315,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 27,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 650,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.4,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.8,
+        "attackspeedperlevel": 4,
+        "attackspeed": 0.681
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 2,
+        "difficulty": 6
+      }
+    },
+    "164": {
+      "id": 164,
+      "name": "Camille",
+      "key": "Camille",
+      "title": "the Steel Shadow",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 99,
+        "mp": 339,
+        "mpperlevel": 52,
+        "movespeed": 340,
+        "armor": 35,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 8.15,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 3.8,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "69": {
+      "id": 69,
+      "name": "Cassiopeia",
+      "key": "Cassiopeia",
+      "title": "the Serpent's Embrace",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 104,
+        "mp": 450,
+        "mpperlevel": 40,
+        "movespeed": 328,
+        "armor": 18,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.647
+      },
+      "info": {
+        "attack": 2,
+        "defense": 3,
+        "magic": 9,
+        "difficulty": 10
+      }
+    },
+    "31": {
+      "id": 31,
+      "name": "Cho'Gath",
+      "key": "Chogath",
+      "title": "the Terror of the Void",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 644,
+        "hpperlevel": 94,
+        "mp": 270,
+        "mpperlevel": 60,
+        "movespeed": 345,
+        "armor": 38,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.85,
+        "mpregen": 7.2,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 69,
+        "attackdamageperlevel": 4.2,
+        "attackspeedperlevel": 1.44,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 3,
+        "defense": 7,
+        "magic": 7,
+        "difficulty": 5
+      }
+    },
+    "42": {
+      "id": 42,
+      "name": "Corki",
+      "key": "Corki",
+      "title": "the Daring Bombardier",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 100,
+        "mp": 350,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 27,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.4,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 2.8,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 8,
+        "defense": 3,
+        "magic": 6,
+        "difficulty": 6
+      }
+    },
+    "122": {
+      "id": 122,
+      "name": "Darius",
+      "key": "Darius",
+      "title": "the Hand of Noxus",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 652,
+        "hpperlevel": 114,
+        "mp": 263,
+        "mpperlevel": 58,
+        "movespeed": 340,
+        "armor": 37,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 10,
+        "hpregenperlevel": 0.95,
+        "mpregen": 6.6,
+        "mpregenperlevel": 0.35,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 5,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 1,
+        "difficulty": 2
+      }
+    },
+    "131": {
+      "id": 131,
+      "name": "Diana",
+      "key": "Diana",
+      "title": "Scorn of the Moon",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 109,
+        "mp": 375,
+        "mpperlevel": 25,
+        "movespeed": 345,
+        "armor": 31,
+        "armorperlevel": 4.3,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 4
+      }
+    },
+    "119": {
+      "id": 119,
+      "name": "Draven",
+      "key": "Draven",
+      "title": "the Glorious Executioner",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 675,
+        "hpperlevel": 104,
+        "mp": 361,
+        "mpperlevel": 39,
+        "movespeed": 330,
+        "armor": 29,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.7,
+        "mpregen": 8.05,
+        "mpregenperlevel": 0.65,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.6,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.679
+      },
+      "info": {
+        "attack": 9,
+        "defense": 3,
+        "magic": 1,
+        "difficulty": 8
+      }
+    },
+    "36": {
+      "id": 36,
+      "name": "Dr. Mundo",
+      "key": "DrMundo",
+      "title": "the Madman of Zaun",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 103,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 32,
+        "armorperlevel": 4.5,
+        "spellblock": 29,
+        "spellblockperlevel": 2.3,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.67
+      },
+      "info": {
+        "attack": 5,
+        "defense": 7,
+        "magic": 6,
+        "difficulty": 5
+      }
+    },
+    "245": {
+      "id": 245,
+      "name": "Ekko",
+      "key": "Ekko",
+      "title": "the Boy Who Shattered Time",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 99,
+        "mp": 280,
+        "mpperlevel": 70,
+        "movespeed": 340,
+        "armor": 32,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.688
+      },
+      "info": {
+        "attack": 5,
+        "defense": 3,
+        "magic": 7,
+        "difficulty": 8
+      }
+    },
+    "60": {
+      "id": 60,
+      "name": "Elise",
+      "key": "Elise",
+      "title": "the Spider Queen",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 109,
+        "mp": 324,
+        "mpperlevel": 50,
+        "movespeed": 330,
+        "armor": 30,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 1.75,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 9
+      }
+    },
+    "28": {
+      "id": 28,
+      "name": "Evelynn",
+      "key": "Evelynn",
+      "title": "Agony's Embrace",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 642,
+        "hpperlevel": 98,
+        "mp": 315,
+        "mpperlevel": 42,
+        "movespeed": 335,
+        "armor": 37,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 8.11,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.1,
+        "attackspeed": 0.667
+      },
+      "info": {
+        "attack": 4,
+        "defense": 2,
+        "magic": 7,
+        "difficulty": 10
+      }
+    },
+    "81": {
+      "id": 81,
+      "name": "Ezreal",
+      "key": "Ezreal",
+      "title": "the Prodigal Explorer",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 102,
+        "mp": 375,
+        "mpperlevel": 70,
+        "movespeed": 325,
+        "armor": 24,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 4,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8.5,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3.25,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 2,
+        "magic": 6,
+        "difficulty": 7
+      }
+    },
+    "9": {
+      "id": 9,
+      "name": "Fiddlesticks",
+      "key": "Fiddlesticks",
+      "title": "the Ancient Fear",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 106,
+        "mp": 500,
+        "mpperlevel": 28,
+        "movespeed": 335,
+        "armor": 34,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 480,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.65,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 3,
+        "magic": 9,
+        "difficulty": 9
+      }
+    },
+    "114": {
+      "id": 114,
+      "name": "Fiora",
+      "key": "Fiora",
+      "title": "the Grand Duelist",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 99,
+        "mp": 300,
+        "mpperlevel": 60,
+        "movespeed": 345,
+        "armor": 33,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 3.2,
+        "attackspeed": 0.69
+      },
+      "info": {
+        "attack": 10,
+        "defense": 4,
+        "magic": 2,
+        "difficulty": 3
+      }
+    },
+    "105": {
+      "id": 105,
+      "name": "Fizz",
+      "key": "Fizz",
+      "title": "the Tidal Trickster",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 106,
+        "mp": 317,
+        "mpperlevel": 52,
+        "movespeed": 335,
+        "armor": 26,
+        "armorperlevel": 4.6,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.7,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.1,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 6,
+        "defense": 4,
+        "magic": 7,
+        "difficulty": 6
+      }
+    },
+    "3": {
+      "id": 3,
+      "name": "Galio",
+      "key": "Galio",
+      "title": "the Colossus",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 126,
+        "mp": 410,
+        "mpperlevel": 40,
+        "movespeed": 340,
+        "armor": 24,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 8,
+        "hpregenperlevel": 0.8,
+        "mpregen": 9.5,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 1,
+        "defense": 10,
+        "magic": 6,
+        "difficulty": 5
+      }
+    },
+    "41": {
+      "id": 41,
+      "name": "Gangplank",
+      "key": "Gangplank",
+      "title": "the Saltwater Scourge",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 114,
+        "mp": 280,
+        "mpperlevel": 60,
+        "movespeed": 345,
+        "armor": 31,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 4.2,
+        "attackspeedperlevel": 3.2,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 7,
+        "defense": 6,
+        "magic": 4,
+        "difficulty": 9
+      }
+    },
+    "86": {
+      "id": 86,
+      "name": "Garen",
+      "key": "Garen",
+      "title": "The Might of Demacia",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 690,
+        "hpperlevel": 98,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 38,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 1.55,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 69,
+        "attackdamageperlevel": 4.5,
+        "attackspeedperlevel": 3.65,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 7,
+        "magic": 1,
+        "difficulty": 5
+      }
+    },
+    "150": {
+      "id": 150,
+      "name": "Gnar",
+      "key": "Gnar",
+      "title": "the Missing Link",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 540,
+        "hpperlevel": 79,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 32,
+        "armorperlevel": 3.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 175,
+        "hpregen": 4.5,
+        "hpregenperlevel": 1.25,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 6,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 5,
+        "magic": 5,
+        "difficulty": 8
+      }
+    },
+    "79": {
+      "id": 79,
+      "name": "Gragas",
+      "key": "Gragas",
+      "title": "the Rabble Rouser",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 115,
+        "mp": 400,
+        "mpperlevel": 47,
+        "movespeed": 330,
+        "armor": 38,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2.05,
+        "attackspeed": 0.675
+      },
+      "info": {
+        "attack": 4,
+        "defense": 7,
+        "magic": 6,
+        "difficulty": 5
+      }
+    },
+    "104": {
+      "id": 104,
+      "name": "Graves",
+      "key": "Graves",
+      "title": "the Outlaw",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 625,
+        "hpperlevel": 106,
+        "mp": 325,
+        "mpperlevel": 40,
+        "movespeed": 340,
+        "armor": 33,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 425,
+        "hpregen": 8,
+        "hpregenperlevel": 0.7,
+        "mpregen": 8,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.475
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 3
+      }
+    },
+    "887": {
+      "id": 887,
+      "name": "Gwen",
+      "key": "Gwen",
+      "title": "The Hallowed Seamstress",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 115,
+        "mp": 330,
+        "mpperlevel": 40,
+        "movespeed": 340,
+        "armor": 39,
+        "armorperlevel": 4.9,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.25,
+        "attackspeed": 0.69
+      },
+      "info": {
+        "attack": 7,
+        "defense": 4,
+        "magic": 5,
+        "difficulty": 5
+      }
+    },
+    "120": {
+      "id": 120,
+      "name": "Hecarim",
+      "key": "Hecarim",
+      "title": "the Shadow of War",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 625,
+        "hpperlevel": 106,
+        "mp": 280,
+        "mpperlevel": 40,
+        "movespeed": 345,
+        "armor": 32,
+        "armorperlevel": 5.45,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 7,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 3.7,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.67
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 4,
+        "difficulty": 6
+      }
+    },
+    "74": {
+      "id": 74,
+      "name": "Heimerdinger",
+      "key": "Heimerdinger",
+      "title": "the Revered Inventor",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 558,
+        "hpperlevel": 101,
+        "mp": 385,
+        "mpperlevel": 20,
+        "movespeed": 340,
+        "armor": 19,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 2.7,
+        "attackspeedperlevel": 1.36,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 8
+      }
+    },
+    "910": {
+      "id": 910,
+      "name": "Hwei",
+      "key": "Hwei",
+      "title": "the Visionary",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 109,
+        "mp": 480,
+        "mpperlevel": 30,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.69
+      },
+      "info": {
+        "attack": 7,
+        "defense": 1,
+        "magic": 8,
+        "difficulty": 9
+      }
+    },
+    "420": {
+      "id": 420,
+      "name": "Illaoi",
+      "key": "Illaoi",
+      "title": "the Kraken Priestess",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 656,
+        "hpperlevel": 115,
+        "mp": 350,
+        "mpperlevel": 50,
+        "movespeed": 350,
+        "armor": 35,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9.5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "39": {
+      "id": 39,
+      "name": "Irelia",
+      "key": "Irelia",
+      "title": "the Blade Dancer",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 115,
+        "mp": 350,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 36,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 2.05,
+        "attackrange": 200,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.656
+      },
+      "info": {
+        "attack": 7,
+        "defense": 4,
+        "magic": 5,
+        "difficulty": 5
+      }
+    },
+    "427": {
+      "id": 427,
+      "name": "Ivern",
+      "key": "Ivern",
+      "title": "the Green Father",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 99,
+        "mp": 450,
+        "mpperlevel": 60,
+        "movespeed": 330,
+        "armor": 27,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 475,
+        "hpregen": 7,
+        "hpregenperlevel": 0.85,
+        "mpregen": 6,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.4,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 3,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 7
+      }
+    },
+    "40": {
+      "id": 40,
+      "name": "Janna",
+      "key": "Janna",
+      "title": "the Storm's Fury",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 570,
+        "hpperlevel": 90,
+        "mp": 360,
+        "mpperlevel": 50,
+        "movespeed": 325,
+        "armor": 28,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 47,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 3,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 7
+      }
+    },
+    "59": {
+      "id": 59,
+      "name": "Jarvan IV",
+      "key": "JarvanIV",
+      "title": "the Exemplar of Demacia",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 104,
+        "mp": 300,
+        "mpperlevel": 55,
+        "movespeed": 340,
+        "armor": 36,
+        "armorperlevel": 4.6,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.7,
+        "mpregen": 6.5,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 6,
+        "defense": 8,
+        "magic": 3,
+        "difficulty": 5
+      }
+    },
+    "24": {
+      "id": 24,
+      "name": "Jax",
+      "key": "Jax",
+      "title": "Grandmaster at Arms",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 103,
+        "mp": 339,
+        "mpperlevel": 52,
+        "movespeed": 350,
+        "armor": 36,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 4.25,
+        "attackspeedperlevel": 3.4,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 7,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 5
+      }
+    },
+    "126": {
+      "id": 126,
+      "name": "Jayce",
+      "key": "Jayce",
+      "title": "the Defender of Tomorrow",
+      "tags": [
+        "Fighter",
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 109,
+        "mp": 375,
+        "mpperlevel": 45,
+        "movespeed": 335,
+        "armor": 22,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 125,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 4.25,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 3,
+        "difficulty": 7
+      }
+    },
+    "202": {
+      "id": 202,
+      "name": "Jhin",
+      "key": "Jhin",
+      "title": "the Virtuoso",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 107,
+        "mp": 300,
+        "mpperlevel": 50,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 4.4,
+        "attackspeedperlevel": 0,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 10,
+        "defense": 2,
+        "magic": 6,
+        "difficulty": 6
+      }
+    },
+    "222": {
+      "id": 222,
+      "name": "Jinx",
+      "key": "Jinx",
+      "title": "the Loose Cannon",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 105,
+        "mp": 260,
+        "mpperlevel": 50,
+        "movespeed": 325,
+        "armor": 26,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.5,
+        "mpregen": 6.7,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.25,
+        "attackspeedperlevel": 1.4,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 4,
+        "difficulty": 6
+      }
+    },
+    "145": {
+      "id": 145,
+      "name": "Kai'Sa",
+      "key": "Kaisa",
+      "title": "Daughter of the Void",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 102,
+        "mp": 345,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 25,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 4,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 2.6,
+        "attackspeedperlevel": 1.8,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "429": {
+      "id": 429,
+      "name": "Kalista",
+      "key": "Kalista",
+      "title": "the Spear of Vengeance",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 560,
+        "hpperlevel": 114,
+        "mp": 300,
+        "mpperlevel": 45,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 4,
+        "hpregenperlevel": 0.75,
+        "mpregen": 6.3,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 4.75,
+        "attackspeedperlevel": 4.5,
+        "attackspeed": 0.694
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 4,
+        "difficulty": 7
+      }
+    },
+    "43": {
+      "id": 43,
+      "name": "Karma",
+      "key": "Karma",
+      "title": "the Enlightened One",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 109,
+        "mp": 374,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 28,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 13,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 51,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.3,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 1,
+        "defense": 7,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "30": {
+      "id": 30,
+      "name": "Karthus",
+      "key": "Karthus",
+      "title": "the Deathsinger",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 110,
+        "mp": 467,
+        "mpperlevel": 31,
+        "movespeed": 335,
+        "armor": 21,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 450,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 46,
+        "attackdamageperlevel": 3.25,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 10,
+        "difficulty": 7
+      }
+    },
+    "38": {
+      "id": 38,
+      "name": "Kassadin",
+      "key": "Kassadin",
+      "title": "the Void Walker",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 646,
+        "hpperlevel": 119,
+        "mp": 400,
+        "mpperlevel": 87,
+        "movespeed": 335,
+        "armor": 21,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 150,
+        "hpregen": 6,
+        "hpregenperlevel": 0.5,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.9,
+        "attackspeedperlevel": 3.7,
+        "attackspeed": 0.64
+      },
+      "info": {
+        "attack": 3,
+        "defense": 5,
+        "magic": 8,
+        "difficulty": 8
+      }
+    },
+    "55": {
+      "id": 55,
+      "name": "Katarina",
+      "key": "Katarina",
+      "title": "the Sinister Blade",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 672,
+        "hpperlevel": 108,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 32,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.7,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 2.74,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 4,
+        "defense": 3,
+        "magic": 9,
+        "difficulty": 8
+      }
+    },
+    "10": {
+      "id": 10,
+      "name": "Kayle",
+      "key": "Kayle",
+      "title": "the Righteous",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 670,
+        "hpperlevel": 92,
+        "mp": 330,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 26,
+        "armorperlevel": 4.2,
+        "spellblock": 22,
+        "spellblockperlevel": 1.3,
+        "attackrange": 175,
+        "hpregen": 5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 6,
+        "magic": 7,
+        "difficulty": 7
+      }
+    },
+    "141": {
+      "id": 141,
+      "name": "Kayn",
+      "key": "Kayn",
+      "title": "the Shadow Reaper",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 103,
+        "mp": 410,
+        "mpperlevel": 50,
+        "movespeed": 340,
+        "armor": 38,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.75,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.95,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.669
+      },
+      "info": {
+        "attack": 10,
+        "defense": 6,
+        "magic": 1,
+        "difficulty": 8
+      }
+    },
+    "85": {
+      "id": 85,
+      "name": "Kennen",
+      "key": "Kennen",
+      "title": "the Heart of the Tempest",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 98,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 29,
+        "armorperlevel": 4.95,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.65,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 48,
+        "attackdamageperlevel": 3.75,
+        "attackspeedperlevel": 3.4,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 4,
+        "magic": 7,
+        "difficulty": 4
+      }
+    },
+    "121": {
+      "id": 121,
+      "name": "Kha'Zix",
+      "key": "Khazix",
+      "title": "the Voidreaver",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 643,
+        "hpperlevel": 99,
+        "mp": 327,
+        "mpperlevel": 40,
+        "movespeed": 350,
+        "armor": 32,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.59,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.668
+      },
+      "info": {
+        "attack": 9,
+        "defense": 4,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "203": {
+      "id": 203,
+      "name": "Kindred",
+      "key": "Kindred",
+      "title": "The Eternal Hunters",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 595,
+        "hpperlevel": 104,
+        "mp": 300,
+        "mpperlevel": 35,
+        "movespeed": 325,
+        "armor": 29,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 3.25,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 2,
+        "difficulty": 4
+      }
+    },
+    "240": {
+      "id": 240,
+      "name": "Kled",
+      "key": "Kled",
+      "title": "the Cantankerous Cavalier",
+      "tags": [
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 410,
+        "hpperlevel": 84,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 35,
+        "armorperlevel": 5.2,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 6,
+        "hpregenperlevel": 0.75,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 2,
+        "difficulty": 7
+      }
+    },
+    "96": {
+      "id": 96,
+      "name": "Kog'Maw",
+      "key": "KogMaw",
+      "title": "the Mouth of the Abyss",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 635,
+        "hpperlevel": 99,
+        "mp": 325,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.45,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.75,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.65,
+        "attackspeed": 0.665
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 5,
+        "difficulty": 6
+      }
+    },
+    "897": {
+      "id": 897,
+      "name": "K'Sante",
+      "key": "KSante",
+      "title": "the Pride of Nazumah",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 625,
+        "hpperlevel": 120,
+        "mp": 320,
+        "mpperlevel": 60,
+        "movespeed": 330,
+        "armor": 36,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 2.1,
+        "attackrange": 150,
+        "hpregen": 9.5,
+        "hpregenperlevel": 1,
+        "mpregen": 7,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.688
+      },
+      "info": {
+        "attack": 8,
+        "defense": 8,
+        "magic": 7,
+        "difficulty": 9
+      }
+    },
+    "7": {
+      "id": 7,
+      "name": "LeBlanc",
+      "key": "Leblanc",
+      "title": "the Deceiver",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 598,
+        "hpperlevel": 108,
+        "mp": 400,
+        "mpperlevel": 25,
+        "movespeed": 340,
+        "armor": 22,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.2,
+        "attackspeedperlevel": 2.35,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 1,
+        "defense": 4,
+        "magic": 10,
+        "difficulty": 9
+      }
+    },
+    "64": {
+      "id": 64,
+      "name": "Lee Sin",
+      "key": "LeeSin",
+      "title": "the Blind Monk",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 645,
+        "hpperlevel": 108,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 36,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.7,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 3.7,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.651
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "89": {
+      "id": 89,
+      "name": "Leona",
+      "key": "Leona",
+      "title": "the Radiant Dawn",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 646,
+        "hpperlevel": 101,
+        "mp": 302,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 43,
+        "armorperlevel": 4.8,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.9,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 8,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "876": {
+      "id": 876,
+      "name": "Lillia",
+      "key": "Lillia",
+      "title": "the Bashful Bloom",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 605,
+        "hpperlevel": 105,
+        "mp": 410,
+        "mpperlevel": 50,
+        "movespeed": 330,
+        "armor": 22,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 1.55,
+        "attackrange": 325,
+        "hpregen": 2.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.95,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 0,
+        "defense": 2,
+        "magic": 10,
+        "difficulty": 8
+      }
+    },
+    "127": {
+      "id": 127,
+      "name": "Lissandra",
+      "key": "Lissandra",
+      "title": "the Ice Witch",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 110,
+        "mp": 475,
+        "mpperlevel": 30,
+        "movespeed": 325,
+        "armor": 22,
+        "armorperlevel": 4.9,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.7,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.656
+      },
+      "info": {
+        "attack": 2,
+        "defense": 5,
+        "magic": 8,
+        "difficulty": 6
+      }
+    },
+    "236": {
+      "id": 236,
+      "name": "Lucian",
+      "key": "Lucian",
+      "title": "the Purifier",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 641,
+        "hpperlevel": 100,
+        "mp": 320,
+        "mpperlevel": 43,
+        "movespeed": 335,
+        "armor": 28,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.65,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.9,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "117": {
+      "id": 117,
+      "name": "Lulu",
+      "key": "Lulu",
+      "title": "the Fae Sorceress",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 565,
+        "hpperlevel": 92,
+        "mp": 350,
+        "mpperlevel": 55,
+        "movespeed": 330,
+        "armor": 26,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 11,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 47,
+        "attackdamageperlevel": 2.6,
+        "attackspeedperlevel": 2.25,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 5
+      }
+    },
+    "99": {
+      "id": 99,
+      "name": "Lux",
+      "key": "Lux",
+      "title": "the Lady of Luminosity",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 99,
+        "mp": 480,
+        "mpperlevel": 23.5,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.669
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 9,
+        "difficulty": 5
+      }
+    },
+    "54": {
+      "id": 54,
+      "name": "Malphite",
+      "key": "Malphite",
+      "title": "Shard of the Monolith",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 665,
+        "hpperlevel": 104,
+        "mp": 280,
+        "mpperlevel": 60,
+        "movespeed": 335,
+        "armor": 40,
+        "armorperlevel": 4.95,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.3,
+        "mpregenperlevel": 0.55,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3.4,
+        "attackspeed": 0.736
+      },
+      "info": {
+        "attack": 5,
+        "defense": 9,
+        "magic": 7,
+        "difficulty": 2
+      }
+    },
+    "90": {
+      "id": 90,
+      "name": "Malzahar",
+      "key": "Malzahar",
+      "title": "the Prophet of the Void",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 101,
+        "mp": 375,
+        "mpperlevel": 28,
+        "movespeed": 335,
+        "armor": 18,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 9,
+        "difficulty": 6
+      }
+    },
+    "57": {
+      "id": 57,
+      "name": "Maokai",
+      "key": "Maokai",
+      "title": "the Twisted Treant",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 665,
+        "hpperlevel": 109,
+        "mp": 375,
+        "mpperlevel": 43,
+        "movespeed": 335,
+        "armor": 35,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 6,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.125,
+        "attackspeed": 0.8
+      },
+      "info": {
+        "attack": 3,
+        "defense": 8,
+        "magic": 6,
+        "difficulty": 3
+      }
+    },
+    "11": {
+      "id": 11,
+      "name": "Master Yi",
+      "key": "MasterYi",
+      "title": "the Wuju Bladesman",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 105,
+        "mp": 251,
+        "mpperlevel": 42,
+        "movespeed": 355,
+        "armor": 33,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.65,
+        "mpregen": 7.25,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.679
+      },
+      "info": {
+        "attack": 10,
+        "defense": 4,
+        "magic": 2,
+        "difficulty": 4
+      }
+    },
+    "800": {
+      "id": 800,
+      "name": "Mel",
+      "key": "Mel",
+      "title": "the Soul's Reflection",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 93,
+        "mp": 480,
+        "mpperlevel": 28,
+        "movespeed": 330,
+        "armor": 21,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6,
+        "hpregenperlevel": 0.55,
+        "mpregen": 9,
+        "mpregenperlevel": 0.9,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 9,
+        "difficulty": 5
+      }
+    },
+    "902": {
+      "id": 902,
+      "name": "Milio",
+      "key": "Milio",
+      "title": "The Gentle Flame",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 560,
+        "hpperlevel": 88,
+        "mp": 365,
+        "mpperlevel": 43,
+        "movespeed": 330,
+        "armor": 26,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 48,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "21": {
+      "id": 21,
+      "name": "Miss Fortune",
+      "key": "MissFortune",
+      "title": "the Bounty Hunter",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 103,
+        "mp": 300,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 25,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.4,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.656
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 5,
+        "difficulty": 1
+      }
+    },
+    "62": {
+      "id": 62,
+      "name": "Wukong",
+      "key": "MonkeyKing",
+      "title": "the Monkey King",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 99,
+        "mp": 330,
+        "mpperlevel": 65,
+        "movespeed": 340,
+        "armor": 31,
+        "armorperlevel": 4.7,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.69
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 2,
+        "difficulty": 3
+      }
+    },
+    "82": {
+      "id": 82,
+      "name": "Mordekaiser",
+      "key": "Mordekaiser",
+      "title": "the Iron Revenant",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 645,
+        "hpperlevel": 104,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 335,
+        "armor": 37,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 6,
+        "magic": 7,
+        "difficulty": 4
+      }
+    },
+    "25": {
+      "id": 25,
+      "name": "Morgana",
+      "key": "Morgana",
+      "title": "the Fallen",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 104,
+        "mp": 340,
+        "mpperlevel": 60,
+        "movespeed": 335,
+        "armor": 25,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 450,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.4,
+        "mpregen": 11,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 1.53,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 1,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 1
+      }
+    },
+    "950": {
+      "id": 950,
+      "name": "Naafiri",
+      "key": "Naafiri",
+      "title": "the Hound of a Hundred Bites",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 105,
+        "mp": 400,
+        "mpperlevel": 55,
+        "movespeed": 340,
+        "armor": 28,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.7,
+        "mpregen": 7.5,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 2.1,
+        "attackspeed": 0.663
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 0,
+        "difficulty": 2
+      }
+    },
+    "267": {
+      "id": 267,
+      "name": "Nami",
+      "key": "Nami",
+      "title": "the Tidecaller",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 560,
+        "hpperlevel": 88,
+        "mp": 365,
+        "mpperlevel": 43,
+        "movespeed": 335,
+        "armor": 29,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.61,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 4,
+        "defense": 3,
+        "magic": 7,
+        "difficulty": 5
+      }
+    },
+    "75": {
+      "id": 75,
+      "name": "Nasus",
+      "key": "Nasus",
+      "title": "the Curator of the Sands",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 104,
+        "mp": 326,
+        "mpperlevel": 62,
+        "movespeed": 350,
+        "armor": 34,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 7.45,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 67,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3.48,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 7,
+        "defense": 5,
+        "magic": 6,
+        "difficulty": 6
+      }
+    },
+    "111": {
+      "id": 111,
+      "name": "Nautilus",
+      "key": "Nautilus",
+      "title": "the Titan of the Depths",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 646,
+        "hpperlevel": 100,
+        "mp": 400,
+        "mpperlevel": 47,
+        "movespeed": 325,
+        "armor": 39,
+        "armorperlevel": 4.95,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.65,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.706
+      },
+      "info": {
+        "attack": 4,
+        "defense": 6,
+        "magic": 6,
+        "difficulty": 6
+      }
+    },
+    "518": {
+      "id": 518,
+      "name": "Neeko",
+      "key": "Neeko",
+      "title": "the Curious Chameleon",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 104,
+        "mp": 450,
+        "mpperlevel": 30,
+        "movespeed": 340,
+        "armor": 21,
+        "armorperlevel": 5.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 48,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 1,
+        "defense": 1,
+        "magic": 9,
+        "difficulty": 5
+      }
+    },
+    "76": {
+      "id": 76,
+      "name": "Nidalee",
+      "key": "Nidalee",
+      "title": "the Bestial Huntress",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 109,
+        "mp": 295,
+        "mpperlevel": 45,
+        "movespeed": 335,
+        "armor": 32,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.45,
+        "attackrange": 525,
+        "hpregen": 6,
+        "hpregenperlevel": 0.6,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 3.22,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 5,
+        "defense": 4,
+        "magic": 7,
+        "difficulty": 8
+      }
+    },
+    "895": {
+      "id": 895,
+      "name": "Nilah",
+      "key": "Nilah",
+      "title": "the Joy Unbound",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 570,
+        "hpperlevel": 101,
+        "mp": 350,
+        "mpperlevel": 35,
+        "movespeed": 340,
+        "armor": 27,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 225,
+        "hpregen": 6,
+        "hpregenperlevel": 0.9,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 2.25,
+        "attackspeed": 0.697
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 4,
+        "difficulty": 10
+      }
+    },
+    "56": {
+      "id": 56,
+      "name": "Nocturne",
+      "key": "Nocturne",
+      "title": "the Eternal Nightmare",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 109,
+        "mp": 275,
+        "mpperlevel": 35,
+        "movespeed": 345,
+        "armor": 38,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 1.55,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 2.6,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.721
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 2,
+        "difficulty": 4
+      }
+    },
+    "20": {
+      "id": 20,
+      "name": "Nunu & Willump",
+      "key": "Nunu",
+      "title": "the Boy and His Yeti",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 90,
+        "mp": 280,
+        "mpperlevel": 42,
+        "movespeed": 345,
+        "armor": 29,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 7,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.25,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 6,
+        "magic": 7,
+        "difficulty": 4
+      }
+    },
+    "2": {
+      "id": 2,
+      "name": "Olaf",
+      "key": "Olaf",
+      "title": "the Berserker",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 645,
+        "hpperlevel": 119,
+        "mp": 316,
+        "mpperlevel": 50,
+        "movespeed": 350,
+        "armor": 35,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 4.7,
+        "attackspeedperlevel": 2.7,
+        "attackspeed": 0.694
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 3
+      }
+    },
+    "61": {
+      "id": 61,
+      "name": "Orianna",
+      "key": "Orianna",
+      "title": "the Lady of Clockwork",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 585,
+        "hpperlevel": 110,
+        "mp": 418,
+        "mpperlevel": 25,
+        "movespeed": 325,
+        "armor": 20,
+        "armorperlevel": 4.2,
+        "spellblock": 26,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 44,
+        "attackdamageperlevel": 2.6,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 4,
+        "defense": 3,
+        "magic": 9,
+        "difficulty": 7
+      }
+    },
+    "516": {
+      "id": 516,
+      "name": "Ornn",
+      "key": "Ornn",
+      "title": "The Fire below the Mountain",
+      "tags": [
+        "Tank"
+      ],
+      "stats": {
+        "hp": 660,
+        "hpperlevel": 109,
+        "mp": 341,
+        "mpperlevel": 65,
+        "movespeed": 335,
+        "armor": 33,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 8,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 69,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 5,
+        "defense": 9,
+        "magic": 3,
+        "difficulty": 5
+      }
+    },
+    "80": {
+      "id": 80,
+      "name": "Pantheon",
+      "key": "Pantheon",
+      "title": "the Unbreakable Spear",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 109,
+        "mp": 317,
+        "mpperlevel": 31,
+        "movespeed": 345,
+        "armor": 40,
+        "armorperlevel": 4.95,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 6,
+        "hpregenperlevel": 0.65,
+        "mpregen": 7.35,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.95,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 9,
+        "defense": 4,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "78": {
+      "id": 78,
+      "name": "Poppy",
+      "key": "Poppy",
+      "title": "Keeper of the Hammer",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 110,
+        "mp": 280,
+        "mpperlevel": 40,
+        "movespeed": 345,
+        "armor": 35,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8,
+        "hpregenperlevel": 0.8,
+        "mpregen": 7,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 6,
+        "defense": 7,
+        "magic": 2,
+        "difficulty": 6
+      }
+    },
+    "555": {
+      "id": 555,
+      "name": "Pyke",
+      "key": "Pyke",
+      "title": "the Bloodharbor Ripper",
+      "tags": [
+        "Support",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 670,
+        "hpperlevel": 110,
+        "mp": 415,
+        "mpperlevel": 50,
+        "movespeed": 330,
+        "armor": 43,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 7,
+        "hpregenperlevel": 0.5,
+        "mpregen": 8,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.667
+      },
+      "info": {
+        "attack": 9,
+        "defense": 3,
+        "magic": 1,
+        "difficulty": 7
+      }
+    },
+    "246": {
+      "id": 246,
+      "name": "Qiyana",
+      "key": "Qiyana",
+      "title": "Empress of the Elements",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 121,
+        "mp": 375,
+        "mpperlevel": 60,
+        "movespeed": 335,
+        "armor": 31,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 8,
+        "hpregenperlevel": 0.9,
+        "mpregen": 8,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.1,
+        "attackspeed": 0.688
+      },
+      "info": {
+        "attack": 0,
+        "defense": 2,
+        "magic": 4,
+        "difficulty": 8
+      }
+    },
+    "133": {
+      "id": 133,
+      "name": "Quinn",
+      "key": "Quinn",
+      "title": "Demacia's Wings",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 565,
+        "hpperlevel": 107,
+        "mp": 269,
+        "mpperlevel": 35,
+        "movespeed": 330,
+        "armor": 28,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 2.7,
+        "attackspeedperlevel": 3.1,
+        "attackspeed": 0.668
+      },
+      "info": {
+        "attack": 9,
+        "defense": 4,
+        "magic": 2,
+        "difficulty": 5
+      }
+    },
+    "497": {
+      "id": 497,
+      "name": "Rakan",
+      "key": "Rakan",
+      "title": "The Charmer",
+      "tags": [
+        "Support"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 99,
+        "mp": 315,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 30,
+        "armorperlevel": 4.9,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 300,
+        "hpregen": 5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 8.75,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.635
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "33": {
+      "id": 33,
+      "name": "Rammus",
+      "key": "Rammus",
+      "title": "the Armordillo",
+      "tags": [
+        "Tank"
+      ],
+      "stats": {
+        "hp": 675,
+        "hpperlevel": 100,
+        "mp": 310,
+        "mpperlevel": 33,
+        "movespeed": 335,
+        "armor": 35,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.85,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 2.75,
+        "attackspeedperlevel": 2.215,
+        "attackspeed": 0.7
+      },
+      "info": {
+        "attack": 4,
+        "defense": 10,
+        "magic": 5,
+        "difficulty": 5
+      }
+    },
+    "421": {
+      "id": 421,
+      "name": "Rek'Sai",
+      "key": "RekSai",
+      "title": "the Void Burrower",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 99,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 35,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 2.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.667
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 2,
+        "difficulty": 3
+      }
+    },
+    "526": {
+      "id": 526,
+      "name": "Rell",
+      "key": "Rell",
+      "title": "the Iron Maiden",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 104,
+        "mp": 320,
+        "mpperlevel": 40,
+        "movespeed": 315,
+        "armor": 30,
+        "armorperlevel": 4,
+        "spellblock": 28,
+        "spellblockperlevel": 1.8,
+        "attackrange": 175,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.85,
+        "mpregen": 7,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 0,
+        "defense": 0,
+        "magic": 0,
+        "difficulty": 0
+      }
+    },
+    "888": {
+      "id": 888,
+      "name": "Renata Glasc",
+      "key": "Renata",
+      "title": "the Chem-Baroness",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 545,
+        "hpperlevel": 94,
+        "mp": 350,
+        "mpperlevel": 50,
+        "movespeed": 330,
+        "armor": 27,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 49,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 9,
+        "difficulty": 8
+      }
+    },
+    "58": {
+      "id": 58,
+      "name": "Renekton",
+      "key": "Renekton",
+      "title": "the Butcher of the Sands",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 660,
+        "hpperlevel": 111,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 35,
+        "armorperlevel": 5.2,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8,
+        "hpregenperlevel": 0.75,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 69,
+        "attackdamageperlevel": 4.15,
+        "attackspeedperlevel": 2.75,
+        "attackspeed": 0.665
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 2,
+        "difficulty": 3
+      }
+    },
+    "107": {
+      "id": 107,
+      "name": "Rengar",
+      "key": "Rengar",
+      "title": "the Pridestalker",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 104,
+        "mp": 4,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 34,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 6,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.667
+      },
+      "info": {
+        "attack": 7,
+        "defense": 4,
+        "magic": 2,
+        "difficulty": 8
+      }
+    },
+    "92": {
+      "id": 92,
+      "name": "Riven",
+      "key": "Riven",
+      "title": "the Exile",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 100,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 33,
+        "armorperlevel": 4.4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 1,
+        "difficulty": 8
+      }
+    },
+    "68": {
+      "id": 68,
+      "name": "Rumble",
+      "key": "Rumble",
+      "title": "the Mechanized Menace",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 105,
+        "mp": 150,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 36,
+        "armorperlevel": 4.7,
+        "spellblock": 28,
+        "spellblockperlevel": 1.55,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.6,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 1.85,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 3,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 10
+      }
+    },
+    "13": {
+      "id": 13,
+      "name": "Ryze",
+      "key": "Ryze",
+      "title": "the Rune Mage",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 645,
+        "hpperlevel": 124,
+        "mp": 300,
+        "mpperlevel": 70,
+        "movespeed": 340,
+        "armor": 22,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 8,
+        "hpregenperlevel": 0.8,
+        "mpregen": 8,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 10,
+        "difficulty": 7
+      }
+    },
+    "360": {
+      "id": 360,
+      "name": "Samira",
+      "key": "Samira",
+      "title": "the Desert Rose",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 108,
+        "mp": 349,
+        "mpperlevel": 38,
+        "movespeed": 335,
+        "armor": 26,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.25,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "113": {
+      "id": 113,
+      "name": "Sejuani",
+      "key": "Sejuani",
+      "title": "Fury of the North",
+      "tags": [
+        "Tank"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 114,
+        "mp": 400,
+        "mpperlevel": 40,
+        "movespeed": 340,
+        "armor": 34,
+        "armorperlevel": 5.45,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 8.5,
+        "hpregenperlevel": 1,
+        "mpregen": 7,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.688
+      },
+      "info": {
+        "attack": 5,
+        "defense": 7,
+        "magic": 6,
+        "difficulty": 4
+      }
+    },
+    "235": {
+      "id": 235,
+      "name": "Senna",
+      "key": "Senna",
+      "title": "the Redeemer",
+      "tags": [
+        "Support",
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 530,
+        "hpperlevel": 89,
+        "mp": 350,
+        "mpperlevel": 45,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 600,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 2.6,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 2,
+        "magic": 6,
+        "difficulty": 7
+      }
+    },
+    "147": {
+      "id": 147,
+      "name": "Seraphine",
+      "key": "Seraphine",
+      "title": "the Starry-Eyed Songstress",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 570,
+        "hpperlevel": 95,
+        "mp": 360,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 26,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.95,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.669
+      },
+      "info": {
+        "attack": 0,
+        "defense": 0,
+        "magic": 0,
+        "difficulty": 0
+      }
+    },
+    "875": {
+      "id": 875,
+      "name": "Sett",
+      "key": "Sett",
+      "title": "the Boss",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 670,
+        "hpperlevel": 114,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 33,
+        "armorperlevel": 4.7,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 1.75,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 1,
+        "difficulty": 2
+      }
+    },
+    "35": {
+      "id": 35,
+      "name": "Shaco",
+      "key": "Shaco",
+      "title": "the Demon Jester",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 99,
+        "mp": 297,
+        "mpperlevel": 40,
+        "movespeed": 345,
+        "armor": 30,
+        "armorperlevel": 4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6,
+        "mpregenperlevel": 0.35,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.694
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 6,
+        "difficulty": 9
+      }
+    },
+    "98": {
+      "id": 98,
+      "name": "Shen",
+      "key": "Shen",
+      "title": "the Eye of Twilight",
+      "tags": [
+        "Tank"
+      ],
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 99,
+        "mp": 400,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 34,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 64,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.751
+      },
+      "info": {
+        "attack": 3,
+        "defense": 9,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "102": {
+      "id": 102,
+      "name": "Shyvana",
+      "key": "Shyvana",
+      "title": "the Half-Dragon",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 665,
+        "hpperlevel": 104,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 350,
+        "armor": 38,
+        "armorperlevel": 4.55,
+        "spellblock": 32,
+        "spellblockperlevel": 1.5,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "27": {
+      "id": 27,
+      "name": "Singed",
+      "key": "Singed",
+      "title": "the Mad Chemist",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 96,
+        "mp": 330,
+        "mpperlevel": 45,
+        "movespeed": 345,
+        "armor": 34,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 9.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.55,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3.4,
+        "attackspeedperlevel": 1.9,
+        "attackspeed": 0.7
+      },
+      "info": {
+        "attack": 4,
+        "defense": 8,
+        "magic": 7,
+        "difficulty": 5
+      }
+    },
+    "14": {
+      "id": 14,
+      "name": "Sion",
+      "key": "Sion",
+      "title": "The Undead Juggernaut",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 87,
+        "mp": 400,
+        "mpperlevel": 52,
+        "movespeed": 345,
+        "armor": 36,
+        "armorperlevel": 4.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 9,
+        "hpregenperlevel": 0.8,
+        "mpregen": 8,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 1.3,
+        "attackspeed": 0.679
+      },
+      "info": {
+        "attack": 5,
+        "defense": 9,
+        "magic": 3,
+        "difficulty": 5
+      }
+    },
+    "15": {
+      "id": 15,
+      "name": "Sivir",
+      "key": "Sivir",
+      "title": "the Battle Mistress",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 104,
+        "mp": 340,
+        "mpperlevel": 45,
+        "movespeed": 335,
+        "armor": 30,
+        "armorperlevel": 4.45,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.25,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 9,
+        "defense": 3,
+        "magic": 1,
+        "difficulty": 4
+      }
+    },
+    "72": {
+      "id": 72,
+      "name": "Skarner",
+      "key": "Skarner",
+      "title": "the Primordial Sovereign",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 110,
+        "mp": 320,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 33,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.2,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 8,
+        "magic": 5,
+        "difficulty": 5
+      }
+    },
+    "901": {
+      "id": 901,
+      "name": "Smolder",
+      "key": "Smolder",
+      "title": "the Fiery Fledgling",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 575,
+        "hpperlevel": 100,
+        "mp": 300,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8.5,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.3,
+        "attackspeedperlevel": 4,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 8,
+        "defense": 2,
+        "magic": 5,
+        "difficulty": 6
+      }
+    },
+    "37": {
+      "id": 37,
+      "name": "Sona",
+      "key": "Sona",
+      "title": "Maven of the Strings",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 550,
+        "hpperlevel": 91,
+        "mp": 340,
+        "mpperlevel": 45,
+        "movespeed": 325,
+        "armor": 26,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 49,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.3,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 5,
+        "defense": 2,
+        "magic": 8,
+        "difficulty": 4
+      }
+    },
+    "16": {
+      "id": 16,
+      "name": "Soraka",
+      "key": "Soraka",
+      "title": "the Starchild",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 605,
+        "hpperlevel": 88,
+        "mp": 425,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 32,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 2.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 11.5,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 50,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.14,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 5,
+        "magic": 7,
+        "difficulty": 3
+      }
+    },
+    "50": {
+      "id": 50,
+      "name": "Swain",
+      "key": "Swain",
+      "title": "the Noxian Grand General",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 595,
+        "hpperlevel": 99,
+        "mp": 400,
+        "mpperlevel": 29,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 4.7,
+        "spellblock": 31,
+        "spellblockperlevel": 1.55,
+        "attackrange": 525,
+        "hpregen": 3,
+        "hpregenperlevel": 0.5,
+        "mpregen": 10,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 2.7,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 9,
+        "difficulty": 8
+      }
+    },
+    "517": {
+      "id": 517,
+      "name": "Sylas",
+      "key": "Sylas",
+      "title": "the Unshackled",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 122,
+        "mp": 400,
+        "mpperlevel": 70,
+        "movespeed": 340,
+        "armor": 29,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.55,
+        "attackrange": 175,
+        "hpregen": 9,
+        "hpregenperlevel": 0.9,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 61,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.645
+      },
+      "info": {
+        "attack": 3,
+        "defense": 4,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "134": {
+      "id": 134,
+      "name": "Syndra",
+      "key": "Syndra",
+      "title": "the Dark Sovereign",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 563,
+        "hpperlevel": 100,
+        "mp": 480,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 2.9,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 3,
+        "magic": 9,
+        "difficulty": 8
+      }
+    },
+    "223": {
+      "id": 223,
+      "name": "Tahm Kench",
+      "key": "TahmKench",
+      "title": "The River King",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 103,
+        "mp": 325,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 39,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 3,
+        "defense": 9,
+        "magic": 6,
+        "difficulty": 5
+      }
+    },
+    "163": {
+      "id": 163,
+      "name": "Taliyah",
+      "key": "Taliyah",
+      "title": "the Stoneweaver",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 550,
+        "hpperlevel": 104,
+        "mp": 470,
+        "mpperlevel": 30,
+        "movespeed": 330,
+        "armor": 18,
+        "armorperlevel": 4.7,
+        "spellblock": 28,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 1.36,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 1,
+        "defense": 7,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "91": {
+      "id": 91,
+      "name": "Talon",
+      "key": "Talon",
+      "title": "the Blade's Shadow",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 658,
+        "hpperlevel": 109,
+        "mp": 400,
+        "mpperlevel": 37,
+        "movespeed": 335,
+        "armor": 30,
+        "armorperlevel": 4.7,
+        "spellblock": 36,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2.9,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 9,
+        "defense": 3,
+        "magic": 1,
+        "difficulty": 7
+      }
+    },
+    "44": {
+      "id": 44,
+      "name": "Taric",
+      "key": "Taric",
+      "title": "the Shield of Valoran",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 645,
+        "hpperlevel": 99,
+        "mp": 300,
+        "mpperlevel": 60,
+        "movespeed": 340,
+        "armor": 40,
+        "armorperlevel": 4.3,
+        "spellblock": 28,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 6,
+        "hpregenperlevel": 0.5,
+        "mpregen": 8.5,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 4,
+        "defense": 8,
+        "magic": 5,
+        "difficulty": 3
+      }
+    },
+    "17": {
+      "id": 17,
+      "name": "Teemo",
+      "key": "Teemo",
+      "title": "the Swift Scout",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 615,
+        "hpperlevel": 104,
+        "mp": 334,
+        "mpperlevel": 25,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.95,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.65,
+        "mpregen": 9.6,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.38,
+        "attackspeed": 0.69
+      },
+      "info": {
+        "attack": 5,
+        "defense": 3,
+        "magic": 7,
+        "difficulty": 6
+      }
+    },
+    "412": {
+      "id": 412,
+      "name": "Thresh",
+      "key": "Thresh",
+      "title": "the Chain Warden",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 120,
+        "mp": 274,
+        "mpperlevel": 44,
+        "movespeed": 330,
+        "armor": 33,
+        "armorperlevel": 0,
+        "spellblock": 30,
+        "spellblockperlevel": 1.55,
+        "attackrange": 450,
+        "hpregen": 7,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 2.2,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 5,
+        "defense": 6,
+        "magic": 6,
+        "difficulty": 7
+      }
+    },
+    "18": {
+      "id": 18,
+      "name": "Tristana",
+      "key": "Tristana",
+      "title": "the Yordle Gunner",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 102,
+        "mp": 300,
+        "mpperlevel": 32,
+        "movespeed": 325,
+        "armor": 30,
+        "armorperlevel": 4,
+        "spellblock": 28,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 4,
+        "hpregenperlevel": 0.5,
+        "mpregen": 7.2,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.9,
+        "attackspeedperlevel": 1.5,
+        "attackspeed": 0.656
+      },
+      "info": {
+        "attack": 9,
+        "defense": 3,
+        "magic": 5,
+        "difficulty": 4
+      }
+    },
+    "48": {
+      "id": 48,
+      "name": "Trundle",
+      "key": "Trundle",
+      "title": "the Troll King",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 110,
+        "mp": 340,
+        "mpperlevel": 45,
+        "movespeed": 350,
+        "armor": 37,
+        "armorperlevel": 3.9,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 6,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 68,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 2.9,
+        "attackspeed": 0.67
+      },
+      "info": {
+        "attack": 7,
+        "defense": 6,
+        "magic": 2,
+        "difficulty": 5
+      }
+    },
+    "23": {
+      "id": 23,
+      "name": "Tryndamere",
+      "key": "Tryndamere",
+      "title": "the Barbarian King",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 696,
+        "hpperlevel": 108,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 33,
+        "armorperlevel": 4.8,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8.5,
+        "hpregenperlevel": 0.9,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 66,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3.4,
+        "attackspeed": 0.67
+      },
+      "info": {
+        "attack": 10,
+        "defense": 5,
+        "magic": 2,
+        "difficulty": 5
+      }
+    },
+    "4": {
+      "id": 4,
+      "name": "Twisted Fate",
+      "key": "TwistedFate",
+      "title": "the Card Master",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 604,
+        "hpperlevel": 108,
+        "mp": 333,
+        "mpperlevel": 39,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.35,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 2,
+        "magic": 6,
+        "difficulty": 9
+      }
+    },
+    "29": {
+      "id": 29,
+      "name": "Twitch",
+      "key": "Twitch",
+      "title": "the Plague Rat",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 104,
+        "mp": 300,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 27,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.6,
+        "mpregen": 7.25,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 3.38,
+        "attackspeed": 0.679
+      },
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "77": {
+      "id": 77,
+      "name": "Udyr",
+      "key": "Udyr",
+      "title": "the Spirit Walker",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 664,
+        "hpperlevel": 92,
+        "mp": 271,
+        "mpperlevel": 50,
+        "movespeed": 350,
+        "armor": 31,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 6,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3,
+        "attackspeed": 0.65
+      },
+      "info": {
+        "attack": 8,
+        "defense": 7,
+        "magic": 4,
+        "difficulty": 7
+      }
+    },
+    "6": {
+      "id": 6,
+      "name": "Urgot",
+      "key": "Urgot",
+      "title": "the Dreadnought",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 102,
+        "mp": 340,
+        "mpperlevel": 45,
+        "movespeed": 330,
+        "armor": 36,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 350,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.7,
+        "mpregen": 7.25,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 3.75,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 8
+      }
+    },
+    "110": {
+      "id": 110,
+      "name": "Varus",
+      "key": "Varus",
+      "title": "the Arrow of Retribution",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 105,
+        "mp": 320,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 575,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 3.4,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 7,
+        "defense": 3,
+        "magic": 4,
+        "difficulty": 2
+      }
+    },
+    "67": {
+      "id": 67,
+      "name": "Vayne",
+      "key": "Vayne",
+      "title": "the Night Hunter",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 550,
+        "hpperlevel": 103,
+        "mp": 232,
+        "mpperlevel": 35,
+        "movespeed": 330,
+        "armor": 23,
+        "armorperlevel": 4.6,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.35,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 10,
+        "defense": 1,
+        "magic": 1,
+        "difficulty": 8
+      }
+    },
+    "45": {
+      "id": 45,
+      "name": "Veigar",
+      "key": "Veigar",
+      "title": "the Tiny Master of Evil",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 108,
+        "mp": 490,
+        "mpperlevel": 26,
+        "movespeed": 340,
+        "armor": 18,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 2.7,
+        "attackspeedperlevel": 2.24,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 10,
+        "difficulty": 7
+      }
+    },
+    "161": {
+      "id": 161,
+      "name": "Vel'Koz",
+      "key": "Velkoz",
+      "title": "the Eye of the Void",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 102,
+        "mp": 469,
+        "mpperlevel": 21,
+        "movespeed": 340,
+        "armor": 22,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3.1416,
+        "attackspeedperlevel": 1.59,
+        "attackspeed": 0.643
+      },
+      "info": {
+        "attack": 2,
+        "defense": 2,
+        "magic": 10,
+        "difficulty": 8
+      }
+    },
+    "711": {
+      "id": 711,
+      "name": "Vex",
+      "key": "Vex",
+      "title": "the Gloomist",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 104,
+        "mp": 490,
+        "mpperlevel": 32,
+        "movespeed": 335,
+        "armor": 23,
+        "armorperlevel": 4.45,
+        "spellblock": 28,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 54,
+        "attackdamageperlevel": 2.75,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.669
+      },
+      "info": {
+        "attack": 0,
+        "defense": 0,
+        "magic": 0,
+        "difficulty": 0
+      }
+    },
+    "254": {
+      "id": 254,
+      "name": "Vi",
+      "key": "Vi",
+      "title": "the Piltover Enforcer",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 655,
+        "hpperlevel": 99,
+        "mp": 295,
+        "mpperlevel": 65,
+        "movespeed": 340,
+        "armor": 30,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 10,
+        "hpregenperlevel": 1,
+        "mpregen": 8,
+        "mpregenperlevel": 0.65,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.644
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 4
+      }
+    },
+    "234": {
+      "id": 234,
+      "name": "Viego",
+      "key": "Viego",
+      "title": "The Ruined King",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 109,
+        "mp": 10000,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 34,
+        "armorperlevel": 4.6,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 200,
+        "hpregen": 7,
+        "hpregenperlevel": 0.7,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 57,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2.25,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 6,
+        "defense": 4,
+        "magic": 2,
+        "difficulty": 5
+      }
+    },
+    "112": {
+      "id": 112,
+      "name": "Viktor",
+      "key": "Viktor",
+      "title": "the Herald of the Arcane",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 100,
+        "mp": 405,
+        "mpperlevel": 45,
+        "movespeed": 335,
+        "armor": 23,
+        "armorperlevel": 4.4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 8,
+        "hpregenperlevel": 0.65,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 10,
+        "difficulty": 9
+      }
+    },
+    "8": {
+      "id": 8,
+      "name": "Vladimir",
+      "key": "Vladimir",
+      "title": "the Crimson Reaper",
+      "tags": [
+        "Mage",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 110,
+        "mp": 2,
+        "mpperlevel": 0,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 450,
+        "hpregen": 7,
+        "hpregenperlevel": 0.6,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 6,
+        "magic": 8,
+        "difficulty": 7
+      }
+    },
+    "106": {
+      "id": 106,
+      "name": "Volibear",
+      "key": "Volibear",
+      "title": "the Relentless Storm",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 104,
+        "mp": 350,
+        "mpperlevel": 70,
+        "movespeed": 340,
+        "armor": 35,
+        "armorperlevel": 5.2,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 150,
+        "hpregen": 9,
+        "hpregenperlevel": 0.75,
+        "mpregen": 6.25,
+        "mpregenperlevel": 0.5,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 7,
+        "defense": 7,
+        "magic": 4,
+        "difficulty": 3
+      }
+    },
+    "19": {
+      "id": 19,
+      "name": "Warwick",
+      "key": "Warwick",
+      "title": "the Uncaged Wrath of Zaun",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 99,
+        "mp": 280,
+        "mpperlevel": 35,
+        "movespeed": 335,
+        "armor": 33,
+        "armorperlevel": 4.4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 4,
+        "hpregenperlevel": 0.75,
+        "mpregen": 7.45,
+        "mpregenperlevel": 0.6,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 65,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.638
+      },
+      "info": {
+        "attack": 9,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 3
+      }
+    },
+    "498": {
+      "id": 498,
+      "name": "Xayah",
+      "key": "Xayah",
+      "title": "the Rebel",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 107,
+        "mp": 340,
+        "mpperlevel": 40,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 3.25,
+        "hpregenperlevel": 0.75,
+        "mpregen": 8.25,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3.5,
+        "attackspeedperlevel": 3.9,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 10,
+        "defense": 6,
+        "magic": 1,
+        "difficulty": 5
+      }
+    },
+    "101": {
+      "id": 101,
+      "name": "Xerath",
+      "key": "Xerath",
+      "title": "the Magus Ascendant",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 596,
+        "hpperlevel": 106,
+        "mp": 400,
+        "mpperlevel": 22,
+        "movespeed": 340,
+        "armor": 22,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 525,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 6.85,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 1.36,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 1,
+        "defense": 3,
+        "magic": 10,
+        "difficulty": 8
+      }
+    },
+    "5": {
+      "id": 5,
+      "name": "Xin Zhao",
+      "key": "XinZhao",
+      "title": "the Seneschal of Demacia",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 106,
+        "mp": 274,
+        "mpperlevel": 55,
+        "movespeed": 345,
+        "armor": 35,
+        "armorperlevel": 4.4,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.7,
+        "mpregen": 7.25,
+        "mpregenperlevel": 0.45,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.645
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 3,
+        "difficulty": 2
+      }
+    },
+    "157": {
+      "id": 157,
+      "name": "Yasuo",
+      "key": "Yasuo",
+      "title": "the Unforgiven",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 110,
+        "mp": 100,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 32,
+        "armorperlevel": 4.6,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.9,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.697
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 4,
+        "difficulty": 10
+      }
+    },
+    "777": {
+      "id": 777,
+      "name": "Yone",
+      "key": "Yone",
+      "title": "the Unforgotten",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 620,
+        "hpperlevel": 105,
+        "mp": 500,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 33,
+        "armorperlevel": 4.6,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.75,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 3.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 4,
+        "magic": 4,
+        "difficulty": 8
+      }
+    },
+    "83": {
+      "id": 83,
+      "name": "Yorick",
+      "key": "Yorick",
+      "title": "Shepherd of Souls",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "stats": {
+        "hp": 650,
+        "hpperlevel": 114,
+        "mp": 300,
+        "mpperlevel": 60,
+        "movespeed": 340,
+        "armor": 36,
+        "armorperlevel": 4.5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 8,
+        "hpregenperlevel": 0.8,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 6,
+        "defense": 6,
+        "magic": 4,
+        "difficulty": 6
+      }
+    },
+    "804": {
+      "id": 804,
+      "name": "Yunara",
+      "key": "Yunara",
+      "title": "the Unbroken Faith",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 590,
+        "hpperlevel": 110,
+        "mp": 275,
+        "mpperlevel": 45,
+        "movespeed": 325,
+        "armor": 25,
+        "armorperlevel": 4.4,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 575,
+        "hpregen": 4,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.5,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 2.5,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.65
+      },
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 0,
+        "difficulty": 4
+      }
+    },
+    "350": {
+      "id": 350,
+      "name": "Yuumi",
+      "key": "Yuumi",
+      "title": "the Magical Cat",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 500,
+        "hpperlevel": 69,
+        "mp": 440,
+        "mpperlevel": 45,
+        "movespeed": 330,
+        "armor": 25,
+        "armorperlevel": 4.2,
+        "spellblock": 25,
+        "spellblockperlevel": 1.1,
+        "attackrange": 425,
+        "hpregen": 5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 10,
+        "mpregenperlevel": 0.4,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 49,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 5,
+        "defense": 1,
+        "magic": 8,
+        "difficulty": 2
+      }
+    },
+    "904": {
+      "id": 904,
+      "name": "Zaahen",
+      "key": "Zaahen",
+      "title": "The Unsundered",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 114,
+        "mp": 350,
+        "mpperlevel": 55,
+        "movespeed": 345,
+        "armor": 36,
+        "armorperlevel": 5,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.8,
+        "mpregen": 8.15,
+        "mpregenperlevel": 0.75,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 4,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.625
+      },
+      "info": {
+        "attack": 8,
+        "defense": 6,
+        "magic": 1,
+        "difficulty": 2
+      }
+    },
+    "154": {
+      "id": 154,
+      "name": "Zac",
+      "key": "Zac",
+      "title": "the Secret Weapon",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "stats": {
+        "hp": 685,
+        "hpperlevel": 109,
+        "mp": 0,
+        "mpperlevel": 0,
+        "movespeed": 340,
+        "armor": 33,
+        "armorperlevel": 4.7,
+        "spellblock": 32,
+        "spellblockperlevel": 2.05,
+        "attackrange": 175,
+        "hpregen": 5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 0,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 60,
+        "attackdamageperlevel": 3.4,
+        "attackspeedperlevel": 1.6,
+        "attackspeed": 0.736
+      },
+      "info": {
+        "attack": 3,
+        "defense": 7,
+        "magic": 7,
+        "difficulty": 8
+      }
+    },
+    "238": {
+      "id": 238,
+      "name": "Zed",
+      "key": "Zed",
+      "title": "the Master of Shadows",
+      "tags": [
+        "Assassin"
+      ],
+      "stats": {
+        "hp": 654,
+        "hpperlevel": 99,
+        "mp": 200,
+        "mpperlevel": 0,
+        "movespeed": 345,
+        "armor": 32,
+        "armorperlevel": 4.7,
+        "spellblock": 29,
+        "spellblockperlevel": 2.05,
+        "attackrange": 125,
+        "hpregen": 7,
+        "hpregenperlevel": 0.65,
+        "mpregen": 50,
+        "mpregenperlevel": 0,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 63,
+        "attackdamageperlevel": 3.4,
+        "attackspeedperlevel": 3.3,
+        "attackspeed": 0.651
+      },
+      "info": {
+        "attack": 9,
+        "defense": 2,
+        "magic": 1,
+        "difficulty": 7
+      }
+    },
+    "221": {
+      "id": 221,
+      "name": "Zeri",
+      "key": "Zeri",
+      "title": "The Spark of Zaun",
+      "tags": [
+        "Marksman"
+      ],
+      "stats": {
+        "hp": 600,
+        "hpperlevel": 110,
+        "mp": 250,
+        "mpperlevel": 45,
+        "movespeed": 330,
+        "armor": 24,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 500,
+        "hpregen": 3.25,
+        "hpregenperlevel": 0.7,
+        "mpregen": 6,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 56,
+        "attackdamageperlevel": 2,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 8,
+        "defense": 5,
+        "magic": 3,
+        "difficulty": 6
+      }
+    },
+    "115": {
+      "id": 115,
+      "name": "Ziggs",
+      "key": "Ziggs",
+      "title": "the Hexplosives Expert",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 606,
+        "hpperlevel": 106,
+        "mp": 480,
+        "mpperlevel": 23.5,
+        "movespeed": 325,
+        "armor": 21,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 6.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 55,
+        "attackdamageperlevel": 3.1,
+        "attackspeedperlevel": 2,
+        "attackspeed": 0.656
+      },
+      "info": {
+        "attack": 2,
+        "defense": 4,
+        "magic": 9,
+        "difficulty": 4
+      }
+    },
+    "26": {
+      "id": 26,
+      "name": "Zilean",
+      "key": "Zilean",
+      "title": "the Chronokeeper",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "stats": {
+        "hp": 574,
+        "hpperlevel": 96,
+        "mp": 452,
+        "mpperlevel": 50,
+        "movespeed": 335,
+        "armor": 24,
+        "armorperlevel": 5,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 11.35,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 52,
+        "attackdamageperlevel": 3,
+        "attackspeedperlevel": 2.13,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 2,
+        "defense": 5,
+        "magic": 8,
+        "difficulty": 6
+      }
+    },
+    "142": {
+      "id": 142,
+      "name": "Zoe",
+      "key": "Zoe",
+      "title": "the Aspect of Twilight",
+      "tags": [
+        "Mage"
+      ],
+      "stats": {
+        "hp": 630,
+        "hpperlevel": 106,
+        "mp": 425,
+        "mpperlevel": 25,
+        "movespeed": 340,
+        "armor": 21,
+        "armorperlevel": 4.7,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 550,
+        "hpregen": 7.5,
+        "hpregenperlevel": 0.6,
+        "mpregen": 8,
+        "mpregenperlevel": 0.65,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 58,
+        "attackdamageperlevel": 3.3,
+        "attackspeedperlevel": 2.5,
+        "attackspeed": 0.658
+      },
+      "info": {
+        "attack": 1,
+        "defense": 7,
+        "magic": 8,
+        "difficulty": 5
+      }
+    },
+    "143": {
+      "id": 143,
+      "name": "Zyra",
+      "key": "Zyra",
+      "title": "Rise of the Thorns",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "stats": {
+        "hp": 574,
+        "hpperlevel": 93,
+        "mp": 418,
+        "mpperlevel": 25,
+        "movespeed": 340,
+        "armor": 29,
+        "armorperlevel": 4.2,
+        "spellblock": 30,
+        "spellblockperlevel": 1.3,
+        "attackrange": 575,
+        "hpregen": 5.5,
+        "hpregenperlevel": 0.5,
+        "mpregen": 7,
+        "mpregenperlevel": 0.8,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 53,
+        "attackdamageperlevel": 3.2,
+        "attackspeedperlevel": 2.11,
+        "attackspeed": 0.681
+      },
+      "info": {
+        "attack": 4,
+        "defense": 3,
+        "magic": 8,
+        "difficulty": 7
+      }
+    }
+  }
+}
