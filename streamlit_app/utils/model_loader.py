@@ -50,7 +50,7 @@ def load_production_model(vector_type: str) -> Dict[str, Any]:
 
     Returns:
         Dict with keys: model, scaler, model_name, val_accuracy,
-        test_accuracy, features, synergy_data.
+        test_accuracy, features, feature_columns, synergy_data, external_data, metadata.
         Returns None if model not found.
     """
     from config import VECTOR_TYPES
@@ -62,14 +62,26 @@ def load_production_model(vector_type: str) -> Dict[str, Any]:
 
     filepath = MODELS_DIR / vt["model_file"]
     if not filepath.exists():
-        st.warning(f"Modèle introuvable : {filepath}")
+        st.warning(f"Modele introuvable : {filepath}")
         return None
 
     try:
         data = joblib.load(filepath)
+        # Normalize: ensure 'features' key exists (may be 'feature_columns')
+        if "features" not in data and "feature_columns" in data:
+            data["features"] = data["feature_columns"]
+        elif "feature_columns" not in data and "features" in data:
+            data["feature_columns"] = data["features"]
+        # Extract metadata fields to top level for backward compatibility
+        if "metadata" in data:
+            meta = data["metadata"]
+            if "test_accuracy" not in data and "accuracy" in meta:
+                data["test_accuracy"] = meta["accuracy"]
+            if "val_accuracy" not in data and "val_accuracy" in meta:
+                data["val_accuracy"] = meta["val_accuracy"]
         return data
     except Exception as e:
-        st.error(f"Erreur chargement modèle : {e}")
+        st.error(f"Erreur chargement modele : {e}")
         return None
 
 

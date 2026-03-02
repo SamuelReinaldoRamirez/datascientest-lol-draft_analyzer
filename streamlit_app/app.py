@@ -116,10 +116,10 @@ with st.sidebar:
     st.markdown(
         html(f"""
         <div style='color: {COLORS["text_secondary"]}; font-size: 0.8em;'>
-            <p><strong>Sources de données :</strong></p>
+            <p><strong>Sources de donnees :</strong></p>
             <ul>
                 <li>Riot Games API</li>
-                <li>OP.GG Statistics</li>
+                <li>dpm.lol (winrates/matchups)</li>
                 <li>CommunityDragon</li>
             </ul>
         </div>
@@ -132,14 +132,16 @@ st.title("🎮 LoL Draft Predictor")
 st.markdown(
     html(f"""
     <p style='color: {COLORS["text_secondary"]}; font-size: 1.1em; margin-bottom: 30px;'>
-        Bienvenue sur le <strong>LoL Draft Predictor</strong>. Cette application utilise le Machine Learning
-        pour prédire l'issue des matchs League of Legends à partir du draft et des données d'early game.
+        Prédiction de l'issue des matchs <strong>League of Legends</strong> par Machine Learning,
+        à partir du draft et des données d'early game.
     </p>
     """), unsafe_allow_html=True,
 )
 
-# Quick stats
-st.markdown("### 📊 Statistiques")
+# ──────────────────────────────────────────
+# Dataset overview
+# ──────────────────────────────────────────
+st.markdown("### 📊 Dataset")
 
 try:
     from utils.data_loader import (
@@ -152,13 +154,11 @@ try:
     timeline_count = get_timeline_match_count()
     side_stats = get_winrate_by_side()
     avg_duration = get_average_game_duration()
-    data_loaded = True
 except Exception:
-    match_count = 280000
-    timeline_count = 102000
+    match_count = 305000
+    timeline_count = 164000
     side_stats = {"blue_winrate": 0.505, "red_winrate": 0.495}
     avg_duration = 28.5
-    data_loaded = False
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
@@ -170,8 +170,21 @@ with col3:
 with col4:
     st.metric("Durée moyenne", f"{avg_duration:.1f} min")
 
-# Model accuracy summary
-st.markdown("")
+st.markdown(
+    html(f"""
+    <p style='color: {COLORS["text_secondary"]}; font-size: 0.85em; margin-top: 5px;'>
+        Région EUW · Diamond+ → Challenger · Saison 15 · Ranked Solo/Duo
+    </p>
+    """), unsafe_allow_html=True,
+)
+
+st.markdown("---")
+
+# ──────────────────────────────────────────
+# Model performance
+# ──────────────────────────────────────────
+st.markdown("### 🤖 Performance des modèles")
+
 col1, col2, col3, col4, col5 = st.columns(5)
 metrics = [
     ("Draft", "draft"),
@@ -182,113 +195,19 @@ metrics = [
 ]
 for col, (label, key) in zip([col1, col2, col3, col4, col5], metrics):
     with col:
-        acc = MODEL_BENCHMARKS[key]["accuracy"]
-        st.metric(f"Modèle {label}", f"{acc*100:.1f}%")
+        bench = MODEL_BENCHMARKS[key]
+        st.metric(
+            f"{label}",
+            f"{bench['accuracy']*100:.1f}%",
+            delta=f"AUC {bench['auc_roc']:.3f}",
+        )
+        st.caption(bench["model_type"])
 
 st.markdown("---")
 
-# Navigation cards
-st.markdown("### 🧭 Navigation")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown(
-        html(f"""
-        <div style='
-            background: {COLORS["background_light"]};
-            border: 1px solid {COLORS["gold_accent"]}40;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        '>
-            <h4 style='color: {COLORS["gold_accent"]}; margin-bottom: 10px;'>
-                📊 1. Présentation
-            </h4>
-            <p style='color: {COLORS["text_secondary"]}; font-size: 0.9em;'>
-                Contexte du projet, présentation de LoL, problématique ML et données collectées.
-            </p>
-        </div>
-        """), unsafe_allow_html=True,
-    )
-    st.markdown(
-        html(f"""
-        <div style='
-            background: {COLORS["background_light"]};
-            border: 1px solid {COLORS["gold_accent"]}40;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        '>
-            <h4 style='color: {COLORS["gold_accent"]}; margin-bottom: 10px;'>
-                ⚙️ 3. Traitement
-            </h4>
-            <p style='color: {COLORS["text_secondary"]}; font-size: 0.9em;'>
-                Pipeline de données, feature engineering et sélection du vecteur d'entrée.
-            </p>
-        </div>
-        """), unsafe_allow_html=True,
-    )
-    st.markdown(
-        html(f"""
-        <div style='
-            background: {COLORS["background_light"]};
-            border: 1px solid {COLORS["gold_accent"]}40;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        '>
-            <h4 style='color: {COLORS["gold_accent"]}; margin-bottom: 10px;'>
-                🎯 5. Résultats
-            </h4>
-            <p style='color: {COLORS["text_secondary"]}; font-size: 0.9em;'>
-                Évaluation des modèles (confusion, ROC), comparaison et prédiction interactive.
-            </p>
-        </div>
-        """), unsafe_allow_html=True,
-    )
-
-with col2:
-    st.markdown(
-        html(f"""
-        <div style='
-            background: {COLORS["background_light"]};
-            border: 1px solid {COLORS["gold_accent"]}40;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        '>
-            <h4 style='color: {COLORS["gold_accent"]}; margin-bottom: 10px;'>
-                📁 2. Données
-            </h4>
-            <p style='color: {COLORS["text_secondary"]}; font-size: 0.9em;'>
-                Vue d'ensemble du dataset, exploration interactive et visualisations.
-            </p>
-        </div>
-        """), unsafe_allow_html=True,
-    )
-    st.markdown(
-        html(f"""
-        <div style='
-            background: {COLORS["background_light"]};
-            border: 1px solid {COLORS["gold_accent"]}40;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        '>
-            <h4 style='color: {COLORS["gold_accent"]}; margin-bottom: 10px;'>
-                🤖 4. Modèles
-            </h4>
-            <p style='color: {COLORS["text_secondary"]}; font-size: 0.9em;'>
-                Algorithmes (XGBoost, LightGBM), comparaison des 5 modèles et feature importance.
-            </p>
-        </div>
-        """), unsafe_allow_html=True,
-    )
-
-st.markdown("---")
-
+# ──────────────────────────────────────────
 # Key findings
+# ──────────────────────────────────────────
 st.markdown("### 💡 Résultats clés")
 
 st.markdown(
@@ -301,8 +220,8 @@ st.markdown(
     '>
         <p style='color: {COLORS["text_primary"]}; margin: 0;'>
             <strong>Le draft seul ne suffit pas.</strong>
-            Le modèle draft-only atteint ~51%, à peine mieux que le hasard en solo queue.
-            Le skill individuel et la communication priment sur la composition.
+            Malgré l'ajout des winrates externes, matchups et synergies,
+            le modèle draft-only atteint ~54.0% (V3, avec summoner stats temporelles). Le skill individuel prime en solo queue.
         </p>
     </div>
 
@@ -314,8 +233,8 @@ st.markdown(
     '>
         <p style='color: {COLORS["text_primary"]}; margin: 0;'>
             <strong>L'early game est déterminant.</strong>
-            Dès 5 minutes, l'ajout des données de gold fait passer l'accuracy à 68%.
-            À 20 minutes, le modèle atteint 81.7%.
+            Dès 5 minutes, l'ajout du gold fait passer l'accuracy à 65.4%.
+            À 20 minutes, le modèle atteint 79.9% (AUC 0.885).
         </p>
     </div>
 
@@ -326,10 +245,40 @@ st.markdown(
         margin-bottom: 15px;
     '>
         <p style='color: {COLORS["text_primary"]}; margin: 0;'>
-            <strong>La feature la plus prédictive</strong> du modèle draft-only est
-            <em>role_winrate_diff</em> (57% d'importance), i.e. l'écart de winrate
-            moyen par rôle entre les deux équipes.
+            <strong>Validation rigoureuse.</strong>
+            Split temporel sur tous les modèles. Summoner stats réintégrées en V3
+            avec calcul temporel (pas de fuite). La feature <em>draft_advantage</em> reste la plus prédictive.
         </p>
+    </div>
+    """), unsafe_allow_html=True,
+)
+
+st.markdown("---")
+
+# ──────────────────────────────────────────
+# Pipeline summary
+# ──────────────────────────────────────────
+st.markdown("### ⚙️ Pipeline")
+
+st.markdown(
+    html(f"""
+    <div style='
+        background: {COLORS["background_light"]};
+        border: 1px solid {COLORS["gold_accent"]}40;
+        border-radius: 10px;
+        padding: 20px;
+        font-family: monospace;
+        font-size: 0.9em;
+        color: {COLORS["text_primary"]};
+        line-height: 1.8;
+    '>
+        <strong style='color: {COLORS["gold_accent"]};'>Collecte</strong> Riot API + dpm.lol + CommunityDragon<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+        <strong style='color: {COLORS["gold_accent"]};'>Features</strong> Winrates · Matchups · Synergies · Counters · Summoner stats · Timeline gold/CS<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+        <strong style='color: {COLORS["gold_accent"]};'>Modèles</strong> XGBoost (draft) · LightGBM (@5min → @20min)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+        <strong style='color: {COLORS["gold_accent"]};'>Prédiction</strong> Victoire Blue / Red avec probabilité
     </div>
     """), unsafe_allow_html=True,
 )
@@ -339,11 +288,9 @@ st.markdown("---")
 st.markdown(
     html(f"""
     <p style='color: {COLORS["text_secondary"]}; font-size: 0.85em; text-align: center;'>
-        Utilisez la barre latérale pour naviguer entre les pages.
-        <br>
         Projet DataScientest – Aïssam, Samuel, Guilhem – 2026
         <br>
-        Données : Riot Games API • EUW Diamond+ • Saison 15
+        Naviguez entre les pages via la barre latérale.
     </p>
     """), unsafe_allow_html=True,
 )

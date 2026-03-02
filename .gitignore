@@ -40,3 +40,6 @@ __pycache__/
 
 # Claude settings
 .claude_settings.json
+
+# Serena
+.serena/

@@ -50,7 +50,7 @@ vector_type = st.session_state.vector_type
 vt = VECTOR_TYPES[vector_type]
 bm = MODEL_BENCHMARKS[vector_type]
 
-st.info(f"Vecteur sélectionné : **{vt['name']}** ({vt['nb_features']} features, {bm['model_type']})")
+st.info(f"Vecteur selectionne : **{vt['name']}** ({vt['nb_features']} features, {bm['model_type']})")
 
 # ============================
 # Load model and data
@@ -105,17 +105,20 @@ def _merge_with_timeline(df, df_timeline):
 # Helper: prepare evaluation data
 # ============================
 @st.cache_data
-def prepare_eval_data(_vector_type, _features):
+def prepare_eval_data(_vector_type, _features, _model_data_key=None):
     """Prepare X, y for evaluation based on vector type.
 
     For draft model: uses the test set (56k unseen matches).
-    For timeline models: uses a random sample from the train set
-    merged with timeline data. The test set has no timeline data
-    (temporal split), so we use train data for demonstration.
+    For timeline models: merges train + timeline, uses temporal last 20%.
 
     Returns:
         X, y, df, is_test_set (bool)
     """
+    from utils.feature_builder import add_all_model_features
+
+    # Load model data for external features
+    _md = load_production_model(_vector_type)
+
     if _vector_type == "draft":
         df = load_test_with_summoner()
         if df.empty:
@@ -123,7 +126,7 @@ def prepare_eval_data(_vector_type, _features):
         is_test = True
     else:
         # Test set has no timeline data (temporal split).
-        # Use a random sample from train set for demonstration.
+        # Use temporal split from train + timeline data.
         df_train = load_train_with_summoner()
         df_timeline = load_timeline_data_parquet()
         if df_train.empty or df_timeline.empty:
@@ -131,13 +134,26 @@ def prepare_eval_data(_vector_type, _features):
         df = _merge_with_timeline(df_train, df_timeline)
         if df.empty:
             return None, None, None, False
-        # Random sample of 10k for fast evaluation
-        if len(df) > 10000:
+
+        # Temporal split: use last 20% as evaluation
+        minute = {'at5': 5, 'at10': 10, 'at15': 15, 'at20': 20}.get(_vector_type, 10)
+        gdiff_col = f'gold_diff_at_{minute}'
+        if gdiff_col in df.columns:
+            df = df[df[gdiff_col].notna()]
+        if 'game_creation' in df.columns:
+            df = df.sort_values('game_creation')
+            n_test = int(len(df) * 0.2)
+            df = df.iloc[-n_test:].reset_index(drop=True)
+        elif len(df) > 10000:
             df = df.sample(n=10000, random_state=42).reset_index(drop=True)
         is_test = False
 
     if "team_100_win" not in df.columns:
         return None, None, None, is_test
+
+    # Add external features (V2 models need them)
+    if _md is not None:
+        df = add_all_model_features(df, _md)
 
     y = df["team_100_win"].astype(int)
 
@@ -155,20 +171,19 @@ def prepare_eval_data(_vector_type, _features):
 with tab_a:
     st.header("Évaluation du modèle")
 
-    result = prepare_eval_data(vector_type, features)
+    result = prepare_eval_data(vector_type, features, _model_data_key=vector_type)
     X, y, df_eval, is_test_set = result[0], result[1], result[2], result[3]
 
     if X is None or y is None:
         st.error("Impossible de charger les données d'évaluation.")
     else:
         if is_test_set:
-            st.markdown(f"**Jeu de test** : {len(y):,} matchs (données non vues à l'entraînement)")
+            st.markdown(f"**Jeu de test temporel** : {len(y):,} matchs (données non vues à l'entraînement)")
         else:
-            st.warning(
-                f"Le jeu de test n'a pas de données timeline (split temporel). "
-                f"L'évaluation ci-dessous utilise un échantillon de {len(y):,} matchs "
-                f"du jeu d'entraînement (à titre illustratif). "
-                f"L'accuracy de référence est **{bm['accuracy']*100:.1f}%** (validation croisée)."
+            st.info(
+                f"Évaluation sur les **{len(y):,} derniers matchs** avec données timeline "
+                f"(split temporel, 20% les plus récents). "
+                f"Accuracy de référence : **{bm['accuracy']*100:.1f}%** (AUC-ROC {bm.get('auc_roc', 'N/A')})."
             )
 
         # Predict
@@ -303,8 +318,8 @@ with tab_b:
     st.header("Prédiction interactive")
 
     st.markdown("""
-    Chargement d'un match aléatoire du jeu de test.
-    Le modèle prédit le résultat et le compare au résultat réel.
+    Chargement d'un match aleatoire. Le modele predit le resultat et le compare au resultat reel.
+    Les champions sont affiches par nom avec les matchups par lane.
     """)
 
     res_b = prepare_eval_data(vector_type, features)
@@ -327,24 +342,58 @@ with tab_b:
 
         st.markdown(f"**Match ID** : `{match_id}`")
 
-        # Show team composition if champion IDs available
-        champ_cols_100 = [c for c in df_full.columns if "team_100" in c and "champion_id" in c]
-        champ_cols_200 = [c for c in df_full.columns if "team_200" in c and "champion_id" in c]
+        # Show team composition with champion names
+        roles = ["top", "jungle", "mid", "adc", "support"]
+        role_labels = {"top": "TOP", "jungle": "JGL", "mid": "MID", "adc": "ADC", "support": "SUP"}
 
-        if champ_cols_100 and champ_cols_200:
-            col1, col2 = st.columns(2)
-            with col1:
-                st.markdown(f"**🔵 Blue Team**")
-                for c in sorted(champ_cols_100):
-                    role = c.replace("team_100_", "").replace("_champion_id", "").upper()
-                    champ_id = int(df_full.iloc[idx][c]) if pd.notna(df_full.iloc[idx][c]) else "?"
-                    st.markdown(f"- {role}: Champion #{champ_id}")
-            with col2:
-                st.markdown(f"**🔴 Red Team**")
-                for c in sorted(champ_cols_200):
-                    role = c.replace("team_200_", "").replace("_champion_id", "").upper()
-                    champ_id = int(df_full.iloc[idx][c]) if pd.notna(df_full.iloc[idx][c]) else "?"
-                    st.markdown(f"- {role}: Champion #{champ_id}")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("**🔵 Blue Team**")
+            for role in roles:
+                name_col = f"team_100_{role}_champion_name"
+                id_col = f"team_100_{role}_champion_id"
+                if name_col in df_full.columns and pd.notna(df_full.iloc[idx].get(name_col)):
+                    champ_name = df_full.iloc[idx][name_col]
+                    st.markdown(f"- **{role_labels[role]}** : {champ_name}")
+                elif id_col in df_full.columns and pd.notna(df_full.iloc[idx].get(id_col)):
+                    champ_id = int(df_full.iloc[idx][id_col])
+                    st.markdown(f"- **{role_labels[role]}** : Champion #{champ_id}")
+        with col2:
+            st.markdown("**🔴 Red Team**")
+            for role in roles:
+                name_col = f"team_200_{role}_champion_name"
+                id_col = f"team_200_{role}_champion_id"
+                if name_col in df_full.columns and pd.notna(df_full.iloc[idx].get(name_col)):
+                    champ_name = df_full.iloc[idx][name_col]
+                    st.markdown(f"- **{role_labels[role]}** : {champ_name}")
+                elif id_col in df_full.columns and pd.notna(df_full.iloc[idx].get(id_col)):
+                    champ_id = int(df_full.iloc[idx][id_col])
+                    st.markdown(f"- **{role_labels[role]}** : Champion #{champ_id}")
+
+        # Show matchup info if available
+        matchup_cols = [c for c in df_full.columns if c.startswith("matchup_wr_")]
+        if matchup_cols:
+            with st.expander("Matchups par lane (winrate externe)"):
+                matchup_data = []
+                for role in roles:
+                    mc = f"matchup_wr_{role}"
+                    if mc in df_full.columns:
+                        wr = df_full.iloc[idx].get(mc, 0.5)
+                        if pd.notna(wr) and wr != 0.5:
+                            blue_name = df_full.iloc[idx].get(f"team_100_{role}_champion_name", "?")
+                            red_name = df_full.iloc[idx].get(f"team_200_{role}_champion_name", "?")
+                            adv = "🔵" if wr > 0.5 else "🔴" if wr < 0.5 else "="
+                            matchup_data.append({
+                                "Lane": role_labels[role],
+                                "Blue": blue_name,
+                                "Red": red_name,
+                                "WR Blue": f"{wr*100:.1f}%",
+                                "Avantage": adv,
+                            })
+                if matchup_data:
+                    st.dataframe(pd.DataFrame(matchup_data), use_container_width=True, hide_index=True)
+                else:
+                    st.info("Donnees de matchup non disponibles pour ce match.")
 
         st.markdown("---")
 

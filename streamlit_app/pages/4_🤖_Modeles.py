@@ -54,11 +54,11 @@ with col1:
     st.markdown("""
     **eXtreme Gradient Boosting**
 
-    - Boosting d'arbres de décision
-    - Régularisation L1/L2 intégrée
-    - Gestion native des valeurs manquantes
-    - Très performant sur données tabulaires
-    - Utilisé pour : Draft, @10, @15, @20 min
+    - Boosting d'arbres de decision
+    - Regularisation L1/L2 renforcee
+    - Early stopping (50 rounds)
+    - Draft : max_depth=4, lr=0.01, strong reg
+    - Utilise pour : **Draft** (regularisation forte)
     """)
 
 with col2:
@@ -66,23 +66,23 @@ with col2:
     st.markdown("""
     **Light Gradient Boosting Machine**
 
-    - Variante optimisée du gradient boosting
+    - Variante optimisee du gradient boosting
     - Croissance par feuille (leaf-wise)
-    - Plus rapide que XGBoost sur grands datasets
-    - Moins gourmand en mémoire
-    - Utilisé pour : @5 min
+    - max_depth=6, lr=0.03, early stopping
+    - Utilise pour : **@5min** (XGBoost pour @10-@20)
     """)
 
 with col3:
-    st.subheader("Approche générale")
+    st.subheader("Approche V3")
     st.markdown("""
-    **Pipeline commun**
+    **Pipeline avec summoner stats temporelles**
 
     1. StandardScaler sur les features
-    2. Entraînement sur 80% des données
-    3. Validation sur 20% (split temporel)
-    4. Métriques : Accuracy, AUC-ROC
-    5. Sauvegarde au format pickle (.pkl)
+    2. **Split temporel** pour tous les modeles
+    3. Validation 15% + test 20% (temporel)
+    4. Metriques : Accuracy, AUC-ROC
+    5. **Summoner stats temporelles** (93 features)
+    6. **Aucun champion ID** ordinal
     """)
 
 st.markdown("---")
@@ -112,8 +112,10 @@ if model_data is not None:
     test_acc = model_data.get("test_accuracy", 0)
     if val_acc > 0 and test_acc > 0:
         diff = (val_acc - test_acc) * 100
-        if diff > 5:
+        if diff > 10:
             st.warning(f"⚠️ Écart validation/test de {diff:.1f}% — possible overfitting")
+        elif diff > 5:
+            st.info(f"ℹ️ Écart validation/test de {diff:.1f}% — attendu pour le draft (meta shift entre periodes)")
         else:
             st.success(f"✅ Écart validation/test de {diff:.1f}% — bonne généralisation")
 else:
@@ -166,11 +168,14 @@ fig.add_hline(y=50, line_dash="dash", line_color=COLORS["red_team"],
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("""
-**Observations :**
-- Le modèle **draft-only** atteint ~51%, à peine mieux que le hasard → le draft seul ne suffit pas en solo queue
-- L'ajout de données **@5min** fait bondir l'accuracy à **68%** → le gold early est très prédictif
-- La progression continue jusqu'à **81.7%** à **@20min**
-- Le gain marginal diminue au fil du temps (@5→@10 = +5.6%, @15→@20 = +2.7%)
+**Observations (V3 — split temporel, summoner stats temporelles) :**
+- Le modele **draft-only** atteint **54.0%** (153 features) → le draft seul ne suffit pas en solo queue
+- L'ajout de donnees **@5min** fait bondir l'accuracy a **65.4%** → le gold early est tres predictif
+- La progression continue jusqu'a **79.9%** a **@20min** (AUC-ROC = 0.885)
+- Le gain marginal diminue au fil du temps (@5→@10 = +6.6%, @15→@20 = +1.9%)
+- Ecart val/test < 7% pour le draft (attendu), < 1% pour les modeles in-game → **bonne generalisation**
+- Les summoner stats (role_winrate, streak, KDA, etc.) sont reintegrees avec **calcul temporel** (pas de fuite)
+- XGBoost domine LightGBM sur les modeles in-game (@10, @15, @20) en V3
 """)
 
 st.markdown("---")

@@ -3741,7 +3741,7 @@ def get_features_for_minute(minute: int) -> dict:
     for pos in positions:
         gold_features.append(f'{pos}_gold_diff_at_{minute}')
 
-    # CS features only available at minute 10
+    # CS features only available at minute 10 from player_stats
     cs_features = []
     if minute == 10:
         cs_features = [
@@ -3749,6 +3749,37 @@ def get_features_for_minute(minute: int) -> dict:
         ]
         for pos in positions:
             cs_features.append(f'{pos}_cs_diff_at_10')
+
+    # Level features (from match_timeline level columns)
+    level_features = [
+        f'level_diff_at_{minute}',
+        f'level_advantage_pct_at_{minute}',
+    ]
+    for pos in positions:
+        level_features.append(f'{pos}_level_diff_at_{minute}')
+
+    # XP features (from match_timeline xp columns)
+    xp_features = [
+        f'xp_diff_at_{minute}',
+        f'xp_advantage_pct_at_{minute}',
+    ]
+    for pos in positions:
+        xp_features.append(f'{pos}_xp_diff_at_{minute}')
+
+    # CS from timeline (available at all minutes, unlike player_stats CS@10)
+    cs_timeline_features = [
+        f'cs_timeline_diff_at_{minute}',
+        f'cs_per_min_diff_at_{minute}',
+    ]
+    for pos in positions:
+        cs_timeline_features.append(f'{pos}_cs_timeline_diff_at_{minute}')
+
+    # Power spike features
+    power_features = [
+        f'power_score_at_{minute}',
+        f'power_diff_at_{minute}',
+        f'ult_advantage_at_{minute}',
+    ]
 
     # Objective features (same for all minutes, from team_stats)
     objective_features = [
@@ -3761,8 +3792,14 @@ def get_features_for_minute(minute: int) -> dict:
     return {
         'gold_features': gold_features,
         'cs_features': cs_features,
+        'level_features': level_features,
+        'xp_features': xp_features,
+        'cs_timeline_features': cs_timeline_features,
+        'power_features': power_features,
         'objective_features': objective_features,
-        'all_features': gold_features + cs_features + objective_features,
+        'all_features': (gold_features + cs_features + level_features +
+                         xp_features + cs_timeline_features + power_features +
+                         objective_features),
     }
 
 
@@ -3854,6 +3891,226 @@ def add_variable_minute_features(df: pd.DataFrame, minute: int) -> pd.DataFrame:
         (first_dragon * 2 - 1) * 0.1 +
         (first_herald * 2 - 1) * 0.05
     )
+
+    # Add level/XP/CS/power features (conditional on data availability)
+    df = add_level_features(df, minute)
+    df = add_xp_features(df, minute)
+    df = add_cs_timeline_features(df, minute)
+    df = add_power_spike_features(df, minute)
+
+    return df
+
+
+def add_level_features(df: pd.DataFrame, minute: int) -> pd.DataFrame:
+    """
+    Add level-based features for a specific game minute.
+
+    Features:
+    - level_diff_at_M: total level difference between teams
+    - {pos}_level_diff_at_M: per-lane level difference
+    - level_advantage_pct_at_M: normalized level advantage
+    """
+    positions = ['top', 'jungle', 'mid', 'adc', 'support']
+
+    # Check if level data exists
+    check_col = f'team_100_top_level_at_{minute}'
+    if check_col not in df.columns:
+        return df
+
+    # Total team levels
+    t100_levels = []
+    t200_levels = []
+    for pos in positions:
+        t100_col = f'team_100_{pos}_level_at_{minute}'
+        t200_col = f'team_200_{pos}_level_at_{minute}'
+        if t100_col in df.columns:
+            t100_levels.append(df[t100_col].fillna(0))
+            t200_levels.append(df[t200_col].fillna(0))
+
+    if not t100_levels:
+        return df
+
+    total_100 = sum(t100_levels)
+    total_200 = sum(t200_levels)
+
+    df[f'level_diff_at_{minute}'] = total_100 - total_200
+
+    total_level = total_100 + total_200
+    df[f'level_advantage_pct_at_{minute}'] = np.where(
+        total_level > 0,
+        (total_100 - total_200) / total_level,
+        0
+    )
+
+    # Per-lane level diffs
+    for pos in positions:
+        t100_col = f'team_100_{pos}_level_at_{minute}'
+        t200_col = f'team_200_{pos}_level_at_{minute}'
+        if t100_col in df.columns and t200_col in df.columns:
+            df[f'{pos}_level_diff_at_{minute}'] = df[t100_col].fillna(0) - df[t200_col].fillna(0)
+        else:
+            df[f'{pos}_level_diff_at_{minute}'] = 0
+
+    return df
+
+
+def add_xp_features(df: pd.DataFrame, minute: int) -> pd.DataFrame:
+    """
+    Add XP-based features for a specific game minute.
+
+    Features:
+    - xp_diff_at_M: total XP difference
+    - {pos}_xp_diff_at_M: per-lane XP difference
+    - xp_advantage_pct_at_M: normalized XP advantage
+    """
+    positions = ['top', 'jungle', 'mid', 'adc', 'support']
+
+    check_col = f'team_100_top_xp_at_{minute}'
+    if check_col not in df.columns:
+        return df
+
+    t100_xps = []
+    t200_xps = []
+    for pos in positions:
+        t100_col = f'team_100_{pos}_xp_at_{minute}'
+        t200_col = f'team_200_{pos}_xp_at_{minute}'
+        if t100_col in df.columns:
+            t100_xps.append(df[t100_col].fillna(0))
+            t200_xps.append(df[t200_col].fillna(0))
+
+    if not t100_xps:
+        return df
+
+    total_100 = sum(t100_xps)
+    total_200 = sum(t200_xps)
+
+    df[f'xp_diff_at_{minute}'] = total_100 - total_200
+
+    total_xp = total_100 + total_200
+    df[f'xp_advantage_pct_at_{minute}'] = np.where(
+        total_xp > 0,
+        (total_100 - total_200) / total_xp,
+        0
+    )
+
+    # Per-lane XP diffs
+    for pos in positions:
+        t100_col = f'team_100_{pos}_xp_at_{minute}'
+        t200_col = f'team_200_{pos}_xp_at_{minute}'
+        if t100_col in df.columns and t200_col in df.columns:
+            df[f'{pos}_xp_diff_at_{minute}'] = df[t100_col].fillna(0) - df[t200_col].fillna(0)
+        else:
+            df[f'{pos}_xp_diff_at_{minute}'] = 0
+
+    return df
+
+
+def add_cs_timeline_features(df: pd.DataFrame, minute: int) -> pd.DataFrame:
+    """
+    Add CS features from timeline data (available at all minutes, unlike player_stats CS@10).
+
+    Features:
+    - cs_timeline_diff_at_M: total CS difference from timeline
+    - {pos}_cs_timeline_diff_at_M: per-lane CS difference
+    - cs_per_min_diff_at_M: CS/min difference (normalized by minute)
+    """
+    positions = ['top', 'jungle', 'mid', 'adc', 'support']
+
+    check_col = f'team_100_top_timeline_cs_at_{minute}'
+    if check_col not in df.columns:
+        return df
+
+    t100_css = []
+    t200_css = []
+    for pos in positions:
+        t100_col = f'team_100_{pos}_timeline_cs_at_{minute}'
+        t200_col = f'team_200_{pos}_timeline_cs_at_{minute}'
+        if t100_col in df.columns:
+            t100_css.append(df[t100_col].fillna(0))
+            t200_css.append(df[t200_col].fillna(0))
+
+    if not t100_css:
+        return df
+
+    total_100 = sum(t100_css)
+    total_200 = sum(t200_css)
+
+    df[f'cs_timeline_diff_at_{minute}'] = total_100 - total_200
+
+    # CS per minute difference
+    if minute > 0:
+        df[f'cs_per_min_diff_at_{minute}'] = (total_100 - total_200) / minute
+    else:
+        df[f'cs_per_min_diff_at_{minute}'] = 0
+
+    # Per-lane CS diffs
+    for pos in positions:
+        t100_col = f'team_100_{pos}_timeline_cs_at_{minute}'
+        t200_col = f'team_200_{pos}_timeline_cs_at_{minute}'
+        if t100_col in df.columns and t200_col in df.columns:
+            df[f'{pos}_cs_timeline_diff_at_{minute}'] = df[t100_col].fillna(0) - df[t200_col].fillna(0)
+        else:
+            df[f'{pos}_cs_timeline_diff_at_{minute}'] = 0
+
+    return df
+
+
+def add_power_spike_features(df: pd.DataFrame, minute: int) -> pd.DataFrame:
+    """
+    Add power spike features combining gold, level, and XP.
+
+    Features:
+    - power_score_at_M: composite score = 0.4*gold_norm + 0.3*level_norm + 0.3*xp_norm
+    - power_diff_at_M: power score difference between teams
+    - ult_advantage_at_M: count of players at ult milestones (6/11/16) advantage
+    """
+    positions = ['top', 'jungle', 'mid', 'adc', 'support']
+
+    # Need at least gold and level data
+    gold_col = f'gold_diff_at_{minute}'
+    level_check = f'team_100_top_level_at_{minute}'
+    if gold_col not in df.columns or level_check not in df.columns:
+        return df
+
+    # Normalized gold diff (typical range ~5000)
+    gold_norm = df[gold_col].fillna(0) / 5000.0
+
+    # Normalized level diff
+    level_diff_col = f'level_diff_at_{minute}'
+    if level_diff_col in df.columns:
+        level_norm = df[level_diff_col].fillna(0) / 5.0  # typical range ~5 levels
+    else:
+        level_norm = 0
+
+    # Normalized XP diff
+    xp_diff_col = f'xp_diff_at_{minute}'
+    if xp_diff_col in df.columns:
+        xp_norm = df[xp_diff_col].fillna(0) / 5000.0  # typical range ~5000 XP
+    else:
+        xp_norm = 0
+
+    # Power score: weighted combination
+    df[f'power_score_at_{minute}'] = 0.4 * gold_norm + 0.3 * level_norm + 0.3 * xp_norm
+    df[f'power_diff_at_{minute}'] = df[f'power_score_at_{minute}']  # already a diff
+
+    # Ult advantage: count players at level milestones
+    # Milestones: 6 (first ult), 11 (ult rank 2), 16 (ult rank 3)
+    if minute >= 5:  # only relevant after a few minutes
+        milestone = 6 if minute < 12 else (11 if minute < 18 else 16)
+
+        t100_at_milestone = 0
+        t200_at_milestone = 0
+        for pos in positions:
+            t100_col = f'team_100_{pos}_level_at_{minute}'
+            t200_col = f'team_200_{pos}_level_at_{minute}'
+            if t100_col in df.columns:
+                t100_at_milestone = t100_at_milestone + (df[t100_col].fillna(0) >= milestone).astype(int)
+            if t200_col in df.columns:
+                t200_at_milestone = t200_at_milestone + (df[t200_col].fillna(0) >= milestone).astype(int)
+
+        df[f'ult_advantage_at_{minute}'] = t100_at_milestone - t200_at_milestone
+    else:
+        df[f'ult_advantage_at_{minute}'] = 0
 
     return df
 

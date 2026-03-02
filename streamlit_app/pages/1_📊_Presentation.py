@@ -135,13 +135,14 @@ st.warning("""
 st.markdown("### Approche multi-modèles")
 
 st.code("""
-Data Collection  →  Feature Engineering  →  5 Modèles ML  →  Prédictions
+Data Collection  →  Feature Engineering  →  5 Modeles ML  →  Predictions
      ↓                      ↓                     ↓               ↓
-API Riot             Draft features          Draft only      51.1%
-OP.GG Scraping       Summoner stats          @5min gold      68.1%
-CommunityDragon      Synergies/Counters      @10min gold+CS  73.7%
-                     Timeline gold/CS        @15min gold     79.0%
-                                             @20min gold     81.7%
+API Riot             Draft features          Draft only      54.0%
+dpm.lol Scraping     Winrates externes       @5min gold      65.4%
+CommunityDragon      Matchups par lane       @10min gold+CS  72.0%
+                     Synergies/Counters      @15min gold     78.0%
+                     Summoner stats temp.    @20min gold     79.9%
+                     Timeline gold/CS
 """, language=None)
 
 st.markdown("### Données")
@@ -153,8 +154,8 @@ try:
     match_str = f"{match_count:,}"
     timeline_str = f"{timeline_count:,}"
 except Exception:
-    match_str = "280,000+"
-    timeline_str = "103,000+"
+    match_str = "305,000+"
+    timeline_str = "164,000+"
 
 st.markdown(f"""
 - 📦 **{match_str} matchs** collectés

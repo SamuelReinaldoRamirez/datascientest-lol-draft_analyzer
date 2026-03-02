@@ -473,6 +473,26 @@ class MatchDatabase:
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_summoner_role_stats_puuid ON summoner_role_stats(puuid)')
             cursor.execute('CREATE INDEX IF NOT EXISTS idx_summoner_role_stats_timestamp ON summoner_role_stats(snapshot_timestamp)')
 
+            # Migrate match_timeline: add level/xp/cs columns
+            cursor.execute('PRAGMA table_info(match_timeline)')
+            existing_timeline_cols = {row[1] for row in cursor.fetchall()}
+
+            teams = ['100', '200']
+            positions = ['top', 'jungle', 'mid', 'adc', 'support']
+            new_metrics = ['level', 'xp', 'cs']
+
+            for metric in new_metrics:
+                for team in teams:
+                    for pos in positions:
+                        col_name = f'team_{team}_{pos}_{metric}'
+                        if col_name not in existing_timeline_cols:
+                            col_type = 'INTEGER'
+                            try:
+                                cursor.execute(f'ALTER TABLE match_timeline ADD COLUMN {col_name} {col_type}')
+                                print(f"  Added column {col_name} to match_timeline")
+                            except Exception:
+                                pass
+
     def _enable_wal(self):
         """
         Enable WAL (Write-Ahead Logging) mode for better concurrent access.
@@ -1446,8 +1466,13 @@ class MatchDatabase:
     # Match Timeline Methods (NEW)
     # ================================================================
 
-    def insert_timeline_frame(self, match_id: str, minute: int, team_gold: Dict, position_gold: Dict):
-        """Insert a timeline frame (gold at minute M)"""
+    def insert_timeline_frame(self, match_id: str, minute: int, team_gold: Dict, position_gold: Dict,
+                              position_level: Dict = None, position_xp: Dict = None, position_cs: Dict = None):
+        """Insert a timeline frame (gold/level/xp/cs at minute M)"""
+        position_level = position_level or {}
+        position_xp = position_xp or {}
+        position_cs = position_cs or {}
+
         with self.get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute('''
@@ -1455,8 +1480,14 @@ class MatchDatabase:
                     match_id, minute,
                     team_100_gold, team_200_gold, gold_diff,
                     team_100_top_gold, team_100_jungle_gold, team_100_mid_gold, team_100_adc_gold, team_100_support_gold,
-                    team_200_top_gold, team_200_jungle_gold, team_200_mid_gold, team_200_adc_gold, team_200_support_gold
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    team_200_top_gold, team_200_jungle_gold, team_200_mid_gold, team_200_adc_gold, team_200_support_gold,
+                    team_100_top_level, team_100_jungle_level, team_100_mid_level, team_100_adc_level, team_100_support_level,
+                    team_200_top_level, team_200_jungle_level, team_200_mid_level, team_200_adc_level, team_200_support_level,
+                    team_100_top_xp, team_100_jungle_xp, team_100_mid_xp, team_100_adc_xp, team_100_support_xp,
+                    team_200_top_xp, team_200_jungle_xp, team_200_mid_xp, team_200_adc_xp, team_200_support_xp,
+                    team_100_top_cs, team_100_jungle_cs, team_100_mid_cs, team_100_adc_cs, team_100_support_cs,
+                    team_200_top_cs, team_200_jungle_cs, team_200_mid_cs, team_200_adc_cs, team_200_support_cs
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
                 match_id, minute,
                 team_gold.get('team_100', 0), team_gold.get('team_200', 0),
@@ -1466,7 +1497,64 @@ class MatchDatabase:
                 position_gold.get('team_100_support', 0),
                 position_gold.get('team_200_top', 0), position_gold.get('team_200_jungle', 0),
                 position_gold.get('team_200_mid', 0), position_gold.get('team_200_adc', 0),
-                position_gold.get('team_200_support', 0)
+                position_gold.get('team_200_support', 0),
+                # Level
+                position_level.get('team_100_top'), position_level.get('team_100_jungle'),
+                position_level.get('team_100_mid'), position_level.get('team_100_adc'),
+                position_level.get('team_100_support'),
+                position_level.get('team_200_top'), position_level.get('team_200_jungle'),
+                position_level.get('team_200_mid'), position_level.get('team_200_adc'),
+                position_level.get('team_200_support'),
+                # XP
+                position_xp.get('team_100_top'), position_xp.get('team_100_jungle'),
+                position_xp.get('team_100_mid'), position_xp.get('team_100_adc'),
+                position_xp.get('team_100_support'),
+                position_xp.get('team_200_top'), position_xp.get('team_200_jungle'),
+                position_xp.get('team_200_mid'), position_xp.get('team_200_adc'),
+                position_xp.get('team_200_support'),
+                # CS
+                position_cs.get('team_100_top'), position_cs.get('team_100_jungle'),
+                position_cs.get('team_100_mid'), position_cs.get('team_100_adc'),
+                position_cs.get('team_100_support'),
+                position_cs.get('team_200_top'), position_cs.get('team_200_jungle'),
+                position_cs.get('team_200_mid'), position_cs.get('team_200_adc'),
+                position_cs.get('team_200_support'),
+            ))
+
+    def update_timeline_level_xp_cs(self, match_id: str, minute: int,
+                                     position_level: Dict, position_xp: Dict, position_cs: Dict):
+        """Update existing timeline row with level/xp/cs data (for backfill)."""
+        with self.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                UPDATE match_timeline SET
+                    team_100_top_level = ?, team_100_jungle_level = ?, team_100_mid_level = ?, team_100_adc_level = ?, team_100_support_level = ?,
+                    team_200_top_level = ?, team_200_jungle_level = ?, team_200_mid_level = ?, team_200_adc_level = ?, team_200_support_level = ?,
+                    team_100_top_xp = ?, team_100_jungle_xp = ?, team_100_mid_xp = ?, team_100_adc_xp = ?, team_100_support_xp = ?,
+                    team_200_top_xp = ?, team_200_jungle_xp = ?, team_200_mid_xp = ?, team_200_adc_xp = ?, team_200_support_xp = ?,
+                    team_100_top_cs = ?, team_100_jungle_cs = ?, team_100_mid_cs = ?, team_100_adc_cs = ?, team_100_support_cs = ?,
+                    team_200_top_cs = ?, team_200_jungle_cs = ?, team_200_mid_cs = ?, team_200_adc_cs = ?, team_200_support_cs = ?
+                WHERE match_id = ? AND minute = ?
+            ''', (
+                position_level.get('team_100_top'), position_level.get('team_100_jungle'),
+                position_level.get('team_100_mid'), position_level.get('team_100_adc'),
+                position_level.get('team_100_support'),
+                position_level.get('team_200_top'), position_level.get('team_200_jungle'),
+                position_level.get('team_200_mid'), position_level.get('team_200_adc'),
+                position_level.get('team_200_support'),
+                position_xp.get('team_100_top'), position_xp.get('team_100_jungle'),
+                position_xp.get('team_100_mid'), position_xp.get('team_100_adc'),
+                position_xp.get('team_100_support'),
+                position_xp.get('team_200_top'), position_xp.get('team_200_jungle'),
+                position_xp.get('team_200_mid'), position_xp.get('team_200_adc'),
+                position_xp.get('team_200_support'),
+                position_cs.get('team_100_top'), position_cs.get('team_100_jungle'),
+                position_cs.get('team_100_mid'), position_cs.get('team_100_adc'),
+                position_cs.get('team_100_support'),
+                position_cs.get('team_200_top'), position_cs.get('team_200_jungle'),
+                position_cs.get('team_200_mid'), position_cs.get('team_200_adc'),
+                position_cs.get('team_200_support'),
+                match_id, minute,
             ))
 
     def get_match_timeline(self, match_id: str) -> List[Dict]:
@@ -2377,11 +2465,23 @@ class MatchDatabase:
                     f'{alias}.team_200_gold as team_200_gold_at_{minute}',
                     f'{alias}.gold_diff as gold_diff_at_{minute}',
                 ])
-                # Position-specific gold
+                # Position-specific gold, level, xp, cs
                 for pos in positions:
                     timeline_selects.extend([
                         f'{alias}.team_100_{pos}_gold as team_100_{pos}_gold_at_{minute}',
                         f'{alias}.team_200_{pos}_gold as team_200_{pos}_gold_at_{minute}',
+                    ])
+                for metric in ['level', 'xp']:
+                    for pos in positions:
+                        timeline_selects.extend([
+                            f'{alias}.team_100_{pos}_{metric} as team_100_{pos}_{metric}_at_{minute}',
+                            f'{alias}.team_200_{pos}_{metric} as team_200_{pos}_{metric}_at_{minute}',
+                        ])
+                # CS from timeline uses different alias to avoid collision with player_stats CS@10
+                for pos in positions:
+                    timeline_selects.extend([
+                        f'{alias}.team_100_{pos}_cs as team_100_{pos}_timeline_cs_at_{minute}',
+                        f'{alias}.team_200_{pos}_cs as team_200_{pos}_timeline_cs_at_{minute}',
                     ])
 
             timeline_select_str = ',\n                '.join(timeline_selects)

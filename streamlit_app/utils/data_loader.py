@@ -275,6 +275,30 @@ def load_timeline_data_parquet() -> pd.DataFrame:
     return pd.read_parquet(path)
 
 
+# =============================================================================
+# V3 DATA LOADERS (temporal summoner stats)
+# =============================================================================
+
+@st.cache_data(ttl=3600)
+def load_train_temporal_stats() -> pd.DataFrame:
+    """Load the train set with temporal summoner stats from parquet."""
+    path = PROCESSED_DIR / "train_temporal_stats.parquet"
+    if not path.exists():
+        st.warning(f"V3 train parquet introuvable : {path}, fallback to V2")
+        return load_train_with_summoner()
+    return pd.read_parquet(path)
+
+
+@st.cache_data(ttl=3600)
+def load_test_temporal_stats() -> pd.DataFrame:
+    """Load the test set with temporal summoner stats from parquet."""
+    path = PROCESSED_DIR / "test_temporal_stats.parquet"
+    if not path.exists():
+        st.warning(f"V3 test parquet introuvable : {path}, fallback to V2")
+        return load_test_with_summoner()
+    return pd.read_parquet(path)
+
+
 @st.cache_data(ttl=3600)
 def get_database_tables_info() -> dict:
     """Get info about all tables in the database (name, row count, columns)."""
