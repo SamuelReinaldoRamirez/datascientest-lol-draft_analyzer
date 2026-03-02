@@ -1,0 +1,42 @@
+# Data files
+data/raw/*.txt
+data/raw/*.json
+*.db
+# data/processed/
+# data/processed_opgg/
+# data/archive/
+# data/*.csv
+# data/*.csv.gz
+# data/features/
+# data/opgg/
+# data/dpmlol/
+# data/champions_*.csv
+
+# Models
+models/*.pkl
+
+# Logs
+*.log
+logs/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Auto Claude
+.auto-claude/
+
+# Streamlit
+.streamlit/
+
+# Claude settings
+.claude_settings.json
