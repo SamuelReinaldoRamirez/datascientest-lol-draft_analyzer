@@ -1,0 +1,212 @@
+elo,server,patch,champion,role,role_pickrate,tier,winrate,winrate_evol,pickrate,games
+Master,EUW,7days,Gwen,top,52.0%,S+,55.2%,+3.4%,3.9%,1 626
+Master,EUW,7days,Rengar,jungle,87.8%,S+,53.8%,+2.6%,6.4%,2 639
+Master,EUW,7days,Syndra,mid,92.7%,S+,52.8%,+0.3%,9.2%,3 805
+Master,EUW,7days,Irelia,top,66.5%,S+,53.5%,+2.6%,5.1%,2 094
+Master,EUW,7days,Kha'Zix,jungle,99.7%,S+,52.0%,+2.4%,10.4%,4 314
+Master,EUW,7days,Braum,support,100.0%,S+,51.1%,+1.7%,11.7%,4 866
+Master,EUW,7days,Kassadin,mid,96.9%,S+,52.1%,+0.8%,8.5%,3 533
+Master,EUW,7days,Diana,jungle,79.7%,S+,51.0%,-0.5%,11.9%,4 934
+Master,EUW,7days,Veigar,adc,25.3%,S+,55.6%,+3.1%,1.2%,505
+Master,EUW,7days,Fiora,top,97.4%,S+,52.9%,-0.8%,4.7%,1 962
+Master,EUW,7days,Aphelios,adc,99.3%,S+,51.0%,-0.1%,11.5%,4 764
+Master,EUW,7days,Anivia,mid,71.1%,S+,54.3%,+1.4%,4.0%,1 653
+Master,EUW,7days,Shaco,jungle,79.5%,S+,53.1%,+0.1%,4.8%,1 975
+Master,EUW,7days,Gwen,jungle,45.3%,S+,53.0%,+2.3%,3.7%,1 545
+Master,EUW,7days,Yasuo,adc,11.8%,S+,53.4%,+0.8%,2.3%,939
+Master,EUW,7days,Riven,top,90.2%,S+,52.3%,-1.3%,5.5%,2 277
+Master,EUW,7days,Jax,top,77.6%,S+,52.1%,+0.2%,6.1%,2 517
+Master,EUW,7days,Varus,adc,63.8%,S,50.2%,+4.3%,12.1%,5 030
+Master,EUW,7days,Ekko,jungle,68.7%,S,51.3%,+1.0%,8.3%,3 435
+Master,EUW,7days,Caitlyn,adc,99.3%,S,50.2%,+1.5%,14.4%,5 963
+Master,EUW,7days,Ivern,jungle,83.5%,S,54.6%,-0.1%,2.6%,1 087
+Master,EUW,7days,Rek'Sai,jungle,87.7%,S,53.9%,+0.5%,4.5%,1 856
+Master,EUW,7days,Thresh,support,99.8%,S,51.6%,+0.6%,10.9%,4 526
+Master,EUW,7days,Jinx,adc,99.8%,S,51.5%,+0.9%,11.2%,4 624
+Master,EUW,7days,Karthus,adc,21.4%,S,54.5%,+1.5%,1.4%,560
+Master,EUW,7days,Nami,support,99.9%,S,51.1%,-0.1%,19.8%,8 196
+Master,EUW,7days,Janna,support,99.4%,S,51.7%,-0.1%,8.7%,3 619
+Master,EUW,7days,Pyke,support,98.7%,S,51.4%,+0.9%,5.5%,2 276
+Master,EUW,7days,Talon,jungle,67.1%,S,51.1%,-0.8%,6.6%,2 715
+Master,EUW,7days,Lulu,support,98.8%,S,50.5%,+0.7%,11.4%,4 714
+Master,EUW,7days,Swain,adc,32.4%,S,53.9%,+0.0%,2.3%,958
+Master,EUW,7days,Nautilus,support,99.0%,A,49.7%,-0.2%,12.6%,5 229
+Master,EUW,7days,Katarina,mid,95.0%,A,50.4%,-0.1%,7.3%,3 042
+Master,EUW,7days,Bard,support,99.5%,A,49.8%,-1.3%,10.7%,4 421
+Master,EUW,7days,Ahri,mid,96.3%,A,51.6%,-0.9%,8.2%,3 407
+Master,EUW,7days,Viego,jungle,94.0%,A,48.9%,-0.6%,14.6%,6 044
+Master,EUW,7days,Yasuo,mid,61.1%,A,49.8%,+1.8%,9.0%,3 719
+Master,EUW,7days,Ambessa,top,62.1%,A,50.0%,+0.5%,7.6%,3 160
+Master,EUW,7days,Teemo,top,84.6%,A,53.4%,+2.4%,1.2%,513
+Master,EUW,7days,Akshan,mid,90.9%,A,50.9%,-0.7%,5.0%,2 090
+Master,EUW,7days,Qiyana,mid,44.4%,A,50.8%,+1.4%,4.2%,1 751
+Master,EUW,7days,Twisted Fate,mid,95.3%,A,52.3%,+0.4%,5.0%,2 053
+Master,EUW,7days,Draven,adc,94.9%,A,50.4%,-0.7%,5.2%,2 162
+Master,EUW,7days,Jayce,mid,7.4%,A,51.6%,+0.8%,1.3%,535
+Master,EUW,7days,Sivir,adc,99.3%,A,50.9%,+2.1%,6.8%,2 819
+Master,EUW,7days,Karma,support,94.7%,A,49.4%,-0.6%,11.5%,4 786
+Master,EUW,7days,Zyra,jungle,45.9%,A,53.1%,+1.2%,1.3%,527
+Master,EUW,7days,Corki,adc,86.2%,A,50.1%,+2.0%,10.1%,4 168
+Master,EUW,7days,Alistar,support,99.5%,A,51.1%,+0.8%,6.9%,2 857
+Master,EUW,7days,Tristana,adc,83.1%,A,51.7%,-0.4%,4.8%,1 971
+Master,EUW,7days,Kog'Maw,adc,79.8%,B,52.7%,+0.8%,2.3%,962
+Master,EUW,7days,Nilah,adc,98.8%,B,52.4%,-0.4%,2.0%,811
+Master,EUW,7days,Jhin,adc,98.7%,B,50.0%,+0.5%,11.2%,4 653
+Master,EUW,7days,Zed,jungle,39.1%,B,50.3%,+2.3%,4.7%,1 936
+Master,EUW,7days,Naafiri,mid,48.1%,B,50.9%,-1.1%,3.2%,1 341
+Master,EUW,7days,Kennen,top,86.9%,B,51.8%,-1.0%,3.8%,1 595
+Master,EUW,7days,Samira,adc,98.9%,B,51.9%,+1.5%,3.8%,1 592
+Master,EUW,7days,Vel'Koz,mid,32.6%,B,52.5%,+3.4%,2.2%,929
+Master,EUW,7days,Urgot,top,96.6%,B,51.9%,-0.7%,4.2%,1 756
+Master,EUW,7days,Zaahen,top,88.7%,B,50.3%,+0.1%,7.0%,2 886
+Master,EUW,7days,Blitzcrank,support,99.7%,B,51.2%,-0.3%,4.5%,1 878
+Master,EUW,7days,Ornn,top,97.1%,B,51.6%,+1.6%,5.3%,2 198
+Master,EUW,7days,Aurora,top,27.0%,B,52.5%,+3.6%,1.4%,594
+Master,EUW,7days,Yunara,adc,99.6%,B,48.9%,+1.3%,14.5%,6 011
+Master,EUW,7days,Sylas,mid,54.4%,B,50.2%,+1.5%,5.5%,2 274
+Master,EUW,7days,Irelia,mid,33.0%,B,50.7%,+0.4%,2.3%,945
+Master,EUW,7days,Lucian,adc,96.8%,B,50.3%,-1.4%,7.8%,3 221
+Master,EUW,7days,Renekton,top,94.8%,B,50.4%,+1.3%,6.0%,2 466
+Master,EUW,7days,Camille,top,86.0%,B,52.2%,-1.6%,2.5%,1 039
+Master,EUW,7days,Tristana,mid,14.7%,B,52.4%,+1.4%,1.1%,445
+Master,EUW,7days,Kayle,top,73.0%,B,51.5%,+0.1%,2.9%,1 206
+Master,EUW,7days,Qiyana,jungle,49.6%,B,50.0%,+0.1%,4.0%,1 669
+Master,EUW,7days,Leona,support,99.8%,B,50.9%,-0.6%,6.1%,2 517
+Master,EUW,7days,Varus,top,29.3%,C,49.7%,+2.3%,4.6%,1 917
+Master,EUW,7days,Volibear,jungle,58.2%,C,50.0%,+0.9%,6.7%,2 762
+Master,EUW,7days,Zac,jungle,71.2%,C,51.2%,+0.2%,3.9%,1 620
+Master,EUW,7days,Dr.Mundo,jungle,44.4%,C,50.4%,+0.6%,4.9%,2 039
+Master,EUW,7days,Orianna,mid,98.2%,C,50.2%,-0.8%,7.1%,2 946
+Master,EUW,7days,Soraka,support,97.0%,C,51.2%,+0.4%,4.6%,1 912
+Master,EUW,7days,Jayce,top,28.9%,C,49.8%,-0.5%,3.9%,1 613
+Master,EUW,7days,Nasus,top,77.4%,C,51.9%,+0.9%,2.0%,828
+Master,EUW,7days,Zed,mid,55.0%,C,49.1%,-1.0%,6.1%,2 515
+Master,EUW,7days,Ambessa,jungle,32.8%,C,49.9%,+1.3%,3.4%,1 398
+Master,EUW,7days,Aurelion Sol,adc,24.2%,C,52.1%,+0.5%,1.4%,574
+Master,EUW,7days,Malphite,top,66.7%,C,49.1%,-2.2%,5.6%,2 334
+Master,EUW,7days,Vex,mid,95.4%,C,51.7%,+0.9%,2.0%,841
+Master,EUW,7days,Zoe,mid,83.5%,C,50.7%,+0.3%,4.0%,1 662
+Master,EUW,7days,Swain,mid,24.2%,C,51.8%,-2.9%,1.6%,660
+Master,EUW,7days,Poppy,support,48.1%,C,51.3%,-0.9%,1.7%,698
+Master,EUW,7days,Gangplank,top,94.8%,C,50.5%,+1.7%,5.2%,2 174
+Master,EUW,7days,Kindred,jungle,97.3%,C,51.5%,+0.5%,2.1%,870
+Master,EUW,7days,Vayne,adc,53.8%,C,49.7%,-0.4%,4.8%,1 977
+Master,EUW,7days,Cassiopeia,top,35.7%,C,51.4%,-2.0%,1.7%,716
+Master,EUW,7days,Jarvan IV,jungle,95.7%,C,49.1%,-1.3%,9.3%,3 860
+Master,EUW,7days,Elise,support,39.7%,C,51.1%,+0.5%,2.3%,936
+Master,EUW,7days,Sona,support,99.4%,C,49.6%,-1.6%,7.7%,3 188
+Master,EUW,7days,Evelynn,jungle,99.1%,C,51.0%,-1.0%,2.4%,1 001
+Master,EUW,7days,Pantheon,jungle,16.8%,C,51.8%,+1.3%,1.1%,454
+Master,EUW,7days,Twitch,adc,93.4%,C,49.2%,+0.1%,6.9%,2 857
+Master,EUW,7days,Pantheon,top,32.9%,C,51.5%,+0.4%,1.7%,714
+Master,EUW,7days,Neeko,support,82.0%,C,50.8%,+1.1%,3.9%,1 623
+Master,EUW,7days,Olaf,top,91.7%,C,50.9%,+0.2%,2.9%,1 203
+Master,EUW,7days,Hecarim,jungle,99.8%,C,50.0%,-1.7%,4.9%,2 016
+Master,EUW,7days,Rakan,support,98.5%,C,49.7%,+0.6%,7.4%,3 072
+Master,EUW,7days,Ryze,mid,82.5%,C,47.6%,+0.2%,10.3%,4 277
+Master,EUW,7days,Xerath,mid,70.5%,C,50.9%,+2.5%,3.2%,1 337
+Master,EUW,7days,Vayne,top,42.5%,C,49.4%,-0.6%,4.1%,1 707
+Master,EUW,7days,Rumble,top,86.8%,C,50.1%,+0.6%,4.3%,1 778
+Master,EUW,7days,LeeSin,jungle,95.4%,C,49.4%,+0.0%,7.1%,2 935
+Master,EUW,7days,Taric,support,96.9%,C,51.1%,+0.3%,2.2%,918
+Master,EUW,7days,Veigar,mid,67.2%,C,50.9%,+1.1%,3.0%,1 227
+Master,EUW,7days,Vladimir,mid,48.2%,C,50.0%,+1.2%,3.0%,1 253
+Master,EUW,7days,Kayn,jungle,95.0%,C,50.8%,+0.2%,2.7%,1 133
+Master,EUW,7days,Aatrox,top,78.0%,C,49.4%,+1.3%,5.5%,2 270
+Master,EUW,7days,Naafiri,jungle,38.3%,C,49.2%,+0.6%,3.0%,1 263
+Master,EUW,7days,Galio,mid,87.8%,C,50.1%,+1.1%,4.4%,1 808
+Master,EUW,7days,Akali,mid,76.2%,C,47.7%,-0.2%,7.1%,2 941
+Master,EUW,7days,Ekko,mid,29.6%,C,48.5%,-0.6%,4.3%,1 777
+Master,EUW,7days,Shen,top,86.6%,C,50.1%,+0.2%,4.2%,1 747
+Master,EUW,7days,Aurora,mid,71.0%,C,50.4%,+2.2%,2.5%,1 041
+Master,EUW,7days,Milio,support,99.8%,C,49.1%,-1.1%,6.2%,2 588
+Master,EUW,7days,Senna,support,89.1%,C,49.9%,+0.2%,4.6%,1 900
+Master,EUW,7days,Nidalee,jungle,81.9%,D,50.4%,-0.6%,2.6%,1 097
+Master,EUW,7days,Akali,top,23.6%,D,48.9%,-1.8%,2.1%,887
+Master,EUW,7days,Lissandra,mid,87.9%,D,50.6%,+0.7%,1.9%,802
+Master,EUW,7days,Kled,top,90.1%,D,50.7%,-0.6%,1.8%,726
+Master,EUW,7days,Rammus,jungle,88.7%,D,50.8%,+1.2%,1.4%,573
+Master,EUW,7days,Nunu,jungle,92.5%,D,50.1%,-0.8%,2.7%,1 132
+Master,EUW,7days,Ashe,adc,91.9%,D,49.8%,-1.5%,4.3%,1 782
+Master,EUW,7days,Kai'Sa,adc,97.9%,D,47.4%,-1.4%,13.7%,5 668
+Master,EUW,7days,Miss Fortune,adc,98.5%,D,49.5%,-2.2%,5.1%,2 116
+Master,EUW,7days,Sion,top,81.0%,D,49.4%,+1.0%,5.5%,2 260
+Master,EUW,7days,Gragas,top,65.8%,D,50.4%,+1.0%,2.4%,975
+Master,EUW,7days,Vladimir,top,45.3%,D,49.5%,-0.3%,2.5%,1 039
+Master,EUW,7days,Master Yi,jungle,89.1%,D,49.3%,+0.2%,3.4%,1 406
+Master,EUW,7days,Taliyah,mid,54.9%,D,49.5%,-2.1%,4.0%,1 660
+Master,EUW,7days,Jax,jungle,20.7%,D,48.7%,-3.2%,1.4%,599
+Master,EUW,7days,Elise,jungle,56.5%,D,49.4%,-0.7%,3.2%,1 346
+Master,EUW,7days,Leblanc,mid,85.3%,D,48.1%,-1.7%,3.5%,1 454
+Master,EUW,7days,Viktor,mid,93.4%,D,49.1%,-0.7%,5.2%,2 139
+Master,EUW,7days,Dr.Mundo,top,53.2%,D,48.7%,-1.2%,3.8%,1 566
+Master,EUW,7days,Kalista,adc,89.5%,D,50.4%,-0.1%,1.3%,552
+Master,EUW,7days,Maokai,support,73.6%,D,50.5%,-2.7%,1.1%,444
+Master,EUW,7days,Fizz,mid,93.6%,D,49.7%,-0.8%,2.6%,1 088
+Master,EUW,7days,Briar,jungle,87.0%,D,50.1%,+0.4%,1.6%,677
+Master,EUW,7days,Quinn,top,67.2%,D,50.2%,-1.9%,1.3%,526
+Master,EUW,7days,Cho'Gath,top,66.8%,D,49.8%,+1.1%,2.7%,1 115
+Master,EUW,7days,Mel,adc,18.8%,D,48.5%,-0.9%,1.1%,439
+Master,EUW,7days,Volibear,top,41.1%,D,48.8%,+2.9%,2.9%,1 194
+Master,EUW,7days,Singed,top,81.6%,D,49.6%,-2.0%,2.6%,1 089
+Master,EUW,7days,Seraphine,adc,24.2%,D,50.1%,-0.4%,1.3%,545
+Master,EUW,7days,Darius,top,96.6%,D,47.8%,-1.9%,4.9%,2 020
+Master,EUW,7days,Xayah,adc,99.6%,D,49.7%,-2.7%,2.5%,1 045
+Master,EUW,7days,Zilean,support,75.5%,D,49.1%,-1.4%,3.4%,1 403
+Master,EUW,7days,Zeri,adc,95.9%,D,49.3%,+2.2%,3.8%,1 563
+Master,EUW,7days,Rell,support,99.6%,D,48.6%,+0.1%,5.2%,2 170
+Master,EUW,7days,Yasuo,top,26.8%,D,47.6%,+2.7%,3.4%,1 397
+Master,EUW,7days,Talon,mid,32.1%,D,48.2%,-1.2%,1.3%,558
+Master,EUW,7days,Tryndamere,top,82.1%,D,49.7%,-1.9%,1.7%,698
+Master,EUW,7days,Jayce,jungle,63.5%,D,46.7%,-2.1%,6.2%,2 563
+Master,EUW,7days,Garen,top,91.3%,D,49.0%,-0.3%,3.6%,1 511
+Master,EUW,7days,Morgana,support,73.8%,D,49.6%,+3.5%,1.5%,617
+Master,EUW,7days,Aatrox,jungle,19.9%,D,48.9%,-0.7%,2.2%,918
+Master,EUW,7days,Hwei,mid,75.2%,D,49.3%,+0.0%,2.6%,1 090
+Master,EUW,7days,Xin Zhao,jungle,87.1%,D,49.3%,-0.0%,2.7%,1 114
+Master,EUW,7days,Ezreal,adc,97.3%,D,46.7%,-1.3%,10.5%,4 363
+Master,EUW,7days,Lux,mid,45.3%,D,49.5%,-0.1%,2.2%,914
+Master,EUW,7days,Cassiopeia,mid,45.5%,D,49.2%,-2.9%,1.9%,785
+Master,EUW,7days,Kayle,mid,25.8%,D,49.0%,-0.7%,1.5%,608
+Master,EUW,7days,Aurelion Sol,mid,69.0%,D,49.2%,-0.2%,2.6%,1 087
+Master,EUW,7days,Vi,jungle,96.2%,D,49.4%,+2.4%,1.9%,785
+Master,EUW,7days,Renata,support,98.8%,D,49.6%,+0.6%,1.4%,571
+Master,EUW,7days,Bel'Veth,jungle,94.4%,D,48.1%,-3.0%,2.0%,831
+Master,EUW,7days,Nocturne,jungle,90.6%,D,49.0%,-1.2%,2.6%,1 088
+Master,EUW,7days,Fiddlesticks,jungle,67.0%,D,48.9%,-1.3%,2.4%,994
+Master,EUW,7days,Sett,top,91.0%,D,49.0%,-0.0%,2.5%,1 036
+Master,EUW,7days,Ryze,top,17.0%,D,48.0%,-0.9%,2.2%,892
+Master,EUW,7days,Sylas,jungle,30.1%,D,47.7%,-0.8%,2.5%,1 039
+Master,EUW,7days,Taliyah,jungle,39.3%,D,48.5%,-0.8%,2.6%,1 076
+Master,EUW,7days,Smolder,adc,82.5%,D,47.6%,-1.3%,5.7%,2 370
+Master,EUW,7days,Yone,top,43.9%,D,48.3%,+0.8%,2.7%,1 138
+Master,EUW,7days,Wukong,jungle,77.2%,D,48.5%,-1.8%,2.5%,1 025
+Master,EUW,7days,Malzahar,mid,92.0%,D,48.2%,+1.4%,3.0%,1 228
+Master,EUW,7days,Mel,mid,57.3%,D,46.6%,-0.7%,2.5%,1 024
+Master,EUW,7days,Seraphine,support,68.9%,D,48.3%,+1.1%,2.4%,976
+Master,EUW,7days,Warwick,top,53.6%,D,48.5%,-3.4%,1.5%,633
+Master,EUW,7days,Diana,mid,19.3%,D,46.5%,-2.2%,1.7%,705
+Master,EUW,7days,Udyr,jungle,62.5%,D,47.9%,-1.8%,1.9%,785
+Master,EUW,7days,Yone,mid,55.1%,D,47.3%,-0.5%,3.7%,1 547
+Master,EUW,7days,Tahm Kench,support,53.7%,D,48.1%,+0.7%,1.0%,430
+Master,EUW,7days,K'Sante,top,95.4%,D,46.8%,-0.9%,4.7%,1 933
+Master,EUW,7days,Mordekaiser,top,88.6%,D,47.6%,+0.1%,2.5%,1 022
+Master,EUW,7days,Ziggs,adc,78.8%,D,47.7%,-2.4%,2.3%,950
+Master,EUW,7days,Gnar,top,99.0%,D,46.9%,-0.5%,4.4%,1 824
+Master,EUW,7days,Poppy,top,38.2%,D,47.3%,-2.8%,1.3%,520
+Master,EUW,7days,Zyra,support,44.5%,D,47.8%,+0.1%,1.2%,504
+Master,EUW,7days,Pantheon,support,35.4%,D,47.5%,-2.1%,1.9%,773
+Master,EUW,7days,Karthus,jungle,69.7%,D,47.2%,-1.7%,1.9%,782
+Master,EUW,7days,Yorick,top,94.5%,D,46.5%,+0.2%,2.3%,958
+Master,EUW,7days,Vel'Koz,support,44.5%,D,46.5%,-1.0%,2.0%,823
+Master,EUW,7days,Illaoi,top,95.4%,D,46.8%,-1.5%,1.2%,511
+Master,EUW,7days,Graves,jungle,94.4%,D,46.6%,-3.2%,1.8%,734
+Master,EUW,7days,Lillia,jungle,98.9%,D,46.3%,-0.1%,1.8%,737
+Master,EUW,7days,Anivia,top,17.0%,D,46.1%,-3.0%,1.0%,421
+Master,EUW,7days,Sejuani,jungle,66.4%,D,45.5%,+1.8%,1.3%,539
+Master,EUW,7days,Naafiri,top,12.6%,D,42.9%,-5.8%,1.2%,485
+Master,EUW,7days,Lux,support,36.8%,D,43.8%,-2.0%,1.6%,653
+Master,EUW,7days,Malphite,jungle,23.6%,D,41.9%,-5.4%,1.5%,626
+Master,EUW,7days,Azir,mid,92.2%,D,43.2%,-4.0%,2.5%,1 054
+Master,EUW,7days,Yuumi,support,99.7%,D,42.5%,-1.1%,2.9%,1 201
+Master,EUW,7days,Smolder,mid,13.4%,D,42.7%,+0.2%,1.1%,454

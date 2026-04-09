@@ -13,7 +13,7 @@ from contextlib import contextmanager
 from datetime import datetime
 from typing import Optional, Set, Dict, Any, List
 
-from config import REGION
+from src.collect_data.config import REGION
 
 
 class MatchDatabase:
@@ -477,7 +477,7 @@ class MatchDatabase:
             # Insert team stats
             # Get champion data for ban names
             try:
-                from champion_data import get_champion_data
+                from src.collect_data.champion_data import get_champion_data
                 champion_data = get_champion_data()
             except Exception:
                 champion_data = None
@@ -527,7 +527,7 @@ class MatchDatabase:
             # Insert player stats
             # Import summoner spell name function
             try:
-                from champion_data import get_summoner_spell_name
+                from src.collect_data.champion_data import get_summoner_spell_name
             except Exception:
                 get_summoner_spell_name = lambda x: f"Spell_{x}"
 
@@ -696,7 +696,7 @@ class MatchDatabase:
                 # Insert team stats
                 # Get champion data for ban names (once per batch for efficiency)
                 try:
-                    from champion_data import get_champion_data
+                    from src.collect_data.champion_data import get_champion_data
                     champion_data = get_champion_data()
                 except Exception:
                     champion_data = None
@@ -745,7 +745,7 @@ class MatchDatabase:
                 # Insert player stats
                 # Import summoner spell name function
                 try:
-                    from champion_data import get_summoner_spell_name
+                    from src.collect_data.champion_data import get_summoner_spell_name
                 except Exception:
                     get_summoner_spell_name = lambda x: f"Spell_{x}"
 
@@ -1175,7 +1175,7 @@ class MatchDatabase:
 
         if len(df) > 0:
             try:
-                from champion_data import get_champion_data
+                from src.collect_data.champion_data import get_champion_data
                 cd = get_champion_data()
                 df['champion_name'] = df['champion_id'].apply(cd.get_champion_name)
             except Exception:
@@ -1262,7 +1262,7 @@ class MatchDatabase:
         Returns:
             Number of records updated
         """
-        from champion_data import get_champion_data
+        from src.collect_data.champion_data import get_champion_data
         cd = get_champion_data()
 
         with self.get_connection() as conn:
@@ -1310,7 +1310,7 @@ class MatchDatabase:
         Returns:
             Number of records updated
         """
-        from champion_data import get_summoner_spell_name
+        from src.collect_data.champion_data import get_summoner_spell_name
 
         with self.get_connection() as conn:
             cursor = conn.cursor()
@@ -1469,7 +1469,7 @@ class MatchDatabase:
         if len(df) > 0:
             # Add champion names from ChampionData
             try:
-                from champion_data import get_champion_data
+                from src.collect_data.champion_data import get_champion_data
                 cd = get_champion_data()
                 df['champion_name'] = df['champion_id'].apply(cd.get_champion_name)
             except Exception:
@@ -1553,7 +1553,7 @@ class MatchDatabase:
             ''', (puuid,))
 
             try:
-                from champion_data import get_champion_data
+                from src.collect_data.champion_data import get_champion_data
                 cd = get_champion_data()
                 summoner['top_champions'] = [
                     {

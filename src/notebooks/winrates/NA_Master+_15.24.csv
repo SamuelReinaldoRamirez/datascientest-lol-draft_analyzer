@@ -1,0 +1,229 @@
+elo,server,patch,champion,role,role_pickrate,tier,winrate,winrate_evol,pickrate,games
+Master+,NA,15.24,Riven,mid,6.0%,S+,56.8%,+2.4%,1.1%,701
+Master+,NA,15.24,Riven,top,83.0%,S+,54.9%,-2.2%,5.4%,3 551
+Master+,NA,15.24,Brand,adc,18.5%,S+,57.7%,-3.0%,1.3%,827
+Master+,NA,15.24,Qiyana,mid,28.2%,S+,54.3%,-0.4%,3.6%,2 373
+Master+,NA,15.24,Zoe,mid,80.6%,S+,54.3%,-2.7%,3.9%,2 532
+Master+,NA,15.24,Tristana,adc,89.1%,S+,52.0%,-1.4%,10.9%,7 159
+Master+,NA,15.24,Miss Fortune,adc,99.1%,S+,51.3%,-0.1%,19.8%,12 955
+Master+,NA,15.24,Yasuo,adc,11.8%,S+,54.0%,+0.3%,1.9%,1 261
+Master+,NA,15.24,Bard,support,99.2%,S+,51.3%,-0.8%,11.0%,7 191
+Master+,NA,15.24,Fiora,top,97.5%,S+,52.5%,-2.5%,6.1%,3 987
+Master+,NA,15.24,Draven,adc,95.6%,S+,52.4%,-3.5%,6.4%,4 160
+Master+,NA,15.24,Karthus,adc,24.5%,S+,55.1%,-4.9%,1.2%,795
+Master+,NA,15.24,Kindred,jungle,97.3%,S+,52.5%,+0.8%,5.2%,3 377
+Master+,NA,15.24,Quinn,top,70.2%,S,54.1%,+1.3%,2.7%,1 737
+Master+,NA,15.24,Graves,jungle,97.0%,S,52.4%,-0.7%,7.8%,5 095
+Master+,NA,15.24,Fiddlesticks,support,26.6%,S,54.6%,-2.2%,1.1%,711
+Master+,NA,15.24,Bel'Veth,jungle,97.0%,S,52.9%,+2.7%,2.9%,1 882
+Master+,NA,15.24,Syndra,mid,92.2%,S,50.9%,+0.3%,10.1%,6 584
+Master+,NA,15.24,Rek'Sai,jungle,79.6%,S,53.6%,-1.1%,4.5%,2 960
+Master+,NA,15.24,Zyra,jungle,37.4%,S,54.5%,-0.7%,1.7%,1 111
+Master+,NA,15.24,Talon,mid,25.6%,S,52.8%,-2.5%,2.3%,1 508
+Master+,NA,15.24,Ivern,jungle,81.5%,S,53.7%,-0.7%,3.1%,2 019
+Master+,NA,15.24,Taric,support,93.4%,S,54.2%,+0.7%,2.5%,1 604
+Master+,NA,15.24,Shaco,jungle,73.9%,S,52.2%,+0.4%,3.6%,2 377
+Master+,NA,15.24,Tristana,mid,10.0%,S,53.3%,-11.9%,1.1%,705
+Master+,NA,15.24,Rumble,top,85.3%,S,53.6%,-3.4%,3.6%,2 366
+Master+,NA,15.24,Taliyah,jungle,20.7%,S,54.2%,-3.0%,1.5%,998
+Master+,NA,15.24,Swain,mid,25.5%,S,54.0%,-1.9%,2.4%,1 538
+Master+,NA,15.24,Nami,support,99.9%,S,50.8%,-0.8%,18.7%,12 227
+Master+,NA,15.24,Zac,jungle,62.2%,S,53.3%,-1.7%,2.8%,1 850
+Master+,NA,15.24,Urgot,top,94.3%,S,52.9%,-0.2%,4.9%,3 223
+Master+,NA,15.24,Zaahen,top,79.0%,A,50.0%,+0.7%,9.6%,6 263
+Master+,NA,15.24,Blitzcrank,support,99.6%,A,51.5%,-0.6%,5.1%,3 330
+Master+,NA,15.24,Sylas,top,5.7%,A,52.6%,+0.0%,1.0%,662
+Master+,NA,15.24,Rumble,jungle,6.6%,A,54.0%,-1.9%,1.0%,657
+Master+,NA,15.24,Janna,support,98.4%,A,51.4%,-1.2%,8.9%,5 823
+Master+,NA,15.24,Karma,support,93.5%,A,50.4%,-1.7%,11.6%,7 568
+Master+,NA,15.24,Jax,top,74.4%,A,51.2%,+0.3%,5.3%,3 491
+Master+,NA,15.24,Poppy,top,28.0%,A,52.4%,-1.3%,1.8%,1 190
+Master+,NA,15.24,Talon,jungle,73.3%,A,50.6%,+1.7%,6.7%,4 377
+Master+,NA,15.24,Ashe,adc,94.9%,A,51.2%,+1.3%,9.3%,6 064
+Master+,NA,15.24,Sylas,mid,37.1%,A,50.5%,-2.4%,6.8%,4 438
+Master+,NA,15.24,Rengar,jungle,89.6%,A,50.6%,+2.1%,6.2%,4 067
+Master+,NA,15.24,Nautilus,support,98.8%,A,50.0%,-0.0%,10.1%,6 593
+Master+,NA,15.24,Pyke,support,97.9%,A,50.7%,-1.5%,5.5%,3 627
+Master+,NA,15.24,Poppy,support,61.4%,A,51.8%,+2.5%,2.5%,1 661
+Master+,NA,15.24,Syndra,adc,5.6%,A,52.0%,+1.1%,1.4%,942
+Master+,NA,15.24,Swain,adc,27.8%,A,52.8%,-0.7%,2.9%,1 902
+Master+,NA,15.24,Vayne,top,26.8%,A,52.8%,-5.4%,1.9%,1 271
+Master+,NA,15.24,Kha'Zix,jungle,99.5%,A,51.2%,-0.5%,6.4%,4 158
+Master+,NA,15.24,Zed,mid,52.0%,A,50.3%,+0.5%,5.7%,3 748
+Master+,NA,15.24,Leona,support,99.8%,A,51.1%,+1.6%,7.3%,4 768
+Master+,NA,15.24,Ahri,mid,96.0%,A,51.0%,-2.2%,7.9%,5 165
+Master+,NA,15.24,Pantheon,mid,10.1%,A,52.9%,-2.4%,1.2%,765
+Master+,NA,15.24,Akshan,mid,90.2%,A,50.9%,+1.2%,4.3%,2 795
+Master+,NA,15.24,Malphite,top,58.2%,A,49.9%,-3.1%,6.2%,4 027
+Master+,NA,15.24,Sona,support,98.9%,A,50.5%,+1.3%,8.4%,5 467
+Master+,NA,15.24,Kennen,top,76.3%,B,52.3%,-0.0%,3.1%,2 051
+Master+,NA,15.24,Lux,adc,20.0%,B,52.1%,+1.2%,3.4%,2 208
+Master+,NA,15.24,LeeSin,jungle,95.1%,B,50.1%,+0.8%,8.4%,5 491
+Master+,NA,15.24,Ambessa,jungle,27.4%,B,50.5%,-0.3%,3.6%,2 351
+Master+,NA,15.24,Akali,mid,77.5%,B,49.9%,-0.1%,5.8%,3 793
+Master+,NA,15.24,Sylas,jungle,51.4%,B,49.4%,-0.4%,7.3%,4 796
+Master+,NA,15.24,Elise,jungle,40.2%,B,52.2%,-0.3%,2.0%,1 330
+Master+,NA,15.24,Annie,mid,82.5%,B,52.8%,-6.2%,1.3%,848
+Master+,NA,15.24,Udyr,jungle,71.8%,B,51.7%,-1.7%,3.2%,2 116
+Master+,NA,15.24,Cho'Gath,top,60.0%,B,51.7%,-2.5%,4.3%,2 809
+Master+,NA,15.24,Jayce,top,37.6%,B,49.7%,+2.1%,5.5%,3 577
+Master+,NA,15.24,Ambessa,top,67.4%,B,49.0%,-0.1%,7.5%,4 898
+Master+,NA,15.24,Ekko,jungle,57.3%,B,50.7%,-1.3%,5.7%,3 698
+Master+,NA,15.24,Vex,mid,95.1%,B,52.1%,-2.5%,2.1%,1 366
+Master+,NA,15.24,Rakan,support,99.1%,B,51.2%,-1.7%,5.7%,3 731
+Master+,NA,15.24,Kled,top,91.6%,B,52.1%,-3.0%,2.5%,1 611
+Master+,NA,15.24,Vayne,adc,69.4%,B,50.8%,+0.3%,5.2%,3 393
+Master+,NA,15.24,Qiyana,jungle,67.9%,C,49.5%,-0.5%,5.4%,3 540
+Master+,NA,15.24,Jayce,mid,10.7%,C,50.5%,+1.1%,2.1%,1 395
+Master+,NA,15.24,Hwei,adc,16.0%,C,52.0%,-2.7%,1.7%,1 119
+Master+,NA,15.24,Seraphine,support,74.3%,C,51.4%,-1.3%,4.3%,2 810
+Master+,NA,15.24,Thresh,support,99.8%,C,49.9%,+1.3%,8.1%,5 321
+Master+,NA,15.24,Xayah,adc,99.5%,C,51.8%,-0.8%,2.6%,1 709
+Master+,NA,15.24,Yasuo,mid,57.1%,C,49.1%,+0.5%,6.2%,4 032
+Master+,NA,15.24,Fiddlesticks,jungle,61.6%,C,51.4%,+2.6%,2.1%,1 359
+Master+,NA,15.24,Jayce,jungle,51.4%,C,49.0%,+2.2%,6.4%,4 162
+Master+,NA,15.24,Braum,support,99.9%,C,49.8%,+2.8%,5.8%,3 816
+Master+,NA,15.24,Vladimir,top,48.3%,C,50.3%,+0.2%,3.5%,2 282
+Master+,NA,15.24,Jarvan IV,jungle,95.8%,C,49.4%,+0.4%,8.8%,5 776
+Master+,NA,15.24,Jhin,adc,98.5%,C,48.8%,+1.1%,12.9%,8 412
+Master+,NA,15.24,Katarina,mid,95.0%,C,50.3%,-1.9%,5.0%,3 299
+Master+,NA,15.24,Jinx,adc,99.7%,C,50.1%,+1.5%,7.8%,5 087
+Master+,NA,15.24,Irelia,mid,36.2%,C,51.0%,-2.7%,1.7%,1 097
+Master+,NA,15.24,Gragas,top,67.8%,C,51.5%,-5.0%,2.7%,1 786
+Master+,NA,15.24,Lulu,support,98.8%,C,49.2%,-1.0%,8.7%,5 667
+Master+,NA,15.24,Akali,top,22.2%,C,50.1%,-0.5%,2.5%,1 610
+Master+,NA,15.24,Lucian,adc,97.1%,C,48.8%,-0.3%,10.1%,6 577
+Master+,NA,15.24,Cassiopeia,mid,47.8%,C,51.7%,-3.9%,1.5%,955
+Master+,NA,15.24,Anivia,mid,72.8%,C,50.7%,+0.9%,4.1%,2 655
+Master+,NA,15.24,Diana,jungle,67.3%,C,50.0%,-0.2%,6.4%,4 157
+Master+,NA,15.24,Senna,support,89.8%,C,50.7%,+0.5%,4.9%,3 206
+Master+,NA,15.24,Shen,top,86.2%,C,51.2%,-1.5%,3.4%,2 211
+Master+,NA,15.24,Neeko,support,79.7%,C,51.1%,+2.3%,2.7%,1 795
+Master+,NA,15.24,Kassadin,mid,96.7%,C,50.9%,-0.1%,3.4%,2 201
+Master+,NA,15.24,Milio,support,99.8%,C,48.9%,-0.2%,9.3%,6 099
+Master+,NA,15.24,Twitch,adc,85.5%,C,49.9%,+0.7%,5.7%,3 733
+Master+,NA,15.24,Fizz,mid,87.8%,C,50.6%,-0.4%,4.2%,2 758
+Master+,NA,15.24,Zac,mid,10.4%,C,51.4%,+1.1%,1.1%,689
+Master+,NA,15.24,Kai'Sa,adc,98.0%,C,48.5%,-1.4%,13.8%,9 010
+Master+,NA,15.24,Singed,top,85.3%,C,51.0%,+1.4%,3.7%,2 392
+Master+,NA,15.24,Kog'Maw,adc,85.5%,C,51.7%,-1.3%,1.5%,983
+Master+,NA,15.24,Aurora,mid,72.3%,C,50.8%,-3.5%,3.1%,2 004
+Master+,NA,15.24,Aatrox,top,49.5%,C,48.5%,+0.2%,6.1%,4 013
+Master+,NA,15.24,Aatrox,jungle,48.9%,C,48.6%,-1.8%,5.8%,3 800
+Master+,NA,15.24,Ziggs,adc,73.6%,C,51.0%,+1.9%,3.0%,1 994
+Master+,NA,15.24,Alistar,support,99.1%,C,50.0%,-1.0%,6.0%,3 943
+Master+,NA,15.24,Ezreal,adc,97.9%,C,49.1%,-1.5%,9.0%,5 882
+Master+,NA,15.24,Veigar,mid,69.7%,C,51.2%,+0.5%,2.6%,1 714
+Master+,NA,15.24,Zed,jungle,43.2%,C,49.2%,-2.5%,3.3%,2 181
+Master+,NA,15.24,Warwick,top,47.6%,C,51.3%,-1.7%,1.6%,1 014
+Master+,NA,15.24,Smolder,adc,82.6%,C,48.9%,-2.9%,8.3%,5 461
+Master+,NA,15.24,Heimerdinger,top,61.0%,C,51.3%,+0.0%,1.2%,758
+Master+,NA,15.24,Ryze,mid,77.4%,C,50.4%,-3.3%,4.0%,2 590
+Master+,NA,15.24,Ziggs,mid,24.5%,C,51.3%,-4.1%,1.2%,778
+Master+,NA,15.24,Leblanc,mid,82.0%,C,49.0%,+1.0%,3.4%,2 252
+Master+,NA,15.24,Brand,support,42.0%,C,51.4%,-8.2%,1.2%,771
+Master+,NA,15.24,Aphelios,adc,98.9%,C,49.4%,+0.8%,7.2%,4 729
+Master+,NA,15.24,Soraka,support,97.2%,C,49.9%,-0.1%,5.4%,3 539
+Master+,NA,15.24,Irelia,top,62.6%,C,49.7%,+0.5%,3.6%,2 323
+Master+,NA,15.24,Teemo,top,75.3%,C,50.6%,+1.6%,2.6%,1 677
+Master+,NA,15.24,Sivir,adc,99.0%,C,49.6%,-0.3%,5.4%,3 503
+Master+,NA,15.24,Vladimir,mid,50.4%,C,49.4%,+3.4%,3.2%,2 112
+Master+,NA,15.24,Jax,jungle,23.3%,C,49.3%,+1.1%,2.0%,1 334
+Master+,NA,15.24,Zoe,support,16.1%,C,49.8%,+0.6%,1.6%,1 042
+Master+,NA,15.24,Viego,jungle,95.9%,C,48.6%,-1.4%,8.1%,5 316
+Master+,NA,15.24,Gwen,jungle,25.6%,C,49.7%,+0.2%,2.0%,1 282
+Master+,NA,15.24,Twisted Fate,mid,93.1%,C,50.5%,+1.8%,3.1%,2 048
+Master+,NA,15.24,Volibear,top,63.2%,C,50.7%,-3.0%,2.2%,1 443
+Master+,NA,15.24,Morgana,mid,37.5%,C,50.3%,-1.1%,2.0%,1 330
+Master+,NA,15.24,Master Yi,jungle,86.3%,C,49.6%,+0.5%,3.3%,2 132
+Master+,NA,15.24,Nunu,jungle,81.6%,C,50.3%,+0.2%,3.0%,1 980
+Master+,NA,15.24,Caitlyn,adc,97.0%,C,48.2%,+1.5%,7.6%,5 004
+Master+,NA,15.24,Kayle,mid,39.5%,C,50.2%,+0.0%,2.6%,1 677
+Master+,NA,15.24,Swain,top,22.9%,C,50.6%,-0.4%,1.7%,1 109
+Master+,NA,15.24,Hecarim,jungle,99.8%,D,49.3%,-2.8%,5.2%,3 400
+Master+,NA,15.24,Orianna,mid,97.7%,D,48.9%,+0.7%,6.9%,4 517
+Master+,NA,15.24,Garen,top,90.1%,D,49.6%,-0.8%,4.4%,2 894
+Master+,NA,15.24,Gwen,top,69.5%,D,48.9%,+1.6%,3.6%,2 360
+Master+,NA,15.24,Gangplank,top,91.7%,D,50.1%,+2.2%,3.3%,2 147
+Master+,NA,15.24,Tryndamere,top,78.6%,D,50.0%,+0.7%,2.5%,1 611
+Master+,NA,15.24,Viktor,mid,93.8%,D,48.7%,+0.2%,7.5%,4 890
+Master+,NA,15.24,Renekton,top,94.1%,D,48.9%,+2.0%,5.6%,3 661
+Master+,NA,15.24,Ekko,mid,39.8%,D,49.4%,+1.6%,4.1%,2 681
+Master+,NA,15.24,Kayn,jungle,92.8%,D,48.8%,-2.6%,5.2%,3 370
+Master+,NA,15.24,Briar,jungle,90.1%,D,50.3%,-3.6%,2.0%,1 289
+Master+,NA,15.24,Evelynn,jungle,97.9%,D,50.2%,-1.3%,2.0%,1 286
+Master+,NA,15.24,Taliyah,mid,72.5%,D,49.7%,+3.5%,3.7%,2 420
+Master+,NA,15.24,Shyvana,jungle,88.6%,D,50.6%,-2.8%,1.4%,886
+Master+,NA,15.24,Galio,mid,84.1%,D,49.0%,+2.6%,4.5%,2 955
+Master+,NA,15.24,Camille,top,84.8%,D,49.9%,+0.1%,3.1%,2 054
+Master+,NA,15.24,Warwick,jungle,49.8%,D,50.5%,-6.8%,1.2%,802
+Master+,NA,15.24,Karthus,jungle,66.9%,D,50.0%,-2.9%,1.9%,1 229
+Master+,NA,15.24,Rell,support,99.8%,D,49.3%,+0.3%,4.9%,3 176
+Master+,NA,15.24,Naafiri,mid,38.0%,D,49.8%,-1.0%,2.3%,1 484
+Master+,NA,15.24,Zaahen,jungle,17.0%,D,48.4%,+0.4%,2.4%,1 572
+Master+,NA,15.24,Xin Zhao,jungle,92.5%,D,49.5%,-2.9%,4.0%,2 607
+Master+,NA,15.24,Olaf,top,85.5%,D,50.2%,+0.5%,1.5%,990
+Master+,NA,15.24,Kayle,top,59.2%,D,49.5%,+4.0%,3.0%,1 968
+Master+,NA,15.24,Vel'Koz,support,47.8%,D,50.2%,-2.0%,1.4%,933
+Master+,NA,15.24,Zyra,support,48.2%,D,49.8%,-2.5%,2.1%,1 386
+Master+,NA,15.24,Elise,support,57.6%,D,49.3%,-0.6%,2.3%,1 532
+Master+,NA,15.24,Swain,support,23.8%,D,49.7%,-0.7%,1.5%,955
+Master+,NA,15.24,Sion,top,83.2%,D,48.7%,-1.3%,5.0%,3 251
+Master+,NA,15.24,Xerath,mid,69.5%,D,49.4%,-1.2%,3.0%,1 968
+Master+,NA,15.24,Zilean,support,78.4%,D,49.0%,-0.3%,3.0%,1 970
+Master+,NA,15.24,Nidalee,jungle,82.6%,D,49.4%,+2.0%,2.8%,1 807
+Master+,NA,15.24,Darius,top,93.5%,D,48.2%,+2.0%,4.4%,2 870
+Master+,NA,15.24,Lissandra,mid,91.5%,D,49.5%,+1.8%,2.5%,1 607
+Master+,NA,15.24,Lillia,jungle,98.7%,D,49.2%,+0.5%,2.3%,1 533
+Master+,NA,15.24,Lux,mid,47.4%,D,49.1%,-1.6%,2.5%,1 609
+Master+,NA,15.24,Pantheon,top,30.5%,D,49.3%,-1.3%,1.8%,1 169
+Master+,NA,15.24,Riven,jungle,10.5%,D,47.9%,+1.7%,1.4%,893
+Master+,NA,15.24,Naafiri,jungle,51.9%,D,48.9%,-0.0%,2.3%,1 500
+Master+,NA,15.24,Gnar,top,98.5%,D,49.3%,+0.8%,2.4%,1 565
+Master+,NA,15.24,Pantheon,support,39.1%,D,49.1%,-1.4%,2.1%,1 389
+Master+,NA,15.24,Mel,adc,23.1%,D,47.2%,+1.6%,3.4%,2 235
+Master+,NA,15.24,K'Sante,top,95.7%,D,48.4%,-1.7%,4.2%,2 779
+Master+,NA,15.24,Diana,mid,31.4%,D,48.5%,-0.9%,2.8%,1 861
+Master+,NA,15.24,Ornn,top,92.3%,D,48.7%,+1.0%,3.8%,2 473
+Master+,NA,15.24,Skarner,jungle,75.1%,D,49.5%,-5.6%,1.2%,766
+Master+,NA,15.24,Malphite,jungle,33.6%,D,47.0%,-2.9%,3.2%,2 094
+Master+,NA,15.24,Malzahar,mid,90.1%,D,48.3%,+2.0%,3.5%,2 276
+Master+,NA,15.24,Nasus,top,78.1%,D,48.5%,+0.7%,3.0%,1 965
+Master+,NA,15.24,Corki,adc,77.4%,D,48.5%,+0.1%,3.6%,2 327
+Master+,NA,15.24,Nocturne,jungle,90.0%,D,48.8%,-0.8%,2.2%,1 415
+Master+,NA,15.24,Hwei,mid,75.9%,D,48.4%,-0.3%,3.3%,2 150
+Master+,NA,15.24,Yone,top,45.5%,D,48.1%,+0.3%,4.0%,2 645
+Master+,NA,15.24,Illaoi,top,95.2%,D,49.1%,-2.9%,1.2%,764
+Master+,NA,15.24,Seraphine,adc,18.5%,D,48.9%,+2.5%,1.7%,1 143
+Master+,NA,15.24,Vel'Koz,mid,32.5%,D,49.1%,+7.3%,1.0%,670
+Master+,NA,15.24,Nilah,adc,98.5%,D,48.8%,+1.9%,1.4%,914
+Master+,NA,15.24,Yunara,adc,99.4%,D,46.9%,+2.4%,7.5%,4 916
+Master+,NA,15.24,Yasuo,top,30.8%,D,46.9%,+5.5%,2.8%,1 807
+Master+,NA,15.24,Mordekaiser,top,89.9%,D,48.2%,+2.7%,3.3%,2 169
+Master+,NA,15.24,Aurelion Sol,mid,71.9%,D,48.9%,+2.4%,1.4%,890
+Master+,NA,15.24,Morgana,support,52.1%,D,48.1%,+3.9%,2.0%,1 313
+Master+,NA,15.24,Yone,mid,53.4%,D,47.4%,+2.0%,4.8%,3 126
+Master+,NA,15.24,Dr.Mundo,top,59.6%,D,47.3%,-0.6%,3.9%,2 522
+Master+,NA,15.24,Sejuani,jungle,54.3%,D,48.7%,+3.4%,1.1%,709
+Master+,NA,15.24,Samira,adc,98.7%,D,47.6%,+2.2%,3.0%,1 967
+Master+,NA,15.24,Aurora,top,25.9%,D,47.9%,-1.0%,1.2%,802
+Master+,NA,15.24,Sett,top,92.0%,D,47.7%,+1.3%,2.7%,1 762
+Master+,NA,15.24,Wukong,jungle,80.4%,D,47.7%,+4.3%,2.3%,1 533
+Master+,NA,15.24,Varus,adc,76.5%,D,47.4%,+4.2%,3.3%,2 132
+Master+,NA,15.24,Volibear,jungle,35.1%,D,47.8%,+1.8%,1.6%,1 017
+Master+,NA,15.24,Dr.Mundo,jungle,35.6%,D,47.1%,+2.7%,1.9%,1 231
+Master+,NA,15.24,Mel,mid,57.9%,D,45.2%,+0.3%,3.7%,2 448
+Master+,NA,15.24,Maokai,support,75.9%,D,47.4%,+6.0%,1.8%,1 187
+Master+,NA,15.24,Zeri,adc,96.2%,D,46.7%,+3.2%,4.1%,2 665
+Master+,NA,15.24,Yuumi,support,99.2%,D,46.2%,-0.2%,4.0%,2 623
+Master+,NA,15.24,Lux,support,31.9%,D,47.0%,-4.0%,1.9%,1 253
+Master+,NA,15.24,Renata,support,99.6%,D,47.2%,+3.0%,1.3%,867
+Master+,NA,15.24,Kalista,adc,92.8%,D,46.9%,-5.2%,1.1%,727
+Master+,NA,15.24,Cho'Gath,jungle,21.2%,D,46.7%,-0.9%,1.3%,829
+Master+,NA,15.24,Sejuani,top,39.4%,D,46.8%,+3.9%,1.1%,710
+Master+,NA,15.24,Yorick,top,95.2%,D,46.1%,+8.2%,1.5%,1 011
+Master+,NA,15.24,Azir,mid,91.6%,D,46.0%,+3.8%,2.5%,1 628
+Master+,NA,15.24,Ryze,top,22.1%,D,45.6%,+3.3%,1.3%,824
+Master+,NA,15.24,Amumu,jungle,61.2%,D,44.9%,+3.5%,1.0%,684
+Master+,NA,15.24,Vi,jungle,94.4%,D,44.6%,+2.5%,1.6%,1 048
+Master+,NA,15.24,Smolder,mid,13.1%,D,44.1%,-1.1%,1.2%,794

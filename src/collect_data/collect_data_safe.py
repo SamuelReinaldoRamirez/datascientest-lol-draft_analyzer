@@ -30,13 +30,13 @@ import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 
-from riot_api import (
+from src.collect_data.riot_api import (
     get_entries, get_matches_by_puuid, get_match_details, get_account_by_puuid,
     get_challenger_league, get_grandmaster_league, get_master_league,
     get_high_elo_players, get_summoner_by_summoner_id, get_api_key_count,
     get_key_rotator, get_match_timeline
 )
-from database import MatchDatabase
+from src.collect_data.database import MatchDatabase
 
 
 class RateLimiter:

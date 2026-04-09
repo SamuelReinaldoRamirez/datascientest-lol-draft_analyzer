@@ -1,0 +1,275 @@
+question : renekton est-il plus efficace dans une compo poke? compo burst ? splitpush ? lategame ?
+
+pour ca, on cherche à établir des clusters : ap vs ad vs tank. high winrate vs low winrate, high picrate vs low pickrate (servira de pondérateur). early vs late game, splitpush vs teamfight, low cc vs high cc.
+
+on regarde à chaque fois la taille des groupes et leurs winrates / leur winrates face à d'autres types de groupes.
+
+ou alors, on prend des metrics qui nous intéressent sur chaque groupe et on fait du clustering. ou l'un puis l'autre en se servant des metrics acquises telles que team early game.
+
+ensuite on regarde où renek se situe.
+
+
+à chaque patch, quel champion a le meilleur pickrate ? et quel champion a le meilleur ratio winrate / pickrate ? on peut faire un podium top 3 et ca sera des points de reperes pour voir les patchs qui font changer la meta. pareil avec les objets.
+
+
+
+à la fin de la draft, on regarde 4 champions parmis 5 et on donne une classe à la compo de 4 et on regarde à quel point le champion a un bon winrate dans ce genre de compos. puis on fait la moyenne sur les 5 groupes. on peut faire ca aussi par duo vs classes de trios. et vs la classe de l'équipe en face. ca nous donne une liste de winrates. ca nous fait de la feature. et c'est sur cette feature qu'on va entrainer. une liste de winrates par champions. on ne gardera que les winrates les plus impactants apres l'analyse dimensionnelle.
+
+
+il faut faire des classes de drafts (5v5 par 5v5) : 5v5 qui devrait se finir vite/ finir longtemps ou 5v5 équilibré vs déséquilibré (cad où l'écart de gold s'est fait rapidement (a atteint un seuil et s'y est maintenu pendant x temps) ), n'a pas changé de camp (en comptant le nombres de revirements. un revirement étant un seuil franchi de différences de golds) ), a été le plus important)
+une classe de 5v5 peut etre [classe de team vs classe de team]
+
+pour améliorer les algos :
+------------------------------------
+
+- trier les games sur lesquelles on fait notre entrainement : games déséquilibrées (pour trouver les games déséquilibrées, regarder les classes des équipes/compos 5v5, regarder les golds/ min, ses seuils et inversions de possession)
+- augmenter les features : classes, winrates, stats (soit orienter champion, soit orienté composition soit orientée invocateur soit les 3 ou 2) (champs : stats sur champs, sorts, winrates), (compo : synergies à quantifier, counters à quantifier), (invocateurs : winrate à ce role, winrate contre ses adversaires, avec ses équipiers, maitrise des champions en jeu par invocateur, nb de parties les x derniers jours/mois, en série de défaite/victoire de combien, plus longue serie de victoire, plus longue série de défaites, taux de FF, KDA à ce role, 3 dernieres series de défaites/victoires (dates et longueur de la série. ca nous permet d'estimer le mmr pour les joueurs non pros)
+- ajuster les parametres des algos
+
+
+-entrainer par patch/elo
+-regarder sur les joueurs pros
+------------------------------------
+
+
+table champions/patchs
+table joueurs
+
+-on va ajouter les winrates et pickrates des champions par patch / par role / par elo / par serveur / contre chaque champ / avec chaque champ et pourquoi pas avec et contre tel duo, trio, quatre.
+-on veut aussi le nombre de parties par invocateur sur le role choisi, avec le champion choisi. le winrate à ce role, le winrate avec ce champ (dans les 3 derniers patchs), le winrate en etant teammate avec chaque champ et en étant contre chaque champ
+
+
+
+-stocker les targz à un endroit.
+- lors des création sde csv de champions : le targz existe-t-il? oui? je le lis. non? je le DL 
+- lors le l'écriture : (1 csv par patch) faire la liste des features disponible et faire la liste de celles qu'on vet garder.
+
+rechercher à quoi correspond le blind (teemo), fear(fiddle), stun (taric, sion), projection(sion, yasuo, malphite), chargement du spell (yasuo q), root(neeko, zyra) (lilia, l'endormissement, c'est quoi?) voir si on a la durée du stun, la force du ralentissement, la durée et la force de la brûlure, le dash
+
+
+
+-------------------------
+collecter les sorts : 
+https://raw.communitydragon.org/ : toutes les données sur tous les patchs ?
+les détails sur teemo pour le patch 12.2 :
+https://raw.communitydragon.org/12.2/game/data/characters/teemo/teemo.bin.json
+les détails sur les champignons de teemo (tous les objets créés par des champions semblent avoir une entrée) :
+https://raw.communitydragon.org/12.2/game/data/characters/teemomushroom/teemomushroom.bin.json
+https://hextechdocs.dev/resolving-variables-in-spell-textsa/
+
+
+collecter les winrates : 
+https://www.metasrc.com/lol/build/aatrox
+ChampStats (champstats.gg / champstats.ai)
+LoLalytics / U.GG / OP.GG
+
+avoir les puuid : 
+GET /lol/league/v4/entries/{queue}/{tier}/{division}
+Exemple :
+/lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/I
+
+
+collecter les games jusqua grandmaster : 
+/lol/match/v5/matches/by-puuid/{puuid}/ids
+/lol/match/v5/matches/{matchId}
+
+collecter les timelines des games (jusquà GM) : 
+/lol/match/v5/matches/{matchId}/timeline
+
+
+-----GM :
+🏆 Cas 1 : Challenger / GM / Master (le plus simple)
+1️⃣ Récupérer la league
+GET /lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5
+
+
+(ou grandmasterleagues / masterleagues)
+
+➡️ Réponse :
+
+{
+  "entries": [
+    {
+      "summonerId": "abcd1234",
+      "summonerName": "Player1",
+      "leaguePoints": 1023
+    }
+  ]
+}
+
+
+📌 Tu obtiens :
+
+summonerId
+
+PAS le PUUID
+
+2️⃣ Convertir Summoner → PUUID
+GET /lol/summoner/v4/summoners/{summonerId}
+
+
+➡️ Réponse :
+
+{
+  "puuid": "XXXXXXXX"
+}
+
+
+✅ Tu peux maintenant utiliser le PUUID pour :
+
+récupérer les matchs
+
+faire des stats
+
+analyser la timeline
+-----
+
+collecter les games pros : 
+je voudrais donc utiliser oracle's elixir ou gol.gg, ou leaguepedia mais existe-t-il des apis ?
+
+Très bonne question — et là, la réponse est nuancée selon le site.
+Je te fais un état des lieux clair, exploitable et honnête 👇
+
+🟢 Oracle’s Elixir
+❌ Pas d’API REST officielle
+
+Pas d’endpoint documenté
+
+Pas d’accès programmatique “clé/API key”
+
+✅ MAIS : exports CSV officiels
+
+👉 C’est volontairement la voie recommandée
+
+Oracle’s Elixir met à disposition :
+
+des CSV propres
+
+maintenus
+
+stables
+
+par :
+
+ligue
+
+split
+
+patch
+
+joueur
+
+équipe
+
+Exemples de données :
+
+gold diff @10 / @15
+
+cs diff
+
+XP diff
+
+KDA
+
+durée de game
+
+side (blue/red)
+
+champion
+
+rôle
+
+➡️ C’est l’équivalent d’une API… en fichiers
+
+💡 En pratique :
+
+tu télécharges périodiquement les CSV
+
+tu les importes en DB
+
+tu fais tes requêtes dessus
+
+👉 C’est LA solution la plus propre et la plus utilisée en data LoL pro
+
+🟡 Gol.gg
+❌ Pas d’API officielle
+⚠️ API interne / scraping possible
+
+Données accessibles via le frontend
+
+JSON parfois visibles dans les requêtes réseau
+
+Pas documenté
+
+Pas garanti
+
+Risque de blocage
+
+👉 Gol.gg est très bon pour :
+
+consultation humaine
+
+vérification rapide
+👉 Moins bon pour :
+
+pipeline data long terme
+
+🟢 Leaguepedia (LA vraie API)
+✅ OUI, une API officielle existe 🎉
+
+Leaguepedia repose sur MediaWiki, donc tu as accès à :
+
+👉 MediaWiki API officielle
+
+publique
+
+documentée
+
+stable
+
+légale
+
+Ce que tu peux récupérer :
+
+matchs
+
+drafts
+
+équipes
+
+joueurs
+
+ligues
+
+patchs
+
+dates
+
+résultats
+
+Exemple de types de données :
+
+champions joués
+
+bans
+
+side selection
+
+rosters
+
+tournoi
+
+match history
+
+⚠️ Limitation :
+
+❌ pas de timeline
+
+❌ pas de gold minute par minute
+
+❌ stats macro fines parfois absentes
+
+Mais :
+➡️ parfait pour structurer les games pro
+
+--------------------------

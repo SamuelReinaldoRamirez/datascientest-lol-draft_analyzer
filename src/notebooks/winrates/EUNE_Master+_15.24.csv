@@ -1,0 +1,212 @@
+elo,server,patch,champion,role,role_pickrate,tier,winrate,winrate_evol,pickrate,games
+Master+,EUNE,15.24,Syndra,mid,92.2%,S+,51.4%,-2.4%,11.8%,6 669
+Master+,EUNE,15.24,Milio,support,99.8%,S+,51.1%,-0.9%,12.7%,7 160
+Master+,EUNE,15.24,Janna,support,98.4%,S+,51.9%,-1.9%,11.8%,6 639
+Master+,EUNE,15.24,Malphite,top,58.2%,S+,52.0%,-3.9%,7.9%,4 435
+Master+,EUNE,15.24,Nami,support,99.9%,S+,51.9%,-1.1%,22.6%,12 735
+Master+,EUNE,15.24,Jarvan IV,jungle,95.8%,S+,51.6%,-2.3%,11.4%,6 410
+Master+,EUNE,15.24,Qiyana,mid,28.2%,S+,53.0%,+1.7%,3.7%,2 110
+Master+,EUNE,15.24,Katarina,mid,95.0%,S+,50.9%,+0.9%,10.7%,6 036
+Master+,EUNE,15.24,Diana,jungle,67.3%,S+,52.1%,-2.7%,9.2%,5 177
+Master+,EUNE,15.24,Kayle,mid,39.5%,S+,52.6%,+3.8%,5.1%,2 860
+Master+,EUNE,15.24,Riven,top,83.0%,S+,52.4%,-0.5%,7.1%,3 972
+Master+,EUNE,15.24,Sylas,mid,37.1%,S,51.9%,-3.5%,6.4%,3 591
+Master+,EUNE,15.24,Nilah,adc,98.5%,S,54.4%,-1.8%,1.8%,1 015
+Master+,EUNE,15.24,Draven,adc,95.6%,S,51.2%,-1.5%,8.0%,4 499
+Master+,EUNE,15.24,Hecarim,jungle,99.8%,S,51.5%,-0.9%,6.9%,3 856
+Master+,EUNE,15.24,Zaahen,top,79.0%,S,50.6%,-3.3%,9.7%,5 465
+Master+,EUNE,15.24,Tristana,adc,89.1%,S,51.6%,-1.7%,10.2%,5 757
+Master+,EUNE,15.24,Miss Fortune,adc,99.1%,S,50.4%,+2.8%,15.9%,8 922
+Master+,EUNE,15.24,Anivia,mid,72.8%,S,54.1%,-6.2%,2.5%,1 424
+Master+,EUNE,15.24,Kassadin,mid,96.7%,S,52.3%,+1.0%,5.8%,3 287
+Master+,EUNE,15.24,Vladimir,top,48.3%,S,52.3%,-1.6%,3.5%,1 972
+Master+,EUNE,15.24,Lulu,support,98.8%,S,49.7%,+0.7%,12.0%,6 761
+Master+,EUNE,15.24,Soraka,support,97.2%,S,52.4%,-1.0%,7.1%,3 992
+Master+,EUNE,15.24,Sylas,jungle,51.4%,S,50.4%,-0.7%,9.4%,5 275
+Master+,EUNE,15.24,Smolder,adc,82.6%,S,50.5%,-0.2%,12.3%,6 931
+Master+,EUNE,15.24,Kayle,top,59.2%,S,51.4%,+0.1%,5.4%,3 036
+Master+,EUNE,15.24,Karma,support,93.5%,A,50.2%,-1.5%,13.3%,7 512
+Master+,EUNE,15.24,Kennen,top,76.3%,A,53.5%,-1.5%,2.3%,1 293
+Master+,EUNE,15.24,Ivern,jungle,81.5%,A,53.8%,-3.0%,1.7%,951
+Master+,EUNE,15.24,Thresh,support,99.8%,A,50.8%,+0.1%,10.2%,5 747
+Master+,EUNE,15.24,Nunu,jungle,81.6%,A,53.0%,-3.1%,4.1%,2 330
+Master+,EUNE,15.24,Braum,support,99.9%,A,50.7%,+1.5%,6.5%,3 665
+Master+,EUNE,15.24,Lux,adc,20.0%,A,53.8%,+1.6%,1.4%,784
+Master+,EUNE,15.24,Samira,adc,98.7%,A,51.6%,-1.0%,5.6%,3 139
+Master+,EUNE,15.24,Sylas,top,5.7%,A,52.2%,+0.6%,1.1%,636
+Master+,EUNE,15.24,Talon,jungle,73.3%,A,50.1%,+0.7%,8.1%,4 548
+Master+,EUNE,15.24,Swain,adc,27.8%,A,53.1%,+0.6%,2.7%,1 506
+Master+,EUNE,15.24,Viego,jungle,95.9%,A,50.5%,-2.9%,9.8%,5 513
+Master+,EUNE,15.24,Pyke,support,97.9%,A,50.3%,-0.3%,7.2%,4 030
+Master+,EUNE,15.24,Ahri,mid,96.0%,A,51.3%,+0.3%,8.8%,4 966
+Master+,EUNE,15.24,Singed,top,85.3%,A,53.3%,-1.3%,2.0%,1 153
+Master+,EUNE,15.24,Urgot,top,94.3%,A,52.6%,-0.9%,3.9%,2 179
+Master+,EUNE,15.24,Shen,top,86.2%,A,52.4%,-0.6%,4.6%,2 586
+Master+,EUNE,15.24,Rengar,jungle,89.6%,A,49.8%,+2.5%,8.1%,4 573
+Master+,EUNE,15.24,Zed,mid,52.0%,A,50.3%,+0.9%,6.2%,3 483
+Master+,EUNE,15.24,Vayne,adc,69.4%,A,50.2%,-3.1%,8.7%,4 879
+Master+,EUNE,15.24,Zoe,mid,80.6%,A,51.9%,+0.9%,4.1%,2 281
+Master+,EUNE,15.24,Bel'Veth,jungle,97.0%,A,51.6%,-1.3%,3.1%,1 719
+Master+,EUNE,15.24,Twitch,adc,85.5%,A,50.5%,+0.3%,7.2%,4 027
+Master+,EUNE,15.24,Jinx,adc,99.7%,A,50.5%,+0.9%,10.1%,5 658
+Master+,EUNE,15.24,Darius,top,93.5%,A,49.9%,+0.8%,7.1%,3 968
+Master+,EUNE,15.24,Qiyana,jungle,67.9%,A,50.3%,+1.2%,5.7%,3 219
+Master+,EUNE,15.24,Taric,support,93.4%,A,52.8%,-2.5%,2.5%,1 434
+Master+,EUNE,15.24,Irelia,top,62.6%,A,50.5%,+2.6%,4.7%,2 621
+Master+,EUNE,15.24,Ekko,mid,39.8%,A,51.7%,-2.4%,3.4%,1 923
+Master+,EUNE,15.24,Yasuo,top,30.8%,A,50.6%,-4.7%,3.9%,2 174
+Master+,EUNE,15.24,Cho'Gath,jungle,21.2%,A,52.8%,+4.4%,1.5%,845
+Master+,EUNE,15.24,Bard,support,99.2%,B,50.4%,-0.8%,7.5%,4 246
+Master+,EUNE,15.24,Ziggs,adc,73.6%,B,52.5%,+1.8%,2.2%,1 229
+Master+,EUNE,15.24,Jax,top,74.4%,B,49.9%,+1.0%,5.1%,2 874
+Master+,EUNE,15.24,Ambessa,top,67.4%,B,50.1%,-0.7%,5.6%,3 127
+Master+,EUNE,15.24,Xayah,adc,99.5%,B,51.5%,-1.4%,4.8%,2 707
+Master+,EUNE,15.24,Dr.Mundo,top,59.6%,B,50.2%,-1.4%,5.7%,3 230
+Master+,EUNE,15.24,Yasuo,mid,57.1%,B,49.5%,-1.6%,6.3%,3 572
+Master+,EUNE,15.24,Swain,mid,25.5%,B,52.1%,+0.1%,2.3%,1 272
+Master+,EUNE,15.24,Teemo,top,75.3%,B,51.9%,-4.7%,3.0%,1 663
+Master+,EUNE,15.24,Caitlyn,adc,97.0%,B,48.1%,+1.0%,10.8%,6 063
+Master+,EUNE,15.24,Vayne,top,26.8%,B,51.4%,+0.2%,2.1%,1 200
+Master+,EUNE,15.24,Kha'Zix,jungle,99.5%,B,49.4%,+3.1%,8.9%,5 007
+Master+,EUNE,15.24,Elise,jungle,40.2%,B,51.6%,-2.8%,2.9%,1 639
+Master+,EUNE,15.24,Irelia,mid,36.2%,B,50.4%,-1.0%,2.7%,1 503
+Master+,EUNE,15.24,Zilean,support,78.4%,B,51.4%,-0.2%,4.1%,2 325
+Master+,EUNE,15.24,Gnar,top,98.5%,B,51.9%,+0.6%,3.2%,1 829
+Master+,EUNE,15.24,Fiora,top,97.5%,B,50.3%,+1.6%,5.1%,2 862
+Master+,EUNE,15.24,Aphelios,adc,98.9%,B,50.5%,-2.2%,6.8%,3 844
+Master+,EUNE,15.24,Master Yi,jungle,86.3%,C,50.3%,-1.1%,4.2%,2 353
+Master+,EUNE,15.24,Blitzcrank,support,99.6%,C,50.4%,+0.5%,4.7%,2 669
+Master+,EUNE,15.24,Leona,support,99.8%,C,50.4%,+0.9%,6.1%,3 446
+Master+,EUNE,15.24,Jhin,adc,98.5%,C,49.2%,-0.8%,11.8%,6 626
+Master+,EUNE,15.24,Rakan,support,99.1%,C,51.1%,+0.8%,5.6%,3 136
+Master+,EUNE,15.24,LeeSin,jungle,95.1%,C,50.9%,-1.3%,5.6%,3 149
+Master+,EUNE,15.24,Ashe,adc,94.9%,C,50.1%,+0.8%,7.9%,4 454
+Master+,EUNE,15.24,Seraphine,support,74.3%,C,51.7%,-3.8%,2.9%,1 606
+Master+,EUNE,15.24,Shaco,jungle,73.9%,C,50.6%,-1.2%,3.6%,2 007
+Master+,EUNE,15.24,Sion,top,83.2%,C,51.0%,-0.5%,5.1%,2 851
+Master+,EUNE,15.24,Lucian,adc,97.1%,C,50.0%,-2.9%,8.2%,4 642
+Master+,EUNE,15.24,Tryndamere,top,78.6%,C,51.4%,-2.7%,2.8%,1 559
+Master+,EUNE,15.24,Rek'Sai,jungle,79.6%,C,51.6%,+2.2%,2.8%,1 584
+Master+,EUNE,15.24,Swain,top,22.9%,C,51.5%,-1.5%,2.1%,1 166
+Master+,EUNE,15.24,Akshan,mid,90.2%,C,49.9%,+4.0%,4.9%,2 751
+Master+,EUNE,15.24,Xerath,mid,69.5%,C,51.0%,+1.5%,4.2%,2 377
+Master+,EUNE,15.24,Zaahen,jungle,17.0%,C,50.0%,-0.0%,2.2%,1 243
+Master+,EUNE,15.24,Aatrox,top,49.5%,C,49.5%,-1.4%,5.7%,3 205
+Master+,EUNE,15.24,Zac,jungle,62.2%,C,50.7%,+0.8%,4.2%,2 373
+Master+,EUNE,15.24,Maokai,support,75.9%,C,51.9%,-3.6%,1.1%,599
+Master+,EUNE,15.24,Nocturne,jungle,90.0%,C,50.7%,+2.0%,3.9%,2 212
+Master+,EUNE,15.24,Karthus,jungle,66.9%,C,51.5%,-2.5%,1.9%,1 097
+Master+,EUNE,15.24,Vel'Koz,mid,32.5%,C,51.6%,-2.3%,1.4%,763
+Master+,EUNE,15.24,Naafiri,mid,38.0%,C,51.0%,-0.1%,1.8%,1 020
+Master+,EUNE,15.24,Kog'Maw,adc,85.5%,C,51.2%,+1.8%,2.6%,1 466
+Master+,EUNE,15.24,Gragas,top,67.8%,C,50.9%,-1.8%,3.3%,1 830
+Master+,EUNE,15.24,Sejuani,jungle,54.3%,C,51.5%,-0.5%,1.8%,1 033
+Master+,EUNE,15.24,Kled,top,91.6%,C,51.5%,-4.1%,1.6%,893
+Master+,EUNE,15.24,Twisted Fate,mid,93.1%,C,51.2%,-1.7%,2.9%,1 653
+Master+,EUNE,15.24,Senna,support,89.8%,C,50.7%,+0.4%,4.0%,2 234
+Master+,EUNE,15.24,Ekko,jungle,57.3%,C,49.3%,+2.1%,6.0%,3 403
+Master+,EUNE,15.24,Viktor,mid,93.8%,C,49.9%,-2.6%,5.7%,3 205
+Master+,EUNE,15.24,Akali,mid,77.5%,C,49.4%,+0.2%,4.9%,2 760
+Master+,EUNE,15.24,Aurelion Sol,mid,71.9%,C,51.0%,-0.2%,2.6%,1 452
+Master+,EUNE,15.24,Jax,jungle,23.3%,C,49.3%,-3.9%,2.6%,1 442
+Master+,EUNE,15.24,Leblanc,mid,82.0%,C,49.1%,-1.5%,3.9%,2 216
+Master+,EUNE,15.24,Mel,adc,23.1%,C,49.3%,-2.8%,2.4%,1 328
+Master+,EUNE,15.24,Vladimir,mid,50.4%,C,48.8%,+0.2%,4.1%,2 306
+Master+,EUNE,15.24,Quinn,top,70.2%,C,51.0%,+5.5%,1.7%,970
+Master+,EUNE,15.24,Ambessa,jungle,27.4%,C,49.6%,+0.4%,2.0%,1 104
+Master+,EUNE,15.24,Olaf,top,85.5%,C,50.7%,+0.4%,2.5%,1 380
+Master+,EUNE,15.24,Kai'Sa,adc,98.0%,C,47.6%,-0.5%,15.6%,8 776
+Master+,EUNE,15.24,Volibear,jungle,35.1%,C,50.6%,+0.9%,2.0%,1 128
+Master+,EUNE,15.24,Cho'Gath,top,60.0%,C,49.9%,-4.3%,4.2%,2 362
+Master+,EUNE,15.24,Corki,adc,77.4%,C,50.7%,+1.1%,2.3%,1 295
+Master+,EUNE,15.24,Xin Zhao,jungle,92.5%,C,50.3%,-3.9%,3.1%,1 746
+Master+,EUNE,15.24,Nautilus,support,98.8%,C,47.5%,+0.4%,8.0%,4 504
+Master+,EUNE,15.24,Lillia,jungle,98.7%,D,50.5%,-0.8%,2.2%,1 264
+Master+,EUNE,15.24,Vex,mid,95.1%,D,50.3%,-3.0%,2.1%,1 206
+Master+,EUNE,15.24,Zed,jungle,43.2%,D,48.1%,-0.5%,4.6%,2 599
+Master+,EUNE,15.24,Cassiopeia,top,36.6%,D,50.5%,-1.1%,1.3%,752
+Master+,EUNE,15.24,Annie,mid,82.5%,D,50.7%,-0.5%,1.4%,777
+Master+,EUNE,15.24,Ornn,top,92.3%,D,49.6%,+1.9%,4.9%,2 785
+Master+,EUNE,15.24,Sett,top,92.0%,D,49.5%,+0.2%,4.3%,2 440
+Master+,EUNE,15.24,Elise,support,57.6%,D,49.8%,-0.5%,2.6%,1 475
+Master+,EUNE,15.24,Yasuo,adc,11.8%,D,48.8%,+5.1%,1.7%,954
+Master+,EUNE,15.24,Malzahar,mid,90.1%,D,48.6%,-0.5%,5.8%,3 252
+Master+,EUNE,15.24,Udyr,jungle,71.8%,D,50.1%,-3.8%,2.2%,1 211
+Master+,EUNE,15.24,Fizz,mid,87.8%,D,49.7%,-0.7%,2.4%,1 335
+Master+,EUNE,15.24,Dr.Mundo,jungle,35.6%,D,48.7%,+3.1%,3.0%,1 685
+Master+,EUNE,15.24,Rell,support,99.8%,D,49.6%,+0.7%,3.6%,2 046
+Master+,EUNE,15.24,Gwen,jungle,25.6%,D,49.4%,+3.8%,1.5%,864
+Master+,EUNE,15.24,Aurora,mid,72.3%,D,49.8%,-3.9%,2.2%,1 230
+Master+,EUNE,15.24,Warwick,top,47.6%,D,50.3%,-0.5%,1.1%,616
+Master+,EUNE,15.24,Ezreal,adc,97.9%,D,48.0%,-0.8%,8.3%,4 652
+Master+,EUNE,15.24,Morgana,mid,37.5%,D,48.8%,+4.2%,1.7%,944
+Master+,EUNE,15.24,Fiddlesticks,jungle,61.6%,D,49.8%,+2.3%,1.9%,1 094
+Master+,EUNE,15.24,Sivir,adc,99.0%,D,48.7%,+2.9%,5.1%,2 895
+Master+,EUNE,15.24,Renata,support,99.6%,D,50.1%,+0.9%,1.6%,917
+Master+,EUNE,15.24,Zoe,support,16.1%,D,49.6%,+0.4%,1.0%,581
+Master+,EUNE,15.24,Kalista,adc,92.8%,D,50.0%,-2.9%,1.7%,952
+Master+,EUNE,15.24,Cassiopeia,mid,47.8%,D,49.6%,-3.2%,2.0%,1 098
+Master+,EUNE,15.24,Nidalee,jungle,82.6%,D,49.7%,-2.2%,2.4%,1 363
+Master+,EUNE,15.24,Malphite,jungle,33.6%,D,47.7%,-0.7%,3.5%,1 947
+Master+,EUNE,15.24,Jayce,top,37.6%,D,49.3%,-0.2%,3.1%,1 731
+Master+,EUNE,15.24,Graves,jungle,97.0%,D,49.4%,-1.3%,2.8%,1 583
+Master+,EUNE,15.24,Varus,adc,76.5%,D,49.3%,+2.3%,3.1%,1 730
+Master+,EUNE,15.24,Renekton,top,94.1%,D,48.3%,-1.1%,4.7%,2 655
+Master+,EUNE,15.24,Poppy,support,61.4%,D,49.1%,+2.9%,2.2%,1 212
+Master+,EUNE,15.24,Morgana,support,52.1%,D,48.2%,-1.4%,2.4%,1 354
+Master+,EUNE,15.24,Diana,mid,31.4%,D,48.3%,-1.6%,3.2%,1 783
+Master+,EUNE,15.24,Vel'Koz,support,47.8%,D,49.4%,+0.3%,2.2%,1 236
+Master+,EUNE,15.24,Lux,mid,47.4%,D,48.6%,-0.4%,4.6%,2 617
+Master+,EUNE,15.24,Hwei,mid,75.9%,D,48.5%,+1.1%,3.7%,2 109
+Master+,EUNE,15.24,Talon,mid,25.6%,D,47.9%,+1.7%,1.6%,875
+Master+,EUNE,15.24,Kindred,jungle,97.3%,D,49.1%,+7.3%,2.3%,1 286
+Master+,EUNE,15.24,Gangplank,top,91.7%,D,49.2%,+2.5%,2.4%,1 359
+Master+,EUNE,15.24,Alistar,support,99.1%,D,48.6%,+0.8%,3.8%,2 137
+Master+,EUNE,15.24,Amumu,jungle,61.2%,D,49.1%,-0.1%,2.3%,1 276
+Master+,EUNE,15.24,Gwen,top,69.5%,D,48.0%,+2.6%,3.7%,2 077
+Master+,EUNE,15.24,Taliyah,mid,72.5%,D,49.4%,-0.7%,1.7%,978
+Master+,EUNE,15.24,Mel,mid,57.9%,D,46.2%,+0.8%,6.6%,3 700
+Master+,EUNE,15.24,Evelynn,jungle,97.9%,D,48.6%,+2.7%,2.8%,1 596
+Master+,EUNE,15.24,Neeko,support,79.7%,D,49.2%,+5.4%,1.8%,998
+Master+,EUNE,15.24,Garen,top,90.1%,D,48.2%,+0.9%,4.7%,2 647
+Master+,EUNE,15.24,Kayn,jungle,92.8%,D,48.2%,-3.8%,4.3%,2 411
+Master+,EUNE,15.24,Brand,support,42.0%,D,49.2%,-6.1%,1.2%,658
+Master+,EUNE,15.24,Sona,support,98.9%,D,48.7%,+4.0%,3.1%,1 751
+Master+,EUNE,15.24,Veigar,mid,69.7%,D,48.6%,+2.7%,3.3%,1 868
+Master+,EUNE,15.24,K'Sante,top,95.7%,D,47.8%,+2.2%,4.1%,2 319
+Master+,EUNE,15.24,Wukong,jungle,80.4%,D,48.5%,+1.3%,2.9%,1 660
+Master+,EUNE,15.24,Nasus,top,78.1%,D,48.4%,+2.1%,2.4%,1 340
+Master+,EUNE,15.24,Illaoi,top,95.2%,D,48.6%,+0.8%,1.4%,809
+Master+,EUNE,15.24,Pantheon,top,30.5%,D,48.3%,-0.1%,2.4%,1 376
+Master+,EUNE,15.24,Naafiri,jungle,51.9%,D,47.8%,+0.4%,2.6%,1 445
+Master+,EUNE,15.24,Yunara,adc,99.4%,D,47.1%,+0.1%,5.5%,3 089
+Master+,EUNE,15.24,Briar,jungle,90.1%,D,47.9%,-2.6%,2.6%,1 465
+Master+,EUNE,15.24,Zeri,adc,96.2%,D,47.5%,+0.7%,4.6%,2 611
+Master+,EUNE,15.24,Orianna,mid,97.7%,D,47.0%,+1.3%,5.5%,3 093
+Master+,EUNE,15.24,Malphite,mid,7.1%,D,46.9%,+1.4%,1.0%,572
+Master+,EUNE,15.24,Varus,top,18.5%,D,48.3%,+4.6%,1.4%,772
+Master+,EUNE,15.24,Poppy,top,28.0%,D,47.9%,-3.6%,1.1%,626
+Master+,EUNE,15.24,Aatrox,jungle,48.9%,D,46.6%,+6.2%,3.0%,1 688
+Master+,EUNE,15.24,Rumble,top,85.3%,D,48.2%,+2.8%,1.7%,959
+Master+,EUNE,15.24,Mordekaiser,top,89.9%,D,46.8%,+2.2%,4.0%,2 261
+Master+,EUNE,15.24,Camille,top,84.8%,D,47.2%,+2.2%,2.8%,1 558
+Master+,EUNE,15.24,Galio,mid,84.1%,D,47.3%,+3.9%,2.8%,1 583
+Master+,EUNE,15.24,Ryze,mid,77.4%,D,47.5%,-0.5%,2.2%,1 256
+Master+,EUNE,15.24,Akali,top,22.2%,D,46.6%,+4.7%,1.8%,1 030
+Master+,EUNE,15.24,Sylas,support,5.7%,D,46.1%,+0.8%,1.0%,571
+Master+,EUNE,15.24,Lissandra,mid,91.5%,D,46.8%,+2.4%,3.5%,1 949
+Master+,EUNE,15.24,Azir,mid,91.6%,D,47.3%,-3.4%,2.2%,1 212
+Master+,EUNE,15.24,Warwick,jungle,49.8%,D,47.3%,+2.9%,1.7%,960
+Master+,EUNE,15.24,Yone,top,45.5%,D,46.8%,-0.3%,2.8%,1 572
+Master+,EUNE,15.24,Smolder,mid,13.1%,D,46.7%,+1.4%,1.4%,778
+Master+,EUNE,15.24,Yorick,top,95.2%,D,47.0%,-4.0%,1.4%,794
+Master+,EUNE,15.24,Zyra,support,48.2%,D,47.0%,+1.5%,1.6%,888
+Master+,EUNE,15.24,Yuumi,support,99.2%,D,45.4%,-0.3%,4.7%,2 667
+Master+,EUNE,15.24,Vi,jungle,94.4%,D,46.4%,+2.8%,1.8%,1 021
+Master+,EUNE,15.24,Pantheon,support,39.1%,D,45.8%,+1.8%,1.8%,1 023
+Master+,EUNE,15.24,Jayce,jungle,51.4%,D,45.6%,-0.6%,2.1%,1 201
+Master+,EUNE,15.24,Yone,mid,53.4%,D,45.0%,+4.5%,2.6%,1 463
+Master+,EUNE,15.24,Mel,support,18.2%,D,43.1%,-1.9%,1.4%,807
+Master+,EUNE,15.24,Swain,support,23.8%,D,43.9%,+3.1%,1.5%,847
+Master+,EUNE,15.24,Volibear,top,63.2%,D,43.5%,+7.0%,2.0%,1 131
+Master+,EUNE,15.24,Lux,support,31.9%,D,43.1%,+0.9%,1.9%,1 079

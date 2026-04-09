@@ -1,0 +1,3 @@
+python -m venv venv_kernel4  
+.\venv_kernel4\Scripts\python -m pip install ipykernel
+python -m venv venv_kernel4 

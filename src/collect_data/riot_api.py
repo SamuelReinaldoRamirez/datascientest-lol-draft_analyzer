@@ -35,7 +35,7 @@
 
 import requests
 import time
-from config import API_KEY, API_KEYS, REGION, QUEUE, TIER, DIVISION
+from src.collect_data.config import API_KEY, API_KEYS, REGION, QUEUE, TIER, DIVISION
 
 # Smart API Key rotation with automatic failover on rate limits
 class SmartKeyRotator:

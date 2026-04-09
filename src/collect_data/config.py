@@ -12,5 +12,5 @@ API_KEY = API_KEYS[0]
 
 REGION = "kr"              # Région du shard LoL (euw1, na1, kr, etc.)
 QUEUE = "RANKED_SOLO_5x5"
-TIER = "DIAMOND"
-DIVISION = "I"
+TIER = "SILVER"
+DIVISION = "II"

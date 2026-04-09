@@ -22,3 +22,5 @@ __pycache__/
 
 # OS
 .DS_Store
+src/notebooks/*.csv
+src/collect_data/*.csv
